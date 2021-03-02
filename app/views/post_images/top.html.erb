@@ -1,0 +1,16 @@
+<div class="top">
+  <div class="top-content p-5">
+    <h3 class="top-title">
+      あなたの絵を<br >
+      もっとたくさんの人へ・・・・・
+    </h3>
+    <div class="top-links mt-4">
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-info"%>
+      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-success"%>
+    </div>
+  </div>
+  
+  <div class="top-to-main">
+    <%= link_to "イラストを見にいこう", post_images_path, class: "btn btn-danger"%>
+  </div>
+</div>
