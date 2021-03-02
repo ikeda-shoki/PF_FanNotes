@@ -1,0 +1,2 @@
+class RequestImage < ApplicationRecord
+end

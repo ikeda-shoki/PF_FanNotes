@@ -1,0 +1,120 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+
+
+$main-color: #f7f4f2;
+$accent-color: #e65b20;
+$back-ground-color: #d1cbc3;
+$font-color: #3e1300;
+
+* {
+  color: $font-color;
+}
+
+.center-container {
+  margin-top: 200px;
+  border: solid 10px $accent-color;
+  border-radius: 20px;
+}
+
+.btn {
+  padding: 80px;
+	display: inline-block;
+	min-width: 230px;
+	font-size: 16px;
+	font-weight: 700;
+	text-decoration: none;
+	margin: 0;
+	padding: 15px 16px;
+	background: $accent-color;
+	color: #fff;
+	border-radius: 3px;
+}
+
+// top
+
+.top {
+  width: 100%;
+  min-height: 100vh;
+  background-image: image-url('top.jpg');
+  background-size: cover;
+  background-color:rgba(255,255,255,0.5);
+  background-blend-mode:lighten;
+  position: relative;
+
+  .top-content {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: solid 5px $accent-color;
+    border-radius: 15px;
+    top: 200px;
+    left: 100px;
+
+    .top-title {
+      color: $main-color;
+    }
+  }
+}
+
+// sign-up
+.sign-up {
+  width: 100%;
+  min-height: 100vh;
+  background-image: image-url('background_signin');
+  background-size: cover;
+  background-color:rgba(255,255,255,0.5);
+  background-blend-mode:lighten;
+}
+
+.btn-sign-up {
+  margin-top: 50px;
+}
+
+// log-in
+.log-in {
+  width: 100%;
+  min-height: 100vh;
+  background-image: image-url('background_login');
+  background-size: cover;
+  background-color:rgba(255,255,255,0.5);
+  background-blend-mode:lighten;
+}
+
+
+// footer
+
+.footer {
+  background-color: $accent-color;
+  height: 60px;
+
+  p {
+    line-height: 60px;
+  }
+}
+
+// flash_message
+
+.notice {
+  color: white;
+  background-color: blue;
+}
+.alert {
+  color: white;
+  background-color: red;
+}
