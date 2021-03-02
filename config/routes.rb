@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   root to: "post_images#top"
+  post '/guest_sign_in', to: 'post_images#new_guest'
   
   resources :post_images
   
