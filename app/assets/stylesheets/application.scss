@@ -27,6 +27,26 @@ $font-color: #3e1300;
   color: $font-color;
 }
 
+.center-container {
+  margin-top: 200px;
+  border: solid 10px $accent-color;
+  border-radius: 20px;
+}
+
+.btn {
+  padding: 80px;
+	display: inline-block;
+	min-width: 230px;
+	font-size: 16px;
+	font-weight: 700;
+	text-decoration: none;
+	margin: 0;
+	padding: 15px 16px;
+	background: $accent-color;
+	color: #fff;
+	border-radius: 3px;
+}
+
 // top
 
 .top {
@@ -50,4 +70,51 @@ $font-color: #3e1300;
       color: $main-color;
     }
   }
+}
+
+// sign-up
+.sign-up {
+  width: 100%;
+  min-height: 100vh;
+  background-image: image-url('background_signin');
+  background-size: cover;
+  background-color:rgba(255,255,255,0.5);
+  background-blend-mode:lighten;
+}
+
+.btn-sign-up {
+  margin-top: 50px;
+}
+
+// log-in
+.log-in {
+  width: 100%;
+  min-height: 100vh;
+  background-image: image-url('background_login');
+  background-size: cover;
+  background-color:rgba(255,255,255,0.5);
+  background-blend-mode:lighten;
+}
+
+
+// footer
+
+.footer {
+  background-color: $accent-color;
+  height: 60px;
+
+  p {
+    line-height: 60px;
+  }
+}
+
+// flash_message
+
+.notice {
+  color: white;
+  background-color: blue;
+}
+.alert {
+  color: white;
+  background-color: red;
 }
