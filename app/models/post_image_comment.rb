@@ -1,0 +1,2 @@
+class PostImageComment < ApplicationRecord
+end
