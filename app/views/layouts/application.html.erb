@@ -10,9 +10,11 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-      <%= render 'layouts/flash_message' %>
-      <%= yield %>
-    <%= render 'layouts/footer' %>
+    <div class="fan-notes">
+      <%= render 'layouts/header' %>
+        <%= render 'layouts/flash_message' %>
+        <%= yield %>
+      <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>

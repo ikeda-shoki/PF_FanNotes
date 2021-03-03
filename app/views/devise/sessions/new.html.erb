@@ -6,12 +6,12 @@
       <%= form_with model: @user, url: user_session_path, local: true do |f| %>
 
         <div class="field mb-3">
-          <%= f.label :"メールアドレス" %><br />
+          <%= f.label :email, "メールアドレス" %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
 
         <div class="field mb-3">
-          <%= f.label :"パスワード" %><br />
+          <%= f.label :password, "パスワード" %><br />
           <%= f.password_field :password, autocomplete: "current-password" %>
         </div>
 
@@ -23,7 +23,7 @@
         <% end %>
 
         <div class="actions mb-3">
-          <%= f.submit "Log In", class: "btn" %>
+          <%= f.submit "Log In", class: "button btn-log-in" %>
         </div>
       <% end %>
 

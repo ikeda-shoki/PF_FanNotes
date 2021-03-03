@@ -1,0 +1,44 @@
+<div class="post-image-show main">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <div class="image-show mt-5">
+          <%= attachment_image_tag @post_image, :image %>
+          <div class="post-image-text mx-auto">
+            <div class="d-flex justify-content-between">
+              <h3 class="font-weight-bold mb-3"><%= @post_image.title %></h3>
+              <h3><i class="fas fa-heart"></i></h3>
+            </div>
+            <h5 class="mb-2"><%= @post_image.image_introduction %></h5>
+          </div>
+        </div>
+        <div class="image-show-comment-new mt-5">
+          <div class="image-show-comment-form mx-auto">
+            <%= render 'layouts/error_messages', model: @post_image_comment %>
+            <%= form_with(model:[@post_image, @post_image_comment], local: true) do |f| %>
+              <%= current_user.account_name %>
+              <%= f.text_field :comment, placeholder: "コメントする" %>
+              <%= f.submit "送信する", class: "button comment-btn" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="image-show-comment-index mt-5">
+          <% @post_image_comments.each do |post_image_comment| %>
+            <div class="image-show-comment-list mb-3 mx-auto d-flex justify-content-between">
+              <div>
+                <%= post_image_comment.user.account_name %>
+                <%= post_image_comment.comment %>
+              </div>
+              <div>
+                <%= link_to 'コメントを削除する', post_image_post_image_comment_path(post_image_comment.post_image, post_image_comment), method: :delete, class: "button comment-delete-btn"%>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-4 mx-auto">
+
+      </div>
+    </div>
+  </div>
+</div>

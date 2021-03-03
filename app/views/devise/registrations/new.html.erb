@@ -7,17 +7,17 @@
       <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
 
         <div class="field mb-3">
-          <%= f.label :"ユーザーネーム" %><br />
+          <%= f.label :account_name, "ユーザーネーム" %><br />
           <%= f.text_field :account_name, autofocus: true, autocomplete: "account_name" %>
         </div>
 
         <div class="field mb-3">
-          <%= f.label :"メールアドレス" %><br />
+          <%= f.label :email, "メールアドレス" %><br />
           <%= f.email_field :email, autocomplete: "email" %>
         </div>
 
         <div class="field mb-3">
-          <%= f.label :"パスワード" %>
+          <%= f.label :password, "パスワード" %>
           <% if @minimum_password_length %>
           <em>6文字以上</em>
           <% end %><br />
@@ -25,12 +25,12 @@
         </div>
 
         <div class="field mb-3">
-          <%= f.label :"パスワード確認用" %><br />
+          <%= f.label :password_confirmation, "パスワード確認用" %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
 
         <div class="actions mb-3">
-          <%= f.submit "Sign Up", class: "btn btn-sign-up" %>
+          <%= f.submit "Sign Up", class: "button btn-sign-up" %>
         </div>
       <% end %>
 
