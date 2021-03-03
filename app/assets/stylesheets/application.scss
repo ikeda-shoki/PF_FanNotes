@@ -97,6 +97,19 @@ $font-color: #3e1300;
   }
 }
 
+.post-image {
+  text-align: center;
+  background-color: #fff;
+  width: 200px;
+  padding: 10px 10px;
+  border-radius: 20px;
+  margin-right: 10px;
+  
+  img {
+    border-radius: 20px;
+  }
+}
+
 // top
 
 .top {
