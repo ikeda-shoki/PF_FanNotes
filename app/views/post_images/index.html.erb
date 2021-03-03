@@ -1,0 +1,25 @@
+<div class="post-image-index main">
+  <div class="container">
+    <div class="row">
+      <div class="profile col-md-4">
+        
+      </div>
+      <div class="post-image-index-main col-md-8">
+        <div class="popular-art">
+          
+        </div>
+        <div class="all-arts">
+          <h2>新着作品</h2>
+          <% @post_images.each do |post_image| %>
+            <div>
+              <%= attachment_image_tag post_image, :image, size: "100x100", class:  %>
+              <%= post_image.title %>
+              <%= post_image.user.account_name %>
+            </div>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
