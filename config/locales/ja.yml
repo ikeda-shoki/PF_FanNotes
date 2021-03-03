@@ -6,6 +6,13 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+  activerecord:
+    attributes:
+      post_image:
+        title: 'タイトル'
+        image: '画像'
+      post_image_comment:
+        comment: 'コメント'
   date:
     abbr_day_names:
     - 日
@@ -16,7 +23,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -42,7 +49,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
