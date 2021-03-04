@@ -99,12 +99,12 @@ $font-color: #3e1300;
   padding: 20px 20px 10px;
   border-radius: 20px;
   text-align: center;
-  
-  
+
+
   ul {
     list-style: none;
     padding: 0;
-    
+
     li {
       font-weight: bold;
     }
@@ -118,6 +118,7 @@ $font-color: #3e1300;
   padding: 10px 10px;
   border-radius: 20px;
   margin-right: 10px;
+  margin-bottom: 10px;
 
   img {
     border-radius: 20px;
@@ -243,5 +244,37 @@ $font-color: #3e1300;
 
   :last-child {
     margin-bottom: 0 !important;
+  }
+}
+
+// user-show
+.user-show {
+  
+  .user-show-profile {
+    margin-top: 200px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 100px 30px 20px;
+    position: relative;
+  }
+  
+  
+  .show-profile-image {
+    img {
+       width: 130px;
+       height: 130px;
+       object-fit: cover;
+       border-radius: 50%;
+       padding: 5px;
+       border: solid 5px $accent-color;
+       position: absolute;
+       top: -15%;
+       left: 50%;
+       transform:translateX(-50%)
+    }
+  }
+  
+  .user-show-image {
+    padding-left: 60px;
   }
 }
