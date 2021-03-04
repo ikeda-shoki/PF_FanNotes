@@ -1,8 +1,8 @@
 <div class="post-image-index main">
   <div class="container">
     <div class="row">
-      <div class="profile col-md-4">
-
+      <div class="col-md-4 mx-auto text-center">
+        <%= render 'users/user_profile', user: current_user %>
       </div>
       <div class="post-image-index-main col-md-8">
         <div class="popular-art">
@@ -10,7 +10,7 @@
         </div>
         <div class="image-index">
           <h2>新着作品</h2>
-          <%= render 'post_images/post_image', post_images: @post_images %>
+          <%= render 'post_images/post_image_item', post_images: @post_images %>
         </div>
       </div>
     </div>

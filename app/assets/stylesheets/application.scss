@@ -33,6 +33,7 @@ $font-color: #3e1300;
   height: 100%;
   background-color: $main-color;
   position: relative;
+  padding-bottom: 100px;
 
   .header {
     position: fixed;
@@ -76,7 +77,7 @@ $font-color: #3e1300;
 }
 
 .post {
-  margin-top: 200px;
+  margin-top: 100px;
   background-color: #fff;
   padding: 50px;
   border-radius: 20px;
@@ -124,6 +125,33 @@ $font-color: #3e1300;
     border-radius: 20px;
   }
 }
+
+.user-profile {
+    margin-top: 200px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 100px 30px 20px;
+    position: relative;
+    
+    .profile-image {
+      img {
+         width: 130px;
+         height: 130px;
+         object-fit: cover;
+         border-radius: 50%;
+         padding: 5px;
+         border: solid 5px $accent-color;
+         position: absolute;
+         top: -15%;
+         left: 50%;
+         transform:translateX(-50%)
+      }
+    }
+    
+  }
+
+
+
 
 // top
 
@@ -205,7 +233,7 @@ $font-color: #3e1300;
 
 // post-image-show
 
-.image-show {
+.image-show-left {
   background-color: #fff;
   border-radius: 20px;
   text-align: center;
@@ -247,34 +275,91 @@ $font-color: #3e1300;
   }
 }
 
+.image-show-right {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 50px 20px;
+  margin-top: 100px;
+
+  .image-show-profile-image {
+    
+    img {
+      width: 180px;
+       height: 180px;
+       object-fit: cover;
+       border-radius: 50%;
+       padding: 5px;
+       border: solid 5px $accent-color;
+    }
+  }
+  
+  .image-show-profile-items {
+    border-bottom: dashed $font-color;
+  }
+  
+  .image-show-profile-buttons {
+    border-bottom: dashed $font-color;
+  }
+  
+  .image-show-profile-images {
+    border-bottom: dashed $font-color;
+    
+    .post-image {
+      margin: 0;
+      
+      img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+  
+}
+
 // user-show
 .user-show {
   
-  .user-show-profile {
-    margin-top: 200px;
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 100px 30px 20px;
-    position: relative;
+  .user-show-image {
+    padding-left: 60px;
   }
-  
-  
-  .show-profile-image {
+}
+
+// user-edit-profile
+
+.user-edit-profile {
+  border-radius: 20px;
+  padding: 150px 30px 30px;
+  position: relative;
+
+  .edit-profile-image {
     img {
-       width: 130px;
-       height: 130px;
+       width: 200px;
+       height: 200px;
        object-fit: cover;
        border-radius: 50%;
        padding: 5px;
        border: solid 5px $accent-color;
        position: absolute;
-       top: -15%;
+       top: -10%;
        left: 50%;
        transform:translateX(-50%)
     }
   }
-  
-  .user-show-image {
-    padding-left: 60px;
+
+  label[for="user_is_reception_true"],
+       [for="user_is_reception_false"] {
+    background-color: $main-color;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  input[type="radio"]:checked + label {
+      background-color: $accent-color;
+      font-weight: bold;
+      color: #fff;
   }
 }

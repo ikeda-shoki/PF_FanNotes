@@ -13,8 +13,11 @@ class PostImageCommentsController < ApplicationController
   end
 
   def destroy
-    PostImageComment.find_by(id: params[:id], post_image_id: params[:post_image_id]).destroy
-    redirect_back(fallback_location: post_image_path(params[:post_image_id]))
+    if PostImageComment.find_by(id: params[:id], post_image_id: params[:post_image_id]).destroy
+      redirect_back(fallback_location: post_image_path(params[:post_image_id]))
+    else
+      render 'post_images/show'
+    end
   end
 
   private

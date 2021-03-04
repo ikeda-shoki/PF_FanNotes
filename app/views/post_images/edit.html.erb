@@ -1,0 +1,34 @@
+<div class="post-image-edit">
+  <div class="row">
+    <div class="post col-md-6 mx-auto">
+      <%= render 'layouts/error_messages', model: @post_image %>
+      <%= form_with model: @post_image, local: true do |f| %>
+        <div class="field mb-4 row">
+          <dt class="col-md-4">
+            <%= f.label :title, "タイトル"%>
+          </dt>
+          <dl class="col-md-8">
+            <%= f.text_field :title, placeholder: "タイトルを入力してください" %>
+          </dl>
+        </div>
+        <div class="field mb-4 row">
+          <dt class="col-md-4">
+            <%= f.label :image_introduction, "説明"%>
+          </dt>
+          <dl class="col-md-8">
+            <%= f.text_area :image_introduction, placeholder: "作品の内容を入力してください" %>
+          </dl>
+        </div>
+        
+        <div class="post-image-edit-buttons row">
+          <div class="post-button text-center col-md-6">
+            <%= f.submit "更新する", class: "button"%>
+          </div>
+          <div class="destroy-button text-center col-md-6">
+            <%= link_to "投稿を削除する", post_image_path(@post_image), method: :delete, data: {confirm: "本当にイラストを削除しますか"}, class: "btn btn-danger"%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
