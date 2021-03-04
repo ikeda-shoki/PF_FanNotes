@@ -1,0 +1,66 @@
+<div class="user-edit main">
+  <div class="container">
+    <div class="row">
+      <div class="user-edit-profile col-md-6 mx-auto text-center post">
+        
+        <div class="edit-profile-image">
+          <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg" %>
+        </div>
+        
+        <%= render 'layouts/error_messages', model: @user %>
+        <%= form_with model: @user, local: true do |f| %>
+          <div class="field mb-4 row">
+            <dt class="col-md-4">
+              <%= f.label :account_name, "ユーザーネーム"%>
+            </dt>
+            <dl class="col-md-8">
+              <%= f.text_field :account_name, placeholder: "ユーザーネームを入力してください" %>
+            </dl>
+          </div>
+          <div class="field mb-4 row">
+            <dt class="col-md-4">
+              <%= f.label :user_introduction, "プロフィール"%>
+            </dt>
+            <dl class="col-md-8">
+              <%= f.text_area :user_introduction, placeholder: "プロフィール" %>
+            </dl>
+          </div>
+          <div class="field mb-4 row">
+            <dt class="col-md-4">
+              <%= f.label :profile_image, "アイコン"%>
+            </dt>
+            <dl class="col-md-8">
+              <%= f.attachment_field :profile_image %>
+            </dl>
+          </div>
+          <div class="field mb-4 row">
+            <dt class="col-md-4">
+              <%= f.label :is_reception, "受付状況"%>
+            </dt>
+            <dl class="col-md-8 d-flex">
+              <div>
+                <%= f.radio_button :is_reception, true %>
+                <%= f.label :is_reception, '受け付ける', value: true %>
+              </div>
+              <div class="ml-4">
+                <%= f.radio_button :is_reception, false %>
+                <%= f.label :is_reception, '受け付けない', value: false %>
+              </div>
+            </dl>
+          </div>
+          <div>
+            <%= f.submit '更新する', class: "button" %>
+          </div>
+          <div class="user-destroy-button mt-4">
+            <%= link_to "退会する", user_path(@user),
+                                    method: :delete, 
+                                    data: {confirm: "本当に退会しますか?退会するとこれまでのあなたの情報は全て削除されます。"},
+                                    class: "btn btn-danger"
+                                    %>
+          </div>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>

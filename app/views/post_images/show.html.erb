@@ -2,14 +2,25 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 mx-auto">
-        <div class="image-show mt-5">
+        <div class="image-show-left mt-5">
           <%= attachment_image_tag @post_image, :image %>
           <div class="post-image-text mx-auto">
             <div class="d-flex justify-content-between">
               <h3 class="font-weight-bold mb-3"><%= @post_image.title %></h3>
-              <h3><i class="fas fa-heart"></i></h3>
+              <% if @post_image.favorited_by?(current_user) %>
+                <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
+                  <h3><i class="fas fa-heart text-danger"></i></h3>
+                <% end %>
+              <% else %>
+                <%= link_to post_image_favorites_path(@post_image), method: :post do %>
+                  <h3><i class="fas fa-heart"></i></h3>
+                <% end %>
+              <% end %>
             </div>
             <h5 class="mb-2"><%= @post_image.image_introduction %></h5>
+            <span>投稿日<%= @post_image.created_at %></span>
+            <span>最終更新日<%= @post_image.updated_at %></span><br />
+            <span><i class="far fa-heart"></i>:<%= @post_image.favorites.count %></span>
           </div>
         </div>
         <div class="image-show-comment-new mt-5">
@@ -18,7 +29,7 @@
             <%= form_with(model:[@post_image, @post_image_comment], local: true) do |f| %>
               <%= current_user.account_name %>
               <%= f.text_field :comment, placeholder: "コメントする" %>
-              <%= f.submit "送信する", class: "button comment-btn" %>
+              <%= f.submit "送信する", class: "btn btn-success comment-btn" %>
             <% end %>
           </div>
         </div>
@@ -30,14 +41,72 @@
                 <%= post_image_comment.comment %>
               </div>
               <div>
-                <%= link_to 'コメントを削除する', post_image_post_image_comment_path(post_image_comment.post_image, post_image_comment), method: :delete, class: "button comment-delete-btn"%>
+                <% if post_image_comment.user === current_user %>
+                  <%= link_to 'コメントを削除する', post_image_post_image_comment_path(post_image_comment.post_image, post_image_comment), 
+                                                    method: :delete,
+                                                    data: {confirm: "コメントを削除してもよろしいですか？"},
+                                                    class: "btn btn-danger comment-delete-btn"%>
+                <% end %>
               </div>
             </div>
           <% end %>
         </div>
       </div>
-      <div class="col-md-4 mx-auto">
 
+
+      <div class="col-md-4 mx-auto">
+        <div class="image-show-right">
+          <div class="image-show-profile-image text-center mb-4">
+            <%= link_to user_path(@user) do %>
+              <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg" %>
+            <% end %>
+          </div>
+
+          <h3 class="text-center mb-3"><%= @user.account_name %></h3>
+
+          <div class="image-show-profile-items row text-center pb-3 mx-auto">
+            <div class="show-profile-item col-md-4">
+              <h6>投稿</h6>
+              <span><%= @user.post_images.count %></span>
+            </div>
+            <div class="show-profile-item col-md-4">
+              <h6>フォロー</h6>
+              <span></span>
+            </div>
+            <div class="show-profile-item col-md-4">
+              <h6>フォロワー</h6>
+              <span></span>
+            </div>
+          </div>
+
+          <div class="image-show-profile-buttons mt-4 pb-4">
+            <div class="follow-button">
+
+            </div>
+            <div class="image-show-profile-button d-flex">
+              <%= link_to "プロフィールへ", user_path(@user), class: "btn btn-info"%>
+            </div>
+          </div>
+
+          <div class="image-show-profile-images mt-3 pb-3">
+            <h5>投稿作品</h5>
+            <div class="row px-4">
+              <% @user.post_images.first(3).each do |post_image| %>
+                <div class="post-image col-md-4">
+                  <%= link_to post_image_path(post_image) do %>
+                    <%= attachment_image_tag post_image, :image, size: "150x150"%>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <% if @user === current_user %>
+            <div class="image-show-profile-edit text-center mt-4">
+              <%= link_to "投稿を編集する", edit_post_image_path(@post_image), class: "btn btn-info"%>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

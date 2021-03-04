@@ -1,8 +1,4 @@
 class Favorite < ApplicationRecord
-  
-  def create
-  end
-  
-  def destroy
-  end
+  belongs_to :post_image
+  belongs_to :user
 end

@@ -20,6 +20,7 @@ class PostImagesController < ApplicationController
     @post_image = PostImage.find(params[:id])
     @post_image_comment = PostImageComment.new
     @post_image_comments = @post_image.post_image_comments
+    @user = @post_image.user
   end
 
   def index
@@ -36,12 +37,25 @@ class PostImagesController < ApplicationController
   end
 
   def edit
+    @post_image = PostImage.find(params[:id])
   end
 
   def update
+    @post_image = PostImage.find(params[:id])
+    if @post_image.update(post_image_update_params)
+      redirect_to post_image_path(@post_image)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
+    @post_image = PostImage.find(params[:id])
+    if @post_image.destroy
+      redirect_to post_images_path
+    else
+      render 'edit'
+    end
   end
 
   private
@@ -49,4 +63,7 @@ class PostImagesController < ApplicationController
       params.require(:post_image).permit(:title, :image, :image_introduction, :user_id).merge(user_id: current_user.id)
     end
 
+    def post_image_update_params
+      params.require(:post_image).permit(:title, :image_introduction, :user_id).merge(user_id: current_user.id)
+    end
 end

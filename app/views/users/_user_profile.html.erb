@@ -1,0 +1,63 @@
+<div class="user-profile">
+  <div class="profile-image">
+    <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg" %>
+  </div>
+  
+  <h3><%= user.account_name %></h3>
+  
+  <div class="profile-introduction">
+    <p>
+      <%= user.user_introduction %>
+    </p>
+  </div>
+  
+  <div class="profile-items row my-4">
+    <div class="profile-item col-md-3">
+      <h6>依頼</h6>
+      <span></span>
+    </div>
+    <div class="profile-item col-md-3">
+      <h6>投稿</h6>
+      <span><%= user.post_images.count %></span>
+    </div>
+    <div class="profile-item col-md-3">
+      <h6>フォロー</h6>
+      <span></span>
+    </div>
+    <div class="profile-item col-md-3">
+      <h6>フォロワー</h6>
+      <span></span>
+    </div>
+  </div>
+  
+  <div class="my-4">
+    <% if user === current_user %>
+      <%= link_to "編集する", edit_user_path(user), class: "btn btn-info text-right"%>
+    <% end %>
+  </div>
+  
+  <div class="profile-contents">
+    <div class="profile-content-status mb-5">
+      <h6>
+        受付:
+        <% if user.is_reception === true %>
+          <span class="ml-3 font-weight-bold bg-success p-3 rounded-pill">
+            依頼受付中
+          </span>
+        <% else %>
+          <span class="ml-3 font-weight-bold bg-danger p-3 rounded-pill">
+            依頼不可
+          </span>
+        <% end %>
+      </h6>
+    </div>
+    <div class="prfile-content-request">
+      <% if user === current_user %>
+        <% if reception?(user)%>
+          <a>現在の依頼内容</a>
+        <% end %>
+        <p>依頼状況</p>
+      <% end %>
+    </div>
+  </div>
+</div>
