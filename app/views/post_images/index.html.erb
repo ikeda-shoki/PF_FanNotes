@@ -17,6 +17,12 @@
           <h2>新着作品</h2>
           <%= render 'post_images/post_image_item', post_images: @post_images %>
         </div>
+        <% if user_signed_in? %>
+          <div class="image-index-item follower-image">
+            <h2>フォローユーザーの作品</h2>
+            <%= render 'post_images/post_image_item', post_images: @follow_images %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
