@@ -1,0 +1,26 @@
+<div class="info">
+  <div class="info-buttons">
+    <div class="info-button-signup signup-button">
+      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success" %>
+    </div>
+    <div class="info-button-login login-button">
+      <%= link_to "Log In", new_user_session_path, class: "btn btn-primary" %>
+    </div>
+    <div class="info-button-guest guest-button">
+      <%= link_to "ゲストログイン", guest_sign_in_path, method: :post ,class: "btn btn-info" %>
+    </div>
+  </div>
+  
+  <div class="info-introduction">
+    <h5>未ログイン状態です</h5>
+    <p>未ログイン状態では以下の機能が使用できません</p>
+    <ul>
+      <li>イラスト投稿機能</li>
+      <li>イラスト依頼機能</li>
+      <li>いいね機能</li>
+      <li>コメント機能</li>
+      <li>フォロー機能</li>
+    </ul>
+    <p>ログイン、新規登録して全ての機能を使用しよう！</p>
+  </div>
+</div>

@@ -71,17 +71,17 @@
             </div>
             <div class="show-profile-item col-md-4">
               <h6>フォロー</h6>
-              <span></span>
+              <span><%= @user.following_user.count %></span>
             </div>
             <div class="show-profile-item col-md-4">
               <h6>フォロワー</h6>
-              <span></span>
+              <span><%= @user.followed_user.count %></span>
             </div>
           </div>
 
-          <div class="image-show-profile-buttons mt-4 pb-4">
-            <div class="follow-button">
-
+          <div class="image-show-profile-buttons mt-4 pb-4 d-flex justify-content-between">
+            <div class="image-show-follow-button follow-button">
+              <%= render 'layouts/follow_button', user: @user %>
             </div>
             <div class="image-show-profile-button d-flex">
               <%= link_to "プロフィールへ", user_path(@user), class: "btn btn-info"%>

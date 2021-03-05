@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :withdrawal]
   before_action :ensure_current_user, only: [:edit, :update, :destroy]
   
   def show
@@ -18,9 +19,6 @@ class UsersController < ApplicationController
     end
   end
   
-  def withdrawal
-  end
-  
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
@@ -28,6 +26,20 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  #退会画面
+  def withdrawal
+  end
+  
+  def following
+    @user = User.find(params[:id])
+    @followers = @user.following_user
+  end
+  
+  def followed
+    @user = User.find(params[:id])
+    @followed = @user.followed_user
   end
   
   private

@@ -115,14 +115,16 @@ $font-color: #3e1300;
 .post-image {
   text-align: center;
   background-color: #fff;
-  width: 200px;
+  width: 180px;
+  height: 230px;
   padding: 10px 10px;
   border-radius: 20px;
-  margin-right: 10px;
   margin-bottom: 10px;
 
   img {
     border-radius: 20px;
+    width: 150px;
+    height: 150px;
   }
 }
 
@@ -362,4 +364,17 @@ $font-color: #3e1300;
       font-weight: bold;
       color: #fff;
   }
+}
+
+// follow
+
+.follow-lists {
+  margin-top: 100px;
+  
+  img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
 }
