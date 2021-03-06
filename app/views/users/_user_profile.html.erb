@@ -37,6 +37,10 @@
   <div class="my-4">
     <% if user === current_user %>
       <%= link_to "編集する", edit_user_path(user), class: "btn btn-info text-right"%>
+    <% else %>
+      <% if reception?(user) %>
+        <%= link_to "イラストの依頼をする", new_user_request_path(user), class: "btn btn-info text-right"%>
+      <% end %>
     <% end %>
   </div>
   
@@ -58,9 +62,9 @@
     <div class="prfile-content-request">
       <% if user === current_user %>
         <% if reception?(user)%>
-          <a>現在の依頼内容</a>
+          <%= link_to "依頼状況", user_requested_path(current_user), class: "btn btn-primary" %>
         <% end %>
-        <p>依頼状況</p>
+        <%= link_to "依頼中の内容", user_requesting_path(current_user), class: "btn btn-info" %>
       <% end %>
     </div>
     <div class="profile-follow-button follow-button">

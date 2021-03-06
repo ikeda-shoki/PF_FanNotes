@@ -13,6 +13,12 @@ ja:
         image: '画像'
       post_image_comment:
         comment: 'コメント'
+      request:
+        request_introduction: '依頼内容'
+        file_format: 'ファイル形式'
+        use: '用途'
+        deadline: '締切日'
+        amount: '枚数'
   date:
     abbr_day_names:
     - 日

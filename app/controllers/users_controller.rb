@@ -44,14 +44,6 @@ class UsersController < ApplicationController
     @followed = @user.followed_user
   end
   
-  #自分の依頼一覧画面
-  def requesting
-  end
-  
-  #自分に来ている依頼
-  def requested
-  end
-  
   private
     def user_params
       params.require(:user).permit(:account_name, :user_introduction, :profile_image, :is_reception)

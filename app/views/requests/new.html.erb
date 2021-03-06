@@ -2,7 +2,10 @@
   <div class="row">
     <div class="post col-md-6 mx-auto">
       <%= render 'layouts/error_messages', model: @request %>
-      <%= form_with model: @request, local: true do |f| %>
+      <%= form_with model: @request, url: user_requests_path(@user), local: true do |f| %>
+        <div class="field mb-4 text-center">
+          <h4><%= @user.account_name %>へイラストの依頼をする</h4>
+        </div>
         <div class="field mb-4 row">
           <dt class="col-md-4">
             <%= f.label :request_introduction, "依頼内容"%>
@@ -49,9 +52,10 @@
           </dt>
           <dl class="col-md-8">
             <%= f.date_field :deadline %>
+            <h6>※締切には最短で3日後から入力してください</h6>
           </dl>
         </div>
-        
+
         <div class="post-button text-center">
           <%= f.submit "依頼を送信する", class: "button"%>
         </div>
