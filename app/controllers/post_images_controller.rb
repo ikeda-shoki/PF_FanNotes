@@ -26,10 +26,7 @@ class PostImagesController < ApplicationController
 
   def index
     @post_images = PostImage.all
-    @following_users = current_user.following_user
-    @following_users.each do |following_user|
-      @follow_images = following_user.post_images
-    end
+    @following_users = current_user.following_user if user_signed_in?
   end
 
   def create

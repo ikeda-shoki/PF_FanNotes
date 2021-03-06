@@ -134,7 +134,7 @@ $font-color: #3e1300;
     border-radius: 20px;
     padding: 100px 30px 20px;
     position: relative;
-    
+
     .profile-image {
       img {
          width: 130px;
@@ -149,7 +149,7 @@ $font-color: #3e1300;
          transform:translateX(-50%)
       }
     }
-    
+
   }
 
 
@@ -284,7 +284,7 @@ $font-color: #3e1300;
   margin-top: 100px;
 
   .image-show-profile-image {
-    
+
     img {
       width: 180px;
        height: 180px;
@@ -294,36 +294,34 @@ $font-color: #3e1300;
        border: solid 5px $accent-color;
     }
   }
-  
+
   .image-show-profile-items {
     border-bottom: dashed $font-color;
   }
-  
+
   .image-show-profile-buttons {
     border-bottom: dashed $font-color;
   }
-  
+
   .image-show-profile-images {
     border-bottom: dashed $font-color;
-    
+
     .post-image {
       margin: 0;
-      
+      height: auto;
+
       img {
         width: 80px;
         height: 80px;
       }
     }
   }
-  
+
 }
 
 // user-show
 .user-show {
-  
-  .user-show-image {
-    padding-left: 60px;
-  }
+
 }
 
 // user-edit-profile
@@ -370,7 +368,7 @@ $font-color: #3e1300;
 
 .follow-lists {
   margin-top: 100px;
-  
+
   img {
         width: 150px;
         height: 150px;

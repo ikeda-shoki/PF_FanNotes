@@ -19,8 +19,11 @@
         </div>
         <% if user_signed_in? %>
           <div class="image-index-item follower-image">
-            <h2>フォローユーザーの作品</h2>
-            <%= render 'post_images/post_image_item', post_images: @follow_images %>
+            <h2>フォローユーザーの新着作品</h2>
+            <% @following_users.each do |following_user| %>
+              <h4><%= following_user.account_name %></h4>
+              <%= render 'post_images/post_image_item', post_images: following_user.post_images %>
+            <% end %>
           </div>
         <% end %>
       </div>
