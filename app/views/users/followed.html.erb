@@ -1,0 +1,12 @@
+<div class="user-followed">
+  <div class="container">
+    <div class="row">
+      <div class="user-followed-right col-md-4">
+        <%= render 'users/user_profile', user: @user %>
+      </div>
+      <div class="user-followed-left col-md-8">
+        <%= render 'users/follow', follows: @followed, follow_title: "フォロワーリスト"%>
+      </div>
+    </div>
+  </div>
+</div>

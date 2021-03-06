@@ -1,4 +1,5 @@
 class PostImagesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
   def top
   end
@@ -25,6 +26,7 @@ class PostImagesController < ApplicationController
 
   def index
     @post_images = PostImage.all
+    @following_users = current_user.following_user if user_signed_in?
   end
 
   def create
@@ -42,7 +44,7 @@ class PostImagesController < ApplicationController
 
   def update
     @post_image = PostImage.find(params[:id])
-    if @post_image.update(post_image_update_params)
+    if @post_image.update(post_image_params)
       redirect_to post_image_path(@post_image)
     else
       render 'edit'
@@ -61,9 +63,5 @@ class PostImagesController < ApplicationController
   private
     def post_image_params
       params.require(:post_image).permit(:title, :image, :image_introduction, :user_id).merge(user_id: current_user.id)
-    end
-
-    def post_image_update_params
-      params.require(:post_image).permit(:title, :image_introduction, :user_id).merge(user_id: current_user.id)
     end
 end

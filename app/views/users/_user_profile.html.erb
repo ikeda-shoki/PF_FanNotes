@@ -1,4 +1,4 @@
-<div class="user-profile">
+<div class="user-profile text-center">
   <div class="profile-image">
     <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg" %>
   </div>
@@ -21,18 +21,26 @@
       <span><%= user.post_images.count %></span>
     </div>
     <div class="profile-item col-md-3">
-      <h6>フォロー</h6>
-      <span></span>
+      <%= link_to following_path(user) do %>
+        <h6>フォロー</h6>
+        <span><%= user.following_user.count %></span>
+      <% end %>
     </div>
     <div class="profile-item col-md-3">
-      <h6>フォロワー</h6>
-      <span></span>
+      <%= link_to followed_path(user) do %>
+        <h6>フォロワー</h6>
+        <span><%= user.followed_user.count %></span>
+      <% end %>
     </div>
   </div>
   
   <div class="my-4">
     <% if user === current_user %>
       <%= link_to "編集する", edit_user_path(user), class: "btn btn-info text-right"%>
+    <% else %>
+      <% if reception?(user) %>
+        <%= link_to "イラストの依頼をする", new_user_request_path(user), class: "btn btn-info text-right"%>
+      <% end %>
     <% end %>
   </div>
   
@@ -54,10 +62,13 @@
     <div class="prfile-content-request">
       <% if user === current_user %>
         <% if reception?(user)%>
-          <a>現在の依頼内容</a>
+          <%= link_to "依頼状況", user_requested_path(current_user), class: "btn btn-primary" %>
         <% end %>
-        <p>依頼状況</p>
+        <%= link_to "依頼中の内容", user_requesting_path(current_user), class: "btn btn-info" %>
       <% end %>
+    </div>
+    <div class="profile-follow-button follow-button">
+      <%= render 'layouts/follow_button', user: user %>
     </div>
   </div>
 </div>

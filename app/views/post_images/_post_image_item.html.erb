@@ -1,8 +1,8 @@
-<div class="d-flex flex-wrap">
+<div class="row">
   <% post_images.each do |post_image| %>
-    <%= link_to post_image_path(post_image) do %>
+    <%= link_to post_image_path(post_image), class: "d-block col-md-3" do %>
       <div class="post-image">
-        <%= attachment_image_tag post_image, :image, size: "150x150"%>
+        <%= attachment_image_tag post_image, :image %>
         <div class="post-image-text pt-2">
           <i class="fas fa-user mr-2"></i><%= post_image.user.account_name %><br />
           <%= post_image.title %>

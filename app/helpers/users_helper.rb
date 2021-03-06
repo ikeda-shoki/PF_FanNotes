@@ -11,5 +11,5 @@ module UsersHelper
       "依頼不可"
     end
   end
-    
+  
 end

@@ -19,6 +19,14 @@
             <%= f.text_area :image_introduction, placeholder: "作品の内容を入力してください" %>
           </dl>
         </div>
+        <div class="field mb-4 row">
+          <dt class="col-md-4">
+            <%= f.label :image, "イラスト"%>
+          </dt>
+          <dl class="col-md-8">
+            <%= f.attachment_field :image %>
+          </dl>
+        </div>
         
         <div class="post-image-edit-buttons row">
           <div class="post-button text-center col-md-6">

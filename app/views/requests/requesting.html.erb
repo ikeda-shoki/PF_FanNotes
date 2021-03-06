@@ -1,0 +1,14 @@
+<div class="requesting main">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mx-auto text-center">
+        <%= render 'users/user_profile', user: current_user %>
+      </div>
+      
+      <div class="mx-auto col-md-8">
+        <h2>依頼中の内容一覧</h2>
+        <%= render 'requests/request', requests: @requests, request_user: @requested %>
+      </div>
+    </div>
+  </div>
+</div>
