@@ -32,14 +32,24 @@ class UsersController < ApplicationController
   def withdrawal
   end
   
+  #フォローユーザー画面
   def following
     @user = User.find(params[:id])
     @followers = @user.following_user
   end
   
+  #フォロワーユーザー画面
   def followed
     @user = User.find(params[:id])
     @followed = @user.followed_user
+  end
+  
+  #自分の依頼一覧画面
+  def requesting
+  end
+  
+  #自分に来ている依頼
+  def requested
   end
   
   private
