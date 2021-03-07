@@ -1,0 +1,76 @@
+<div class="request-show">
+  <div class="row">
+    <div class="post col-md-6 mx-auto">
+      <h3 class="mb-5 text-center">
+        <%= link_to @request.requested.account_name, user_path(@request.requested)%>への依頼<i class="fas fa-comment-medical ml-2"></i>
+      </h3>
+
+      <div class="request-show-introduction mb-3 row">
+        <dt class="col-md-4">
+          <h6>内容詳細</h6>
+        </dt>
+        <dl class="col-md-8">
+          <h4><%= @request.request_introduction %></h4>
+        </dl>
+      </div>
+
+      <div class="request-show-image mb-3 row">
+        <dt class="col-md-4">
+          <h6>参考画像</h6>
+        </dt>
+        <dl class="col-md-8">
+          <%= attachment_image_tag @request, :reference_image, fallback: "no_image.jpg", size: "300x300" %>
+        </dl>
+      </div>
+
+      <div class="request-show-file-format mb-3 row">
+        <dt class="col-md-4">
+          <h6>ファイル形式</h6>
+        </dt>
+        <dl class="col-md-8">
+          <h4><%= @request.file_format %>形式</h4>
+        </dl>
+      </div>
+
+      <div class="request-show-file-format mb-3 row">
+        <dt class="col-md-4">
+          <h6>用途</h6>
+        </dt>
+        <dl class="col-md-8">
+          <h4><%= @request.use %></h4>
+        </dl>
+      </div>
+
+      <div class="request-show-deadline mb-3 row">
+        <dt class="col-md-4">
+          <h6>納期</h6>
+        </dt>
+        <dl class="col-md-8">
+          <h4><%= l @request.deadline %></h4>
+        </dl>
+      </div>
+
+      <div class="request-show-status row">
+        <dt class="col-md-4">
+          <h6>受付状況</h6>
+        </dt>
+        <dl class="col-md-8">
+          <%= render 'layouts/request_status_buttons', request: @request %>
+        </dl>
+      </div>
+      
+      <div class="request-show-buttons row">
+        <% if @request.request_status === "未受付" %>
+          <%= link_to "依頼を変更する", edit_user_request_path(user_id: @request.requested_id, id: @request), class: "btn btn-info"%>
+          <%= link_to "依頼を取り消す", user_request_path(user_id: @request.requested_id, id: @request ),
+                                        method: :delete,
+                                        data: {confirm: "本当に依頼を取り消しますか？この動作は元には戻せません"},
+                                        class: "btn btn-danger" %>
+        <% elsif @request.request_status === "製作完了" %>
+          <%= link_to "完成した作品を確認する", user_request_complete_path(user_id: @request.requested_id, id: @request )%>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
