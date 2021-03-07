@@ -381,21 +381,21 @@ $font-color: #3e1300;
 
 .requesting, .requested {
   padding-top: 50px;
-  
+
   .request {
     background-color: #fff;
     border-radius: 20px;
     border: 1px solid $accent-color;
     transition: 0.3s;
     -webkit-transition: 0.3s;
-    
+
     &:hover {
       background-color: rgba(0, 0, 0, 0.1);
     }
-  
+
     .request-user-image {
       position: relative;
-      
+
       img {
         position: absolute;
         top: 50%;
@@ -411,10 +411,10 @@ $font-color: #3e1300;
   }
 }
 
-// request-show
+// requested-show
 
-.request-show {
-  
+.requested-show {
+
   label[for="request_request_status_受付不可"],
        [for="request_request_status_製作中"] {
     background-color: $main-color;
@@ -430,5 +430,21 @@ $font-color: #3e1300;
       background-color: $accent-color;
       font-weight: bold;
       color: #fff;
+  }
+}
+
+// request-complete
+
+.request-complete {
+
+  .request-complete-image {
+    border: solid 1px $accent-color;
+    background-color: $main-color;
+    box-shadow: 0 0 8px gray;
+
+    img {
+      width: 500px;
+      height: auto;
+    }
   }
 }

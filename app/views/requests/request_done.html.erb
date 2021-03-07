@@ -1,0 +1,10 @@
+<div class="request-done">
+  <div class="row">
+    <div class="post col-md-6 mx-auto">
+      <h3 class="text-center mb-4"><%= @request.requester.account_name %>さんへのイラストが完成しました！</h3>
+      <div class="request-complete-image text-center p-5">
+        <%= attachment_image_tag @request, :complete_image %>
+      </div>
+    </div>
+  </div>
+</div>
