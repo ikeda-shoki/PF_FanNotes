@@ -410,3 +410,25 @@ $font-color: #3e1300;
     }
   }
 }
+
+// request-show
+
+.request-show {
+  
+  label[for="request_request_status_受付不可"],
+       [for="request_request_status_製作中"] {
+    background-color: $main-color;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  input[type="radio"]:checked + label {
+      background-color: $accent-color;
+      font-weight: bold;
+      color: #fff;
+  }
+}

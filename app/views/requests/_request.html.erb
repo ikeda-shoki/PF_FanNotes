@@ -3,7 +3,7 @@
     <%= link_to user_request_path(user_id: request.requester_id, id: request) do %>
     <div class="request mb-4">
       <div class="row">
-        
+
         <div class="request-user-image col-md-3">
           <%= attachment_image_tag request_user, :profile_image, fallback: "no_image.jpg" %>
         </div>
@@ -14,20 +14,12 @@
           <div class="row">
             <div class="request-info-deadline col-md-6">
               <div class="row">
-                <span class="col-md-4">依頼日</span><h5 class="d-inline-block col-md-8"><%= request.deadline %></h5>
-                <span class="col-md-4">納期</span><h5 class="d-inline-block col-md-8"><%= request.deadline %></h5>
+                <span class="col-md-4">依頼日</span><h5 class="d-inline-block col-md-8"><%= l request.created_at, format: :date %></h5>
+                <span class="col-md-4">納期</span><h5 class="d-inline-block col-md-8"><%= l request.deadline %></h5>
               </div>
             </div>
             <div class="request-info-status col-md-6">
-              <% if request.request_status === 0 %>
-                <h6 class="request-status-0 btn btn-success"><%= request.request_status %></h6>
-              <% elsif request.request_status === 1 %>
-                <h6 class="request-status-1 btn btn-danger"><%= request.request_status %></h6>
-              <% elsif request.request_status === 2 %>
-                <h6 class="request-status-2 btn btn-info"><%= request.request_status %></h6>
-              <% else %>
-                <h6 class="request-status-3 btn btn-primary"><%= request.request_status %></h6>
-              <% end %>
+              <%= render 'layouts/request_status_buttons', request: request %>
             </div>
           </div>
 

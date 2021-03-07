@@ -13,11 +13,12 @@ class Request < ApplicationRecord
   validates :use, presence: true
   validates :deadline, presence: true
   validates :amount, numericality: { greater_than_or_equal_to: 1 }
-  validate :deadline_limit
+  validates :request_status, presence: true
+  validate :deadline_limit, on: :create
 
   def deadline_limit
     if deadline.present?
-      errors.add(:deadline, 'は、最短で本日から3日後で設定してください') if deadline < Date.today || deadline < Time.current.since(2.days)
+      errors.add(:deadline, 'は、最短で本日から3日後で設定してください') if deadline < Time.now || deadline < Time.current.since(2.days)
     end
   end
 end

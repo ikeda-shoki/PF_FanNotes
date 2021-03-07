@@ -1,0 +1,9 @@
+<% if request.request_status === 0 %>
+  <h6 class="request-status-0 btn btn-success"><%= request.request_status %></h6>
+<% elsif request.request_status === 1 %>
+  <h6 class="request-status-1 btn btn-danger"><%= request.request_status %></h6>
+<% elsif request.request_status === 2 %>
+  <h6 class="request-status-2 btn btn-info"><%= request.request_status %></h6>
+<% else %>
+  <h6 class="request-status-3 btn btn-primary"><%= request.request_status %></h6>
+<% end %>

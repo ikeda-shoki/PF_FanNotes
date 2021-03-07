@@ -6,6 +6,8 @@ class RequestsController < ApplicationController
   end
 
   def show
+    @request = Request.find(params[:id])
+    @request_user = User.find_by(id: params[:user_id])
   end
 
   def edit
@@ -30,9 +32,22 @@ class RequestsController < ApplicationController
   end
 
   def update
+    @request = Request.find(params[:id])
+    @request_user = User.find_by(id: params[:user_id])
+    if @request.update(request_update_params)
+      redirect_to user_requested_path(current_user)
+    else
+      render 'show'
+    end
   end
 
   def destroy
+    @request_user = User.find_by(id: params[:user_id])
+    if Request.find(params[:id]).destroy
+      redirect_to user_requested_path(current_user)
+    else
+      render 'show'
+    end
   end
 
   #自分の依頼一覧画面
@@ -60,5 +75,9 @@ class RequestsController < ApplicationController
                                      :deadline,
                                      :amount,
                                      :requester_id).merge(requester_id: current_user.id)
+   end
+
+   def request_update_params
+     params.require(:request).permit(:request_status)
    end
 end
