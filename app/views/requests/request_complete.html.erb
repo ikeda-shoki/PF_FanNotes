@@ -5,6 +5,12 @@
       <div class="request-complete-image text-center p-5">
         <%= attachment_image_tag @request, :complete_image %>
       </div>
+      <div class="request-complete-delete mt-4 text-center">
+        <%= link_to "依頼を完了する", user_request_path(@request), 
+                                      method: :delete, 
+                                      data: {confirm: "依頼の完了をすると依頼データは削除されます。本当に完了しますか？"},
+                                      class: "btn btn-danger"%>
+      </div>
     </div>
   </div>
 </div>

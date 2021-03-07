@@ -4,7 +4,7 @@ class RequestsController < ApplicationController
     @user = User.find_by(id: params[:user_id])
     @request = Request.new
   end
-  
+
   #自分の依頼一覧画面
   def requesting
     @requests = current_user.request
@@ -52,12 +52,18 @@ class RequestsController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
+    @request = Request.find(params[:id])
   end
-  
+
   def update
-    
+    @request = Request.find(params[:id])
+    if @request.update(request_params)
+      redirect_to user_requesting_show_path(user_id: @request.requested.id, id: @request)
+    else
+      render 'edit'
+    end
   end
 
   # request_show画面でのrequest_statusのみの更新
@@ -70,7 +76,7 @@ class RequestsController < ApplicationController
       render 'show'
     end
   end
-  
+
   #完成した画像を登録する際に使用
   def update_request_complete_image
     @request = Request.find(params[:id])
@@ -82,11 +88,8 @@ class RequestsController < ApplicationController
   end
 
   def destroy
-    if Request.find(params[:id]).destroy
-      redirect_to user_requested_path(current_user)
-    else
-      render 'show'
-    end
+    Request.find(params[:id]).destroy
+    redirect_to user_requested_path(current_user)
   end
 
   private
@@ -103,7 +106,7 @@ class RequestsController < ApplicationController
    def request_update_params
      params.require(:request).permit(:request_status)
    end
-   
+
    def complete_image_update_params
      params.require(:request).permit(:request_status, :complete_image).merge(request_status: "製作完了")
    end
