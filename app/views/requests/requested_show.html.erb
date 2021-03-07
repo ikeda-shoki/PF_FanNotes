@@ -1,0 +1,100 @@
+<div class="requested-show">
+  <div class="row">
+    <div class="post col-md-6 mx-auto">
+      <h3 class="text-center mb-5">
+        <%= link_to @request.requester.account_name, user_path(@request.requester)%>からの依頼<i class="fas fa-comment-medical ml-2"></i>
+      </h3>
+
+      <div class="request-show-introduction mb-4 row">
+        <dt class="col-md-4">
+          <h6>内容詳細</h6>
+        </dt>
+        <dl class="col-md-8">
+          <h4><%= @request.request_introduction %></h4>
+        </dl>
+      </div>
+
+      <div class="request-show-image mb-4 row">
+        <dt class="col-md-4">
+          <h6>参考画像</h6>
+        </dt>
+        <dl class="col-md-8">
+          <%= attachment_image_tag @request, :reference_image, fallback: "no_image.jpg", size: "300x300" %>
+        </dl>
+      </div>
+
+      <div class="request-show-file-format mb-4 row">
+        <dt class="col-md-4">
+          <h6>ファイル形式</h6>
+        </dt>
+        <dl class="col-md-8">
+          <h4><%= @request.file_format %>形式</h4>
+        </dl>
+      </div>
+
+      <div class="request-show-file-format mb-4 row">
+        <dt class="col-md-4">
+          <h6>用途</h6>
+        </dt>
+        <dl class="col-md-8">
+          <h4><%= @request.use %></h4>
+        </dl>
+      </div>
+
+      <div class="request-show-deadline mb-4 row">
+        <dt class="col-md-4">
+          <h6>納期</h6>
+        </dt>
+        <dl class="col-md-8">
+          <h4><%= l @request.deadline %></h4>
+        </dl>
+      </div>
+
+      <div class="request-show-status mb-4 row">
+        <dt class="col-md-4">
+          <h6>受付状況</h6>
+        </dt>
+        <dl class="col-md-8">
+          <%= render 'layouts/request_status_buttons', request: @request %>
+        </dl>
+      </div>
+
+      <div class="request-show-buttons">
+        <% if @request.request_status === "未受付" %>
+          <%= render 'layouts/error_messages', model: @request %>
+          <%= form_with model: @request, url: user_update_request_status_path(@request), html: { class: "row" }, local: true do |f| %>
+            <dt class="col-md-4">
+              製作ステータス
+            </dt>
+            <dl class="col-md-8">
+              <div class="d-inline-block">
+                <%= f.radio_button :request_status,  "製作中", checked: true %>
+                <%= f.label :request_status, '製作する', value: "製作中" %>
+              </div>
+              <div class="d-inline-block ml-2">
+                <%= f.radio_button :request_status, "受付不可" %>
+                <%= f.label :request_status, '製作しない', value: "受付不可" %>
+              </div>
+            </dl>
+            <div class="text-center">
+              <%= f.submit "登録する", class: "btn btn-info"%>
+            </div>
+          <% end %>
+        <% elsif @request.request_status === "製作中" %>
+          <%= form_with model: @request, url: user_update_request_complete_image_path(@request), html: { class: "row" }, local: true do |f| %>
+            <dt class="col-md-4">
+              <h6>完成したイラスト</h6>
+            </dt>
+            <dl class="col-md-8">
+              <%= f.attachment_field :complete_image %>
+            </dl>
+            <div class="mx-auto">
+              <%= f.submit "完成したイラストを登録する", class: "btn btn-info" %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

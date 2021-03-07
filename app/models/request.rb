@@ -4,6 +4,7 @@ class Request < ApplicationRecord
   belongs_to :requested, class_name: "User"
 
   attachment :reference_image
+  attachment :complete_image
 
   enum file_format: { お任せ: 0, jpg: 1, png: 2 }
   enum request_status: { 未受付: 0, 受付不可: 1, 製作中: 2, 製作完了: 3 }
@@ -15,6 +16,7 @@ class Request < ApplicationRecord
   validates :amount, numericality: { greater_than_or_equal_to: 1 }
   validates :request_status, presence: true
   validate :deadline_limit, on: :create
+  validates :complete_image, presence: true, on: :update
 
   def deadline_limit
     if deadline.present?

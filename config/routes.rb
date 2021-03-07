@@ -16,9 +16,13 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update, :destroy] do
     get '/requesting', to: 'requests#requesting', as: 'requesting'
     get '/requested', to: 'requests#requested', as: 'requested'
-    get '/request/:id/done', to: 'request#request_done', as: 'request_done'
-    get '/request/:id/complete', to: 'request#request_complete', as: 'request_complete'
-    resources :requests, only: [:new, :show, :create, :edit, :update, :destroy]
+    get '/requesting_show/:id', to: 'requests#requesting_show', as: 'requesting_show'
+    get '/requested_show/:id', to: 'requests#requested_show', as: 'requested_show'
+    patch '/update_request_status/:id', to: 'requests#update_request_status', as: 'update_request_status'
+    patch '/update_request_complete_image/:id', to: 'requests#update_request_complete_image', as: 'update_request_complete_image'
+    get '/request/:id/done', to: 'requests#request_done', as: 'request_done'
+    get '/request/:id/complete', to: 'requests#request_complete', as: 'request_complete'
+    resources :requests, only: [:new, :create, :edit, :update, :destroy]
   end
 
   post 'follow/:id', to: 'relationships#follow', as: 'follow'

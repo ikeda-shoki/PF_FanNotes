@@ -7,7 +7,39 @@
       
       <div class="col-md-8 mx-auto">
         <h2>依頼内容一覧</h2>
-        <%= render 'requests/request', requests: @requests, request_user: @requester %>
+        <div class="requests">
+          <% @requests.each do |request| %>
+            <%= link_to user_requested_show_path(user_id: request.requester_id, id: request) do %>
+            <div class="request mb-4">
+              <div class="row">
+
+                <div class="request-user-image col-md-3">
+                  <%= attachment_image_tag request.requester, :profile_image, fallback: "no_image.jpg" %>
+                </div>
+
+                <div class="request-info col-md-9 py-3">
+                  <h4><%= request.requester.account_name %></h4>
+
+                  <div class="row">
+                    <div class="request-info-deadline col-md-6">
+                      <div class="row">
+                        <span class="col-md-4">依頼日</span><h5 class="d-inline-block col-md-8"><%= l request.created_at, format: :date %></h5>
+                        <span class="col-md-4">納期</span><h5 class="d-inline-block col-md-8"><%= l request.deadline %></h5>
+                      </div>
+                    </div>
+                    <div class="request-info-status col-md-6">
+                      <%= render 'layouts/request_status_buttons', request: request %>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            <% end %>
+          <% end %>
+        </div>
+        
       </div>
     </div>
   </div>
