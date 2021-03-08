@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_07_103459) do
+ActiveRecord::Schema.define(version: 2021_03_08_094900) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 2021_03_07_103459) do
     t.integer "request_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "complete_image_id"
     t.index ["requested_id"], name: "index_requests_on_requested_id"
     t.index ["requester_id"], name: "index_requests_on_requester_id"
   end

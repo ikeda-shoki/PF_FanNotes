@@ -1,4 +1,18 @@
 class RequestsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_request_user, only: [:requesting_show,
+                                             :requested_show,
+                                             :request_done,
+                                             :request_complete,
+                                             :edit,
+                                             :update,
+                                             :update_request_status,
+                                             :update_request_complete_image,
+                                             :destroy
+                                             ]
+  before_action :ensure_request_current_user, only: [:requesting, :requested]
+  before_action :ensure_request_requester, only: [:edit, :update, :destroy, :request_complete]
+  before_action :ensure_request_requested, only: [:update_request_status, :update_request_complete_image, :request_done]
 
   def new
     @user = User.find_by(id: params[:user_id])
@@ -23,22 +37,18 @@ class RequestsController < ApplicationController
 
   #自分の依頼詳細画面
   def requesting_show
-    @request = Request.find(params[:id])
   end
 
   #自分に来ている依頼詳細画面
   def requested_show
-    @request = Request.find(params[:id])
   end
 
   #依頼終了画面
   def request_done
-    @request = Request.find(params[:id])
   end
 
   #依頼完了画面
   def request_complete
-    @request = Request.find(params[:id])
   end
 
   def create
@@ -54,11 +64,9 @@ class RequestsController < ApplicationController
   end
 
   def edit
-    @request = Request.find(params[:id])
   end
 
   def update
-    @request = Request.find(params[:id])
     if @request.update(request_params)
       redirect_to user_requesting_show_path(user_id: @request.requested.id, id: @request)
     else
@@ -68,19 +76,19 @@ class RequestsController < ApplicationController
 
   # request_show画面でのrequest_statusのみの更新
   def update_request_status
-    @request = Request.find(params[:id])
-    @request_user = User.find_by(id: params[:user_id])
     if @request.update(request_update_params)
       redirect_to user_requested_path(current_user)
     else
-      render 'show'
+      render 'requested_show'
     end
   end
 
   #完成した画像を登録する際に使用
   def update_request_complete_image
-    @request = Request.find(params[:id])
-    if @request.update(complete_image_update_params)
+    if @request.update(complete_image_update_params) && @request.valid?(:update_complete_image)
+      if @request.amount === @request.request_images_complete_images.size
+        @request.update(request_status: :"製作完了")
+      end
       redirect_to user_request_done_path(user_id: @request.requester, id: @request)
     else
       render 'requested_show'
@@ -88,8 +96,8 @@ class RequestsController < ApplicationController
   end
 
   def destroy
-    Request.find(params[:id]).destroy
-    redirect_to user_requested_path(current_user)
+    @request.destroy
+    redirect_to user_requesting_path(current_user)
   end
 
   private
@@ -108,6 +116,32 @@ class RequestsController < ApplicationController
    end
 
    def complete_image_update_params
-     params.require(:request).permit(:request_status, :complete_image).merge(request_status: "製作完了")
+     params.require(:request).permit(request_images_complete_images: [])
+   end
+
+   def ensure_request_user
+     @request = Request.find(params[:id])
+     unless current_user === @request.requester || current_user === @request.requested
+       redirect_to post_images_path
+     end
+   end
+
+   def ensure_request_current_user
+     @user = User.find_by(id: params[:user_id])
+     unless @user === current_user
+       redirect_to post_images_path
+     end
+   end
+
+   def ensure_request_requester
+     unless @request.requester === current_user
+       redirect_to post_images_path
+     end
+   end
+
+   def ensure_request_requested
+     unless @request.requested === current_user
+       redirect_to post_images_path
+     end
    end
 end

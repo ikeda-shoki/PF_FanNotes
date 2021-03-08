@@ -19,6 +19,7 @@ ja:
         use: '用途'
         deadline: '締切日'
         amount: '枚数'
+        request_images_complete_images: "完成したイラスト"
   date:
     abbr_day_names:
     - 日

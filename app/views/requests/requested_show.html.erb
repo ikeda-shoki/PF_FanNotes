@@ -2,7 +2,7 @@
   <div class="row">
     <div class="post col-md-6 mx-auto">
       <h3 class="text-center mb-5">
-        <%= link_to @request.requester.account_name, user_path(@request.requester)%>からの依頼<i class="fas fa-comment-medical ml-2"></i>
+        <%= link_to @request.requester.account_name, user_path(@request.requester)%>さんからの依頼<i class="fas fa-comment-medical ml-2"></i>
       </h3>
 
       <div class="request-show-introduction mb-4 row">
@@ -40,6 +40,15 @@
           <h4><%= @request.use %></h4>
         </dl>
       </div>
+      
+      <div class="request-show-amount mb-4 row">
+        <dt class="col-md-4">
+          <h6>枚数</h6>
+        </dt>
+        <dl class="col-md-8">
+          <h4><%= @request.amount %>枚</h4>
+        </dl>
+      </div>
 
       <div class="request-show-deadline mb-4 row">
         <dt class="col-md-4">
@@ -60,8 +69,8 @@
       </div>
 
       <div class="request-show-buttons">
+        <%= render 'layouts/error_messages', model: @request %>
         <% if @request.request_status === "未受付" %>
-          <%= render 'layouts/error_messages', model: @request %>
           <%= form_with model: @request, url: user_update_request_status_path(@request), html: { class: "row" }, local: true do |f| %>
             <dt class="col-md-4">
               製作ステータス
@@ -76,7 +85,7 @@
                 <%= f.label :request_status, '製作しない', value: "受付不可" %>
               </div>
             </dl>
-            <div class="text-center">
+            <div class="mx-auto">
               <%= f.submit "登録する", class: "btn btn-info"%>
             </div>
           <% end %>
@@ -86,15 +95,24 @@
               <h6>完成したイラスト</h6>
             </dt>
             <dl class="col-md-8">
-              <%= f.attachment_field :complete_image %>
+              <%= f.attachment_field :request_images_complete_images, multiple: true %>
             </dl>
             <div class="mx-auto">
               <%= f.submit "完成したイラストを登録する", class: "btn btn-info" %>
             </div>
           <% end %>
+        <% elsif @request.request_status === "製作完了" %>
+          <div class="text-center">
+            <%= link_to "送信した作品を確認する", user_request_done_path(user_id: @request.requester, id: @request), class: "btn btn-success"%>
+          </div>
         <% end %>
       </div>
 
+      <div class="back-button d-inline-block">
+        <%= link_to user_requested_path(current_user) do %>
+          一覧画面に戻る<i class="fas fa-arrow-circle-left fa-flip-horizontal ml-1"></i>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
