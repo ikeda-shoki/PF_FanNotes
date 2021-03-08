@@ -71,16 +71,22 @@
 
           <div class="image-show-profile-items row text-center pb-3 mx-auto">
             <div class="show-profile-item col-md-4">
-              <h6>投稿</h6>
-              <span><%= @user.post_images.count %></span>
+              <%= link_to user_path(@user) do %>
+                <h6>投稿</h6>
+                <span><%= @user.post_images.count %></span>
+              <% end %>
             </div>
             <div class="show-profile-item col-md-4">
-              <h6>フォロー</h6>
-              <span><%= @user.following_user.count %></span>
+              <%= link_to following_path(@user) do %>
+                <h6>フォロー</h6>
+                <span><%= @user.following_user.count %></span>
+              <% end %>
             </div>
             <div class="show-profile-item col-md-4">
-              <h6>フォロワー</h6>
-              <span><%= @user.followed_user.count %></span>
+              <%= link_to followed_path(@user) do %>
+                <h6>フォロワー</h6>
+                <span><%= @user.followed_user.count %></span>
+              <% end %>
             </div>
           </div>
 

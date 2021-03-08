@@ -67,12 +67,24 @@
                                           method: :delete,
                                           data: {confirm: "本当に依頼を取り消しますか？この動作は元には戻せません"},
                                           class: "btn btn-danger" %>
+          <% elsif @request.request_status === "受付不可" %>
+            <div class="text-center">
+              <%= link_to "依頼を削除する", user_request_path(@request), 
+                                        method: :delete, 
+                                        data: {confirm: "製作者からの了承が得られませんでした。依頼を削除しますか？"},
+                                        class: "btn btn-danger"%>
+            </div>
           <% elsif @request.request_status === "製作完了" %>
-            <%= link_to "完成した作品を確認する", user_request_complete_path(user_id: @request.requested_id, id: @request )%>
+            <%= link_to "完成した作品を確認する", user_request_complete_path(user_id: @request.requested_id, id: @request ), class: "btn btn-info"%>
           <% end %>
         </div>
       </div>
 
+      <div class="back-button d-inline-block">
+        <%= link_to user_requesting_path(current_user) do %>
+          一覧画面に戻る<i class="fas fa-arrow-circle-left fa-flip-horizontal ml-1"></i>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
