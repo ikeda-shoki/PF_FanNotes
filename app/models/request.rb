@@ -15,8 +15,8 @@ class Request < ApplicationRecord
   validates :deadline, presence: true
   validates :amount, numericality: { greater_than_or_equal_to: 1 }
   validates :request_status, presence: true
+  validates :complete_image, presence: true, on: :update_complete_image
   validate :deadline_limit, on: [:create, :update]
-  validates :complete_image, presence: true, on: :update_request_complete_image
 
   def deadline_limit
     if deadline.present?
