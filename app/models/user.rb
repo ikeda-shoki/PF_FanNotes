@@ -13,8 +13,6 @@ class User < ApplicationRecord
   has_many :followed_user, through: :followed, source: :follower
   has_many :request, class_name: "Request", foreign_key: "requester_id", dependent: :destroy
   has_many :requested, class_name: "Request", foreign_key: "requested_id", dependent: :destroy
-  # has_many :request_user, through: :requester, source: :requested
-  # has_many :requested_user, through: :requested, source: :requester
 
   attachment :profile_image
 

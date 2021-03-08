@@ -86,7 +86,9 @@ class RequestsController < ApplicationController
   #完成した画像を登録する際に使用
   def update_request_complete_image
     if @request.update(complete_image_update_params) && @request.valid?(:update_complete_image)
-      @request.update(request_status: :"製作完了")
+      if @request.amount === @request.request_images_complete_images.size
+        @request.update(request_status: :"製作完了")
+      end
       redirect_to user_request_done_path(user_id: @request.requester, id: @request)
     else
       render 'requested_show'
@@ -114,7 +116,7 @@ class RequestsController < ApplicationController
    end
 
    def complete_image_update_params
-     params.require(:request).permit(:complete_image)
+     params.require(:request).permit(request_images_complete_images: [])
    end
 
    def ensure_request_user

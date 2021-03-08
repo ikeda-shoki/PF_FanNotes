@@ -40,6 +40,15 @@
           <h4><%= @request.use %></h4>
         </dl>
       </div>
+      
+      <div class="request-show-amount mb-4 row">
+        <dt class="col-md-4">
+          <h6>枚数</h6>
+        </dt>
+        <dl class="col-md-8">
+          <h4><%= @request.amount %>枚</h4>
+        </dl>
+      </div>
 
       <div class="request-show-deadline mb-4 row">
         <dt class="col-md-4">
@@ -86,7 +95,7 @@
               <h6>完成したイラスト</h6>
             </dt>
             <dl class="col-md-8">
-              <%= f.attachment_field :complete_image %>
+              <%= f.attachment_field :request_images_complete_images, multiple: true %>
             </dl>
             <div class="mx-auto">
               <%= f.submit "完成したイラストを登録する", class: "btn btn-info" %>
