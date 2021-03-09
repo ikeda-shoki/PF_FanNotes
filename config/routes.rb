@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get '/post_images/main', to: 'post_images#main', as: 'main'
   resources :post_images do
     resources :post_image_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]

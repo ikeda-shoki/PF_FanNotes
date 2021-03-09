@@ -1,0 +1,33 @@
+<div class="post-image-main main">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mx-auto">
+        <% if user_signed_in? %>
+          <%= render 'users/user_profile', user: current_user %>
+        <% else %>
+          <%= render 'layouts/info'%>
+        <% end %>
+      </div>
+      
+      <div class="post-image-index-main col-md-8">
+        <div class="favorite-images">
+          <h2>人気の作品</h2>
+          <%= render 'post_images/ranking_post_images', ranking_post_images: @ranking_post_images %>
+        </div>
+        <div class="image-index">
+          <h2>新着作品</h2>
+          <%= render 'post_images/post_image_item', post_images: @post_images %>
+        </div>
+        <% if user_signed_in? %>
+          <div class="image-index-item follower-image">
+            <h2>フォローユーザーの新着作品</h2>
+            <% @following_users.each do |following_user| %>
+              <h4><%= following_user.account_name %></h4>
+              <%= render 'post_images/post_image_item', post_images: following_user.post_images.limit(4) %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

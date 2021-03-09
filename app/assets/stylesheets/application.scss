@@ -259,6 +259,27 @@ $font-color: #3e1300;
   background-color: red;
 }
 
+// post-imgae-index
+
+.post-image-index {
+  
+  .post-image {
+  text-align: center;
+  background-color: #fff;
+  width: 250px;
+  height: 300px;
+  padding: 10px 10px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+
+    img {
+      border-radius: 20px;
+      width: 200px;
+      height: 200px;
+    }
+  }
+}
+
 // post-image-show
 
 .image-show-left {

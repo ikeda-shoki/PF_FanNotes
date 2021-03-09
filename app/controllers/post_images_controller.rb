@@ -26,7 +26,12 @@ class PostImagesController < ApplicationController
 
   def index
     @post_images = PostImage.all
+  end
+  
+  def main
+    @post_images = PostImage.limit(10).order('id')
     @following_users = current_user.following_user if user_signed_in?
+    @ranking_post_images = PostImage.find(Favorite.group(:post_image_id).order('count(post_image_id) desc').limit(10).pluck(:post_image_id))
   end
 
   def create
