@@ -101,9 +101,9 @@ $font-color: #3e1300;
   right: 40px;
   padding: 5px 15px;
   border-radius: 20px;
-  transition: 0.3s;
+  transition: 0.8s;
   -webkit-transition: 0.8s;
-  
+
 
   a {
     color: $font-color;
@@ -259,26 +259,6 @@ $font-color: #3e1300;
   background-color: red;
 }
 
-// post-imgae-index
-
-.post-image-index {
-  
-  .post-image {
-  text-align: center;
-  background-color: #fff;
-  width: 250px;
-  height: 300px;
-  padding: 10px 10px;
-  border-radius: 20px;
-  margin-bottom: 20px;
-
-    img {
-      border-radius: 20px;
-      width: 200px;
-      height: 200px;
-    }
-  }
-}
 
 // post-image-show
 
@@ -363,11 +343,6 @@ $font-color: #3e1300;
       }
     }
   }
-
-}
-
-// user-show
-.user-show {
 
 }
 
@@ -493,5 +468,25 @@ $font-color: #3e1300;
       width: 500px;
       height: auto;
     }
+  }
+}
+
+// search
+
+.search-user {
+  background-color: #fff;
+  border-radius: 20px;
+  transition: 0.8s;
+  -webkit-transition: 0.8s;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
   }
 }

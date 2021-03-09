@@ -10,7 +10,7 @@ class PostImagesController < ApplicationController
       user.password = SecureRandom.urlsafe_base64
     end
     sign_in user
-    redirect_to post_images_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to main_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   def new
@@ -29,7 +29,7 @@ class PostImagesController < ApplicationController
   end
   
   def main
-    @post_images = PostImage.limit(10).order('id')
+    @post_images = PostImage.limit(10).order('id desc')
     @following_users = current_user.following_user if user_signed_in?
     @ranking_post_images = PostImage.find(Favorite.group(:post_image_id).order('count(post_image_id) desc').limit(10).pluck(:post_image_id))
   end

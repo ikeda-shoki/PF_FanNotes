@@ -1,19 +1,34 @@
 <div class="post-image-index main">
   <div class="container">
-    <h2 class="mb-5">投稿一覧</h2>
-    <div class="row">
-      <% @post_images.each do |post_image| %>
-        <%= link_to post_image_path(post_image), class: "d-block col-md-3" do %>
-          <div class="post-image">
-            <%= attachment_image_tag post_image, :image %>
-            <div class="post-image-text pt-2">
-              <i class="fas fa-user mr-2"></i><%= post_image.user.account_name %><br />
-              <%= post_image.title %><br />
-              <i class="fas fa-heart mr-1"></i><%= post_image.favorites.count %>
-            </div>
-          </div>
-        <% end %>
+    <div class="col-md-4 mx-auto">
+      <%= form_with url: post_image_search_path, method: :get, local: true do |f| %>
+        <%= select_tag(:keyword, options_for_select([["投稿が新しい順", "new" ],
+                                                     ["投稿が古い順", "old" ],
+                                                     ["いいねが多い順", "many_favorites"],
+                                                     ["いいねが少ない順", "less_favorites"]
+                                                     ])) %>
+        <%= f.submit "並び替える", class: "btn btn-info"%>
       <% end %>
+    </div>
+
+    <div class="col-md-8 mx-auto">
+      <% if @selection.blank? %>
+        <h2 class="mb-5">投稿一覧</h2>
+        <%= render 'post_images/post_image_item', post_images: @post_images %>
+      <% elsif @selection == 'new' %>
+          <h2 class="mb-5">新しい投稿順</h2>
+          <%= render 'post_images/post_image_item', post_images: @sort_post_images %>
+      <% elsif @selection == 'old' %>
+          <h2 class="mb-5">古い投稿順</h2>
+          <%= render 'post_images/post_image_item', post_images: @sort_post_images %>
+      <% elsif @selection == 'many_favorites' %>
+        <h2 class="mb-5">いいねが多い順</h2>
+        <%= render 'post_images/post_image_item', post_images: @sort_post_images %>
+      <% else %>
+        <h2 class="mb-5">いいねが少ない順</h2>
+        <%= render 'post_images/post_image_item', post_images: @sort_post_images %>
+      <% end %>
+      </div>
     </div>
   </div>
 </div>
