@@ -23,7 +23,7 @@
             <h2>フォローユーザーの新着作品</h2>
             <% @following_users.each do |following_user| %>
               <h4><%= following_user.account_name %></h4>
-              <%= render 'post_images/post_image_item', post_images: following_user.post_images.limit(4) %>
+              <%= render 'post_images/post_image_item', post_images: following_user.post_images.limit(4).order('id desc') %>
             <% end %>
           </div>
         <% end %>

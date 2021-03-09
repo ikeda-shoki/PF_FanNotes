@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     resources :post_image_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
+  
+  get '/search', to: 'search#search'
+  get '/post_image_search', to: 'search#post_image_search'
 
   get '/user/:id/following', to: 'users#following', as: 'following'
   get '/user/:id/followed', to: 'users#followed', as: 'followed'
