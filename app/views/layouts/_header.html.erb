@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <div class="container-fluid">
-        <%= link_to post_images_path do %>
+        <%= link_to main_path do %>
           <h2>FanNotes</h2>
         <% end %>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,6 +13,9 @@
             <% if user_signed_in? %>
               <li class="nav-item">
                 <%= link_to "投稿する", new_post_image_path, class: "nav-link active"%>
+              </li>
+              <li class="nav-item">
+                <%= link_to "投稿一覧", post_images_path, class: "nav-link active"%>
               </li>
               <li class="nav-item">
                 <%= link_to "マイページ", user_path(current_user), class: "nav-link"%>
@@ -32,10 +35,7 @@
               </li>
             <% end %>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
+          <%= render "layouts/search_form" %>
         </div>
       </div>
     </div>
