@@ -154,6 +154,26 @@ $font-color: #3e1300;
   }
 }
 
+.user-item {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.6);
+  transition: 0.8s;
+  -webkit-transition: 0.8s;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  
+  img {
+    border: solid 2px $accent-color;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+
 .user-profile {
     margin-top: 200px;
     background-color: #fff;
@@ -257,6 +277,15 @@ $font-color: #3e1300;
 .alert {
   color: white;
   background-color: red;
+}
+
+// post-image-index
+.post-image-index {
+  .post-image-index-left {
+    background-color: #fff;
+    padding: 20px 10px;
+    border-radius: 20px;
+  }
 }
 
 
@@ -476,6 +505,7 @@ $font-color: #3e1300;
 .search-user {
   background-color: #fff;
   border-radius: 20px;
+  box-shadow: 0px 0px 20px -5px rgba(0,0,0,0.6);
   transition: 0.8s;
   -webkit-transition: 0.8s;
   
@@ -484,6 +514,7 @@ $font-color: #3e1300;
   }
   
   img {
+    border: solid 2px $accent-color;
     width: 150px;
     height: 150px;
     object-fit: cover;

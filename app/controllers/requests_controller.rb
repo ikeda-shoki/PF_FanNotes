@@ -88,6 +88,7 @@ class RequestsController < ApplicationController
     if @request.update(complete_image_update_params) && @request.valid?(:update_complete_image)
       if @request.amount === @request.request_images_complete_images.size
         @request.update(request_status: :"製作完了")
+        @request.requested.increment!(:complete_request_count, 1)
       end
       redirect_to user_request_done_path(user_id: @request.requester, id: @request)
     else

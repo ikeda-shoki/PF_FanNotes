@@ -9,10 +9,18 @@ class SearchController < ApplicationController
     end
   end
   
+  # post_image 並び替え
   def post_image_search
     @selection = params[:keyword]
     @sort_post_images = PostImage.sort(@selection)
     render 'post_images/index'
+  end
+  
+  # user 並び替え
+  def user_search
+    @selection = params[:keyword]
+    @sort_users = User.sort(@selection)
+    render 'users/index'
   end
 
 end
