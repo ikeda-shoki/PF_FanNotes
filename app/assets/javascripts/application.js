@@ -15,5 +15,24 @@
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require_tree .
+/*global $*/
+
+
+$(function() {
+    $('.slider-favorite').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      dots: true
+    });
+});
+
+$(function() {
+    $('.slider-new').slick({
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 2000,
+    });
+});

@@ -31,21 +31,21 @@
             <% end %>
           <% end %>
         <% elsif @selection == 'old' %>
-            <h2 class="mb-5">古い投稿順</h2>
+            <h2 class="mb-5">古いユーザー</h2>
             <% @sort_users.each do |user| %>
             <%= link_to user_path(user) do %>
               <%= render 'users/user_item', user: user %>
             <% end %>
           <% end %>
-        <% elsif @selection == 'many_favorites' %>
-          <h2 class="mb-5">いいねが多い順</h2>
+        <% elsif @selection == 'many_post_images' %>
+          <h2 class="mb-5">投稿数が多い順</h2>
           <% @sort_users.each do |user| %>
             <%= link_to user_path(user) do %>
               <%= render 'users/user_item', user: user %>
             <% end %>
           <% end %>
         <% else %>
-          <h2 class="mb-5">いいねが少ない順</h2>
+          <h2 class="mb-5">依頼達成数が多い順</h2>
           <% @sort_users.each do |user| %>
             <%= link_to user_path(user) do %>
               <%= render 'users/user_item', user: user %>

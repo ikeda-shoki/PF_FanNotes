@@ -16,6 +16,9 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+ 
+ @import "slick-theme"; 
+ @import "slick";
 
 
 $main-color: #f7f4f2;
@@ -151,6 +154,8 @@ $font-color: #3e1300;
     border-radius: 20px;
     width: 150px;
     height: 150px;
+    object-fit: cover;
+    object-position: center center;
   }
 }
 
@@ -319,6 +324,45 @@ $font-color: #3e1300;
   color: white;
   background-color: red;
 }
+
+// main 
+
+.ranking-post-image {
+  width: 230px;
+  height: 350px;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  
+  img {
+    margin: 0 auto;
+    width: 210px;
+    height: 230px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 20px;
+  }
+}
+
+.main-post-image {
+  width: 130px;
+  height: 150px;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  
+  img {
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 20px;
+  }
+}
+
 
 // post-image-index
 .post-image-index {
@@ -552,4 +596,11 @@ $font-color: #3e1300;
     object-fit: cover;
     border-radius: 50%;
   }
+}
+
+
+// slider css
+
+.slick-prev:before, .slick-next:before {
+  color: $accent-color !important;
 }
