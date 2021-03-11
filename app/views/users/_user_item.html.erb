@@ -1,0 +1,43 @@
+<div class="user-item p-4 mb-4">
+  <div class="row">
+    
+    <div class="search-user-image col-md-4 text-center">
+      <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg", size: "150x150" %>
+    </div>
+    
+    <div class="user-item-text col-md-8">
+      <h4><i class="fas fa-user mr-2"></i><%= user.account_name %></h4>
+      <div class="row text-center mb-4">
+        <div class="col-md-3">
+          フォロー数<br />
+          <span><%= user.following_user.count %>人</span>
+        </div>
+        <div class="col-md-3">
+          フォロワー数<br />
+          <span><%= user.followed_user.count %>人</span>
+        </div>
+        <div class="col-md-3">
+          投稿数<br />
+          <span><%= user.post_images.count %>投稿</span>
+        </div>
+        <div class="col-md-3">
+          依頼成功数<br />
+          <span><%= user.complete_request_count %>回</span>
+        </div>
+      </div>
+    
+      <div class="search-user-reception text-center">
+        <% if user.is_reception === true %>
+          <span class="font-weight-bold bg-success p-3 rounded-pill">
+            依頼受付中
+          </span>
+        <% else %>
+          <span class="font-weight-bold bg-danger p-3 rounded-pill">
+            依頼不可
+          </span>
+        <% end %>
+      </div>
+    </div>
+    
+  </div>
+</div>

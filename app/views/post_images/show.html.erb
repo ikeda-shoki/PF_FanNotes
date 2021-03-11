@@ -8,29 +8,26 @@
             <div class="d-flex justify-content-between">
               <h3 class="font-weight-bold mb-3"><%= @post_image.title %></h3>
               <% if user_signed_in? %>
-                <% if @post_image.favorited_by?(current_user) %>
-                  <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
-                    <h3><i class="fas fa-heart text-danger"></i></h3>
-                  <% end %>
-                <% else %>
-                  <%= link_to post_image_favorites_path(@post_image), method: :post do %>
-                    <h3><i class="fas fa-heart"></i></h3>
-                  <% end %>
-                <% end %>
+                <div id="favorite_buttons_<%= @post_image.id %>">
+                  <%= render 'favorites/favorites_button', post_image: @post_image %>
+                </div>
               <% end %>
             </div>
             <h5 class="mb-2"><%= @post_image.image_introduction %></h5>
             <span>投稿日<%= @post_image.created_at %></span>
             <span>最終更新日<%= @post_image.updated_at %></span><br />
-            <span><i class="far fa-heart"></i>:<%= @post_image.favorites.count %></span>
+            <span><i class="far fa-heart"></i>:<span id="favorite_count_<%= @post_image.id %>"><%= @post_image.favorites.count %></span></span>
           </div>
         </div>
-        
+
         <% if user_signed_in? %>
           <div class="image-show-comment-new mt-5">
             <div class="image-show-comment-form mx-auto">
+              <div class="error_messages">
+
+              </div>
               <%= render 'layouts/error_messages', model: @post_image_comment %>
-              <%= form_with(model:[@post_image, @post_image_comment], local: true) do |f| %>
+              <%= form_with model:[@post_image, @post_image_comment] do |f| %>
                 <%= current_user.account_name %>
                 <%= f.text_field :comment, placeholder: "コメントする" %>
                 <%= f.submit "送信する", class: "btn btn-success comment-btn" %>
@@ -38,22 +35,9 @@
             </div>
           </div>
           <div class="image-show-comment-index mt-5">
-            <% @post_image_comments.each do |post_image_comment| %>
-              <div class="image-show-comment-list mb-3 mx-auto d-flex justify-content-between">
-                <div>
-                  <%= post_image_comment.user.account_name %>
-                  <%= post_image_comment.comment %>
-                </div>
-                <div>
-                  <% if post_image_comment.user === current_user %>
-                    <%= link_to 'コメントを削除する', post_image_post_image_comment_path(post_image_comment.post_image, post_image_comment), 
-                                                      method: :delete,
-                                                      data: {confirm: "コメントを削除してもよろしいですか？"},
-                                                      class: "btn btn-danger comment-delete-btn"%>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
+            <div id="post_image_comment">
+              <%= render 'post_image_comments/post_comment', post_image_comments: @post_image_comments %>
+            </div>
           </div>
         <% end %>
       </div>

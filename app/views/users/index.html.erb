@@ -1,0 +1,59 @@
+<div class="user-index main">
+   <div class="container">
+    <div class="row">
+      <div class="col-md-4 mx-auto mt-5 post-image-index-left text-center">
+        <h4>並び替え</h4>
+        
+        <!--search_controllerに記載-->
+        <%= form_with url: user_search_path, method: :get, html: { class: "d-flex flex-column" }, local: true do |f| %>
+          <%= select_tag(:keyword, options_for_select([["登録が新しい順", "new" ],
+                                                       ["登録が古い順", "old" ],
+                                                       ["投稿が多い順", "many_post_images"],
+                                                       ["依頼達成数が多い順", "many-requests"]
+                                                       ])) %>
+          <%= f.submit "並び替える", class: "btn btn-info mt-5"%>
+        <% end %>
+      </div>
+  
+      <div class="col-md-8 mx-auto">
+        <% if @selection.blank? %>
+          <h2 class="mb-5">ユーザー一覧</h2>
+          <% @users.each do |user| %>
+            <%= link_to user_path(user) do %>
+              <%= render 'users/user_item', user: user %>
+            <% end %>
+          <% end %>
+        <% elsif @selection == 'new' %>
+            <h2 class="mb-5">新しいユーザー</h2>
+            <% @sort_users.each do |user| %>
+            <%= link_to user_path(user) do %>
+              <%= render 'users/user_item', user: user %>
+            <% end %>
+          <% end %>
+        <% elsif @selection == 'old' %>
+            <h2 class="mb-5">古い投稿順</h2>
+            <% @sort_users.each do |user| %>
+            <%= link_to user_path(user) do %>
+              <%= render 'users/user_item', user: user %>
+            <% end %>
+          <% end %>
+        <% elsif @selection == 'many_favorites' %>
+          <h2 class="mb-5">いいねが多い順</h2>
+          <% @sort_users.each do |user| %>
+            <%= link_to user_path(user) do %>
+              <%= render 'users/user_item', user: user %>
+            <% end %>
+          <% end %>
+        <% else %>
+          <h2 class="mb-5">いいねが少ない順</h2>
+          <% @sort_users.each do |user| %>
+            <%= link_to user_path(user) do %>
+              <%= render 'users/user_item', user: user %>
+            <% end %>
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

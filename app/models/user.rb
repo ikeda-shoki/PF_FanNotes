@@ -31,4 +31,17 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
+  
+  def self.sort(selection)
+    case selection
+    when 'new'
+      return all.order(created_at: :DESC)
+    when 'old'
+      return all.order(created_at: :ASC)
+    when 'many_post_images'
+      return all.sort { |a, b| b.post_images.count <=> a.post_images.count}
+    when 'many-requests'
+      return all.sort { |a, b| b.complete_request_count <=> a.complete_request_count }
+    end
+  end
 end
