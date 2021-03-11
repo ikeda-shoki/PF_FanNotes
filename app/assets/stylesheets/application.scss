@@ -17,6 +17,9 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+ @import "slick-theme";
+ @import "slick";
+
 
 $main-color: #f7f4f2;
 $accent-color: #e65b20;
@@ -151,6 +154,8 @@ $font-color: #3e1300;
     border-radius: 20px;
     width: 150px;
     height: 150px;
+    object-fit: cover;
+    object-position: center center;
   }
 }
 
@@ -319,6 +324,45 @@ $font-color: #3e1300;
   color: white;
   background-color: red;
 }
+
+// main
+
+.ranking-post-image {
+  width: 230px;
+  height: 350px;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 10px 0;
+  text-align: center;
+
+  img {
+    margin: 0 auto;
+    width: 210px;
+    height: 230px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 20px;
+  }
+}
+
+.main-post-image {
+  width: 130px;
+  height: 150px;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 10px 0;
+  text-align: center;
+
+  img {
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 20px;
+  }
+}
+
 
 // post-image-index
 .post-image-index {
@@ -552,4 +596,122 @@ $font-color: #3e1300;
     object-fit: cover;
     border-radius: 50%;
   }
+}
+
+
+// slider css
+
+.slick-prev:before, .slick-next:before {
+  color: $accent-color !important;
+}
+
+// chat-show
+
+#chats{
+  padding: 20px 10px;
+  max-width: 500px;
+  margin: 15px auto;
+  height: 100vh;
+  text-align: right;
+  font-size: 14px;
+  overflow: scroll;
+  position: relative;
+  
+  .fa-times-circle {
+    transition: 0.8s;
+    -webkit-transition: 0.8s;
+    
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+.fukidasi {
+  width: 100%;
+  margin: 10px 0;
+  overflow: hidden;
+
+  .faceicon {
+    float: left;
+    margin-right: -50px;
+    width: 40px;
+
+    img{
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      object-position: center center;
+      border-radius: 50%;
+    }
+  }
+  
+  .chatting {
+    width: 100%;
+    text-align: left;
+    
+    .says {
+      display: inline-block;
+      position: relative;
+      margin: 0 0 0 50px;
+      padding: 10px;
+      max-width: 250px;
+      border-radius: 12px;
+      background: #fff;
+      
+      &:after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        top: 3px;
+        left: -19px;
+        border: 8px solid transparent;
+        border-right: 18px solid #fff;
+        -webkit-transform: rotate(35deg);
+        transform: rotate(35deg);
+      }
+      
+      p {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
+.mycomment {
+  margin: 10px 0;
+  
+  p {
+    display: inline-block;
+    position: relative;
+    margin: 0 10px 0 0;
+    padding: 8px;
+    max-width: 250px;
+    border-radius: 12px;
+    background: #30e852;
+    font-size: 15px;
+    
+    &:after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: -19px;
+      border: 8px solid transparent;
+      border-left: 18px solid #30e852;
+      -webkit-transform: rotate(-35deg);
+      transform: rotate(-35deg);
+    }
+  }
+}
+
+.chat-form {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px 0;
+  border-radius: 20px;
+  border: 5px solid $accent-color;
+  position: absolute;
+  left: 0;
+  width: 100%;
 }
