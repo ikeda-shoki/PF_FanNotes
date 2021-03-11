@@ -1,0 +1,21 @@
+<% chats.each do |chat|%>
+  <% if chat.user_id === current_user.id %>
+    <%= link_to chat_path(chat), method: :delete, remote: true, data: {confirm: "対象のコメントを削除しますか？"}  do %>
+      <i class="fas fa-times-circle"></i>
+    <% end %>
+    <div class="mycomment">
+      <p><%= chat.message %></p>
+    </div>
+  <% else %>
+    <div class="fukidasi">
+      <div class="faceicon">
+        <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg"%>
+      </div>
+      <div class="chatting">
+        <div class="says">
+          <p><%= chat.message %></p>
+        </div>
+      </div>
+    </div>
+  <%end%>
+<% end %>

@@ -1,0 +1,24 @@
+<div class="chat-show main">
+  <div class="container">
+    <h2 class="text-center"><%="#{@user.account_name}さんとのチャット"%></h2>
+    <div id="chats">
+      <div id="chat_items">
+        <%= render 'chats/chat', chats: @chats %>
+      </div>
+
+      <div class="chat-form">
+        <div id="chat-error-messages">
+        </div>
+        <%= form_with model: @chat do |f| %>
+            <%= f.text_field :message %>
+            <%= f.hidden_field :room_id %>
+            <%= f.hidden_field :id %>
+            <%= f.submit "送信する", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

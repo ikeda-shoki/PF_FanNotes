@@ -26,7 +26,7 @@
               <div class="error_messages">
 
               </div>
-              <%= render 'layouts/error_messages', model: @post_image_comment %>
+              
               <%= form_with model:[@post_image, @post_image_comment] do |f| %>
                 <%= current_user.account_name %>
                 <%= f.text_field :comment, placeholder: "コメントする" %>

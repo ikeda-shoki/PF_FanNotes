@@ -29,6 +29,8 @@ Rails.application.routes.draw do
     get '/request/:id/complete', to: 'requests#request_complete', as: 'request_complete'
     resources :requests, only: [:new, :create, :edit, :update, :destroy]
   end
+  
+  resources :chats, only: [:create, :show, :destroy]
 
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   delete 'follow/:id', to: 'relationships#unfollow', as: 'unfollow'
