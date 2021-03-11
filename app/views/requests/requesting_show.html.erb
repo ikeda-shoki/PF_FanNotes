@@ -81,6 +81,10 @@
           <% end %>
         </div>
       </div>
+      
+      <div class="chat-button">
+        <%= link_to @request.requested.account_name + "とチャットを始める", chat_path(@request.requested), class: "btn btn-info" %>
+      </div>
 
       <div class="back-button d-inline-block">
         <%= link_to user_requesting_path(current_user) do %>

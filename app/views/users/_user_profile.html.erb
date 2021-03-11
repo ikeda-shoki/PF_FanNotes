@@ -31,7 +31,7 @@
     <div class="profile-item col-md-3">
       <%= link_to followed_path(user) do %>
         <h6>フォロワー</h6>
-        <span><%= user.followed_user.count %></span>
+        <span id="followed_user_count_<%= user.id %>"><%= user.followed_user.count %></span>
       <% end %>
     </div>
   </div>
@@ -69,8 +69,8 @@
         <%= link_to "依頼中の内容", user_requesting_path(current_user), class: "btn btn-info" %>
       <% end %>
     </div>
-    <div class="profile-follow-button follow-button">
-      <%= render 'layouts/follow_button', user: user %>
+    <div id="follow_button_<%= user.id %>" class="profile-follow-button follow-button">
+      <%= render 'relationships/follow_button', user: user %>
     </div>
   </div>
 </div>
