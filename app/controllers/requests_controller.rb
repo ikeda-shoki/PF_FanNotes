@@ -57,6 +57,7 @@ class RequestsController < ApplicationController
     @request.requested_id = @user.id
     if @request.save
       flash[:notice] = '依頼が成功しました'
+      @request.create_notification_request(current_user)
       redirect_to user_path(@user)
     else
       render 'new'
@@ -77,6 +78,7 @@ class RequestsController < ApplicationController
   # request_show画面でのrequest_statusのみの更新
   def update_request_status
     if @request.update(request_update_params)
+      @request.create_notification_request_status(current_user)
       redirect_to user_requested_path(current_user)
     else
       render 'requested_show'
@@ -90,6 +92,7 @@ class RequestsController < ApplicationController
         @request.update(request_status: :"製作完了")
         @request.requested.increment!(:complete_request_count, 1)
       end
+      @request.create_notification_request_status(current_user)
       redirect_to user_request_done_path(user_id: @request.requester, id: @request)
     else
       render 'requested_show'
