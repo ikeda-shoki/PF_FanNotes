@@ -13,7 +13,7 @@
                 </div>
               <% end %>
             </div>
-            <h5 class="mb-2"><%= @post_image.image_introduction %></h5>
+            <h5 class="mb-2"><%= render_with_hashtags(@post_image.image_introduction) %></h5>
             <span>投稿日<%= @post_image.created_at %></span>
             <span>最終更新日<%= @post_image.updated_at %></span><br />
             <span><i class="far fa-heart"></i>:<span id="favorite_count_<%= @post_image.id %>"><%= @post_image.favorites.count %></span></span>
