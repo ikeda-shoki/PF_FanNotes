@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   end
   
   resources :chats, only: [:create, :show, :destroy]
+  
+  resources :notifications, only: :index
 
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   delete 'follow/:id', to: 'relationships#unfollow', as: 'unfollow'

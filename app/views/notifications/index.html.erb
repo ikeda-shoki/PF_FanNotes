@@ -1,0 +1,36 @@
+<div class="notification">
+  <div class="container">
+    <div class="row">
+      <% if @notifications.exists? %>
+        <div class="col-md-6 mx-auto">
+          <div class="notification-contents">
+            <% @notifications.each do |notification| %>
+              <div class="notification-top">
+                <p>
+                  <span>
+                    <%= attachment_image_tag notification.visitor, :profile_image, fallback: "no_image.jpg", size: "30x30" %>
+                  </span>
+                  <%= notification.visitor.account_name %>さんが
+
+                  <% case notification.action
+                  when 'follow' then %>
+                    あなたをフォローしました
+                  <% when 'favorite' then %>
+                    <%= link_to 'あなたの投稿', post_image_path(notification.post_image) %>にいいねしました
+                  <% when 'post_image_comment' then %>
+                    <%= link_to 'あなたの投稿', post_image_path(notification.post_image) %>にコメントしました
+                  <% end %>
+                </p>
+              </div>
+              <div class="notification-bottom text-secondary">
+                <p><%= time_ago_in_words(notification.created_at) %>前</p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        <p>現在の通知はありません</p>
+      <% end %>
+    </div>
+  </div>
+</div>
