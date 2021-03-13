@@ -3,7 +3,8 @@ class PostImage < ApplicationRecord
   belongs_to :user
   has_many :post_image_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :favorited_posts, through: "favorites", source: :post_image
+  has_many :post_image_hashtag_relations, dependent: :destroy
+  has_many :hashtags, through: :post_image_hashtag_relations
 
   attachment :image
 
@@ -14,6 +15,7 @@ class PostImage < ApplicationRecord
     self.favorites.where(user_id: user.id).exists?
   end
 
+  #検索時の並び替え選択に使用
   def self.sort(selection)
     case selection
     when 'new'
@@ -21,9 +23,29 @@ class PostImage < ApplicationRecord
     when 'old'
       return all.order(created_at: :ASC)
     when 'many_favorites'
-      return all.sort { |a, b| b.favorited_posts.count <=> a.favorited_posts.count}
+      return all.sort { |a, b| b.favorites.count <=> a.favorites.count}
     when 'less_favorites'
-      return all.sort { |a, b| b.favorited_posts.count <=> a.favorited_posts.count}.reverse
+      return all.sort { |a, b| b.favorites.count <=> a.favorites.count}.reverse
+    end
+  end
+
+  after_create do
+    post_image = PostImage.find_by(id: self.id)
+    post_image_hashtags = self.image_introduction.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    post_image.hashtags = []
+    post_image_hashtags.uniq.map do |hashtag|
+      tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#＃'))
+      post_image.hashtags << tag
+    end
+  end
+
+  before_update do
+    post_image = PostImage.find_by(id: self.id)
+    post_image.hashtags.clear
+    post_image_hashtags = self.image_introduction.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    post_image_hashtags.uniq.map do |hashtag|
+      tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#＃'))
+      post_image.hashtags << tag
     end
   end
 end
