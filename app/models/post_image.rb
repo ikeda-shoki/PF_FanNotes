@@ -5,6 +5,7 @@ class PostImage < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_image_hashtag_relations, dependent: :destroy
   has_many :hashtags, through: :post_image_hashtag_relations
+  has_many :notifications, dependent: :destroy
 
   attachment :image
 
@@ -23,6 +24,7 @@ class PostImage < ApplicationRecord
     when 'old'
       return all.order(created_at: :ASC)
     when 'many_favorites'
+      #いいね数が0を含めた投稿も表示させる
       return all.sort { |a, b| b.favorites.count <=> a.favorites.count}
     when 'less_favorites'
       return all.sort { |a, b| b.favorites.count <=> a.favorites.count}.reverse
@@ -48,4 +50,31 @@ class PostImage < ApplicationRecord
       post_image.hashtags << tag
     end
   end
+  
+  def create_notification_favorite(current_user)
+    favorited = Notification.where(["visitor_id = ? and visited_id = ? and post_image_id = ? and action = ?", current_user.id, user_id, id, 'favorite'])
+    if favorited.blank?
+      notification = current_user.active_notifications.new(
+        post_image_id: id,
+        visited_id: user_id,
+        action: 'favorite'
+      )
+      if notification.visitor_id === notification.visited_id
+        notification.checked = true
+      end
+      notification.save
+    end
+  end
+  
+  def create_notification_post_image_comment(current_user)
+    notification = current_user.active_notifications.new(
+      post_image_id: id,
+      visited_id: user_id,
+      action: 'post_image_comment'
+    )
+    if notification.visitor_id === notification.visited_id
+      notification.checked = true
+    end
+    notification.save
+  end  
 end

@@ -9,6 +9,7 @@ class PostImageCommentsController < ApplicationController
     unless @post_image_comment.save
       render 'error'
     end
+    @post_image.create_notification_post_image_comment(current_user)
   end
 
   def destroy

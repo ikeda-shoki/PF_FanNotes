@@ -13,8 +13,10 @@ class User < ApplicationRecord
   has_many :followed_user, through: :followed, source: :follower
   has_many :request, class_name: "Request", foreign_key: "requester_id", dependent: :destroy
   has_many :requested, class_name: "Request", foreign_key: "requested_id", dependent: :destroy
-  has_many :user_rooms
-  has_many :chats
+  has_many :user_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
 
   attachment :profile_image
 
@@ -44,6 +46,18 @@ class User < ApplicationRecord
       return all.sort { |a, b| b.post_images.count <=> a.post_images.count}
     when 'many-requests'
       return all.sort { |a, b| b.complete_request_count <=> a.complete_request_count }
+    end
+  end
+
+  def create_notification_follow(current_user, user)
+    followed = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, user.id, 'follow'])
+    if followed.blank?
+      notification = current_user.active_notifications.new(
+        visitor_id: current_user.id,
+        visited_id: user.id,
+        action: 'follow'
+      )
+     notification.save
     end
   end
 end
