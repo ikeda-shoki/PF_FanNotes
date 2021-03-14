@@ -6,4 +6,15 @@ class NotificationsController < ApplicationController
       notification.update_attributes(checked: true)
     end
   end
+  
+  def destroy
+    Notification.find(params[:id]).destroy
+    redirect_to notifications_path
+  end
+  
+  def all_destroy
+    user_notifications = Notification.where(visited_id: current_user.id)
+    user_notifications.destroy_all
+  end
+  
 end

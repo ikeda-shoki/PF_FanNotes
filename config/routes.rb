@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :post_image_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
-  
+
   get '/search', to: 'search#search'
   get '/post_image_search', to: 'search#post_image_search'
   get '/user_search', to: 'search#user_search'
@@ -30,10 +30,11 @@ Rails.application.routes.draw do
     get '/request/:id/complete', to: 'requests#request_complete', as: 'request_complete'
     resources :requests, only: [:new, :create, :edit, :update, :destroy]
   end
-  
+
   resources :chats, only: [:create, :show, :destroy]
-  
-  resources :notifications, only: :index
+
+  delete '/notifications/all_destroy', to: 'notifications#all_destroy'
+  resources :notifications, only: [:index, :destroy]
 
   post 'follow/:id', to: 'relationships#follow', as: 'follow'
   delete 'follow/:id', to: 'relationships#unfollow', as: 'unfollow'
