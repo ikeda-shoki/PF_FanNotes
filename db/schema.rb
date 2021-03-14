@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_120015) do
+ActiveRecord::Schema.define(version: 2021_03_13_080935) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
@@ -31,6 +31,30 @@ ActiveRecord::Schema.define(version: 2021_03_11_120015) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "hashtags", force: :cascade do |t|
+    t.string "hashname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hashname"], name: "index_hashtags_on_hashname", unique: true
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "post_image_id"
+    t.integer "post_image_comment_id"
+    t.integer "request_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_image_comment_id"], name: "index_notifications_on_post_image_comment_id"
+    t.index ["post_image_id"], name: "index_notifications_on_post_image_id"
+    t.index ["request_id"], name: "index_notifications_on_request_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
+  end
+
   create_table "post_image_comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_image_id"
@@ -39,6 +63,15 @@ ActiveRecord::Schema.define(version: 2021_03_11_120015) do
     t.datetime "updated_at", null: false
     t.index ["post_image_id"], name: "index_post_image_comments_on_post_image_id"
     t.index ["user_id"], name: "index_post_image_comments_on_user_id"
+  end
+
+  create_table "post_image_hashtag_relations", force: :cascade do |t|
+    t.integer "post_image_id"
+    t.integer "hashtag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hashtag_id"], name: "index_post_image_hashtag_relations_on_hashtag_id"
+    t.index ["post_image_id"], name: "index_post_image_hashtag_relations_on_post_image_id"
   end
 
   create_table "post_images", force: :cascade do |t|

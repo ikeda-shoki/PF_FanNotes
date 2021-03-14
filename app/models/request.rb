@@ -24,4 +24,43 @@ class Request < ApplicationRecord
       errors.add(:deadline, 'は、最短で本日から3日後で設定してください') if deadline < Time.now || deadline < Time.current.since(2.days)
     end
   end
+  
+  def create_notification_request(current_user)
+    notification = current_user.active_notifications.new(
+      request_id: id,
+      visitor_id: requester_id,
+      visited_id: requested_id,
+      action: 'request'
+    )
+    notification.save
+  end
+  
+  #製作ステータスが更新された時
+  def create_notification_request_status(current_user)
+    if self.request_status === "製作中" 
+      notification = current_user.active_notifications.new(
+        request_id: id,
+        visitor_id: requested_id,
+        visited_id: requester_id,
+        action: 'request_ok'
+      )
+      notification.save
+    elsif self.request_status === "受付不可"
+      notification = current_user.active_notifications.new(
+        request_id: id,
+        visitor_id: requested_id,
+        visited_id: requester_id,
+        action: 'request_out'
+      )
+      notification.save
+    elsif self.request_status === "製作完了"
+      notification = current_user.active_notifications.new(
+        request_id: id,
+        visitor_id: requested_id,
+        visited_id: requester_id,
+        action: 'request_complete'
+      )
+      notification.save
+    end
+  end
 end

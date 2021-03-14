@@ -21,6 +21,7 @@ class ChatsController < ApplicationController
     unless @chat.save
       render 'error'
     end
+    @chat.create_notification_chat(current_user)
   end
   
   def destroy

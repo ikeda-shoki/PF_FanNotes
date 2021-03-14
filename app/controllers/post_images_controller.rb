@@ -37,7 +37,7 @@ class PostImagesController < ApplicationController
   def create
     @post_image = PostImage.new(post_image_params)
     if @post_image.save
-      redirect_to post_images_path
+      redirect_to main_path
     else
       render 'new'
     end
@@ -63,6 +63,12 @@ class PostImagesController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def hashtag
+    @user = current_user
+    @tag = Hashtag.find_by(hashname: params[:name])
+    @post_images = @tag.post_images
   end
 
   private
