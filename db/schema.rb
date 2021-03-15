@@ -14,11 +14,11 @@ ActiveRecord::Schema.define(version: 2021_03_13_080935) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "room__id"
+    t.integer "room_id"
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["room__id"], name: "index_chats_on_room__id"
+    t.index ["room_id"], name: "index_chats_on_room_id"
     t.index ["user_id"], name: "index_chats_on_user_id"
   end
 
