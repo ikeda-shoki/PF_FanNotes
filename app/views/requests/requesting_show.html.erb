@@ -40,8 +40,8 @@
           <h4><%= @request.use %></h4>
         </dl>
       </div>
-      
-      
+
+
 
       <div class="request-show-deadline mb-3 row">
         <dt class="col-md-4">
@@ -60,7 +60,7 @@
           <%= render 'layouts/request_status_buttons', request: @request %>
         </dl>
       </div>
-      
+
       <div class="request-show-buttons row">
         <div class="mx-auto">
           <% if @request.request_status === "未受付" %>
@@ -71,8 +71,8 @@
                                           class: "btn btn-danger" %>
           <% elsif @request.request_status === "受付不可" %>
             <div class="text-center">
-              <%= link_to "依頼を削除する", user_request_path(@request), 
-                                        method: :delete, 
+              <%= link_to "依頼を削除する", user_request_path(@request),
+                                        method: :delete,
                                         data: {confirm: "製作者からの了承が得られませんでした。依頼を削除しますか？"},
                                         class: "btn btn-danger"%>
             </div>
@@ -81,9 +81,9 @@
           <% end %>
         </div>
       </div>
-      
+
       <div class="chat-button">
-        <%= link_to @request.requested.account_name + "とチャットを始める", chat_path(@request.requested), class: "btn btn-info" %>
+        <%= link_to @request.requested.account_name + "とチャットを始める", request_chat_path(request_id: @request, id: @request.requested), class: "btn btn-info" %>
       </div>
 
       <div class="back-button d-inline-block">

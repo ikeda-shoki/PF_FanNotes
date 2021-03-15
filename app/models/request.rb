@@ -3,6 +3,7 @@ class Request < ApplicationRecord
   belongs_to :requester, class_name: "User"
   belongs_to :requested, class_name: "User"
   has_many :request_images, dependent: :destroy
+  has_one :room, dependent: :destroy
   accepts_attachments_for :request_images, attachment: :complete_image, append: true
 
   attachment :reference_image

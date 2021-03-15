@@ -1,12 +1,13 @@
 class ChatsController < ApplicationController
   def show
     @user = User.find(params[:id])
-    rooms = current_user.user_rooms.pluck(:room_id)
-    user_room = UserRoom.find_by(user_id: @user.id, room_id: rooms)
-    unless user_room.nil?
+    rooms = current_user.user_rooms
+    request_room = rooms.find_by(room_id: params[:request_id])
+    unless request_room.nil?
+      user_room = UserRoom.find_by(user_id: @user.id, room_id: request_room.room_id)
       @room = user_room.room
     else
-      @room = Room.create
+      @room = Room.create(request_id: params[:request_id])
       UserRoom.create(user_id: current_user.id, room_id: @room.id)
       UserRoom.create(user_id: @user.id, room_id: @room.id)
     end
