@@ -30,8 +30,9 @@ Rails.application.routes.draw do
     get '/request/:id/complete', to: 'requests#request_complete', as: 'request_complete'
     resources :requests, only: [:new, :create, :edit, :update, :destroy]
   end
-
-  resources :chats, only: [:create, :show, :destroy]
+  
+  get '/request/:request_id/chat/:id', to: 'chats#show', as: 'request_chat'
+  resources :chats, only: [:create, :destroy]
 
   delete '/notifications/all_destroy', to: 'notifications#all_destroy'
   resources :notifications, only: [:index, :destroy]
