@@ -7,33 +7,201 @@ $accent-color: #e65b20;
 $back-ground-color: #d1cbc3;
 $font-color: #3e1300;
 
+@mixin sp {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
 
 // top
 .top {
-  width: 100%;
-  min-height: 100vh;
-  background-image: image-url('top.jpg');
-  background-size: cover;
-  background-color:rgba(255,255,255,0.5);
-  background-blend-mode:lighten;
   position: relative;
 
-  .top-content {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.4);
-    border: solid 5px $accent-color;
-    border-radius: 15px;
-    top: 200px;
-    left: 100px;
+  .top-header {
+    width: 100%;
+    height: 800px;
+    background-image: image-url('top.jpg');
+    background-size: cover;
+    background-color:rgba(255,255,255,0.5);
+    background-blend-mode:lighten;
 
-    .top-title {
-      color: $main-color;
+    @include sp {
+      height: 600px;
     }
   }
 
-  .top-to-main {
-    position: absolute;
-    bottom: 100px;
-    right: 80px;
+  .top-header-content {
+    padding-top: 300px;
+
+    @include sp {
+      padding-top: 150px;
+    }
+
+    .top-title {
+      font-size: 90px;
+      font-family: 'Akaya Telivigala', cursive, 'Nunito', sans-serif;
+      font-weight: 800;
+
+      @include sp {
+        font-size: 35px;
+      }
+    }
+
+    .top-subtitle {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 50px;
+
+      @include sp {
+        font-size: 16px;
+      }
+    }
+
+    .top-buttons {
+      width: 600px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      @include sp {
+        width: 100%;
+      }
+
+      .top-button {
+        margin: 0 auto 15px;
+        background-color: $main-color;
+        opacity: 0.8;
+        color: $accent-color;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+
+        @include sp {
+          width: 100%;
+
+          &:nth-child(2) {
+            margin-left: 0!important;
+          }
+        }
+
+        &:hover {
+          background-color: $accent-color;
+          color: $main-color;
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .top-about {
+    background-color: #FFFFFE;
+    padding: 70px 0;
+
+    .top-about-text {
+      margin-top: 30px;
+
+      @include sp {
+        text-align: left;
+      }
+
+      h4 {
+        font-size: 32px;
+        color: $accent-color;
+        font-weight: 800;
+
+        @include sp {
+          font-size: 20px;
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+
+  h2 {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1em;
+    font-weight: 800;
+    font-size: 40px;
+
+    @include sp {
+      font-size: 30px;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      display: inline-block;
+      width: 60px;
+      height: 5px;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      background-color: $font-color;
+      border-radius: 2px;
+    }
+  }
+
+  .top-how-to-use {
+    padding: 70px 0;
+
+    .top-messages {
+      margin-top: 50px;
+
+      .top-message {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 60px;
+        align-items: center;
+        text-align: left;
+
+
+        &:nth-child(2) {
+          flex-direction: row-reverse;
+        }
+
+        &-left {
+          width: 500px;
+          background-color: #FFFFFE;
+          padding: 50px 40px 30px;
+          border-radius: 20px;
+          position: relative;
+
+          h4 {
+            font-weight: 600;
+            margin-bottom: 30px;
+            line-height: 1.5;
+          }
+
+          span {
+            font-size: 60px;
+            color: $accent-color;
+            font-weight: 800;
+            position: absolute;
+            top: -30px;
+            left: -10%;
+
+            @include sp {
+              left: 5%;
+              font-size: 40px;
+            }
+          }
+        }
+
+
+        &-right {
+          mix-blend-mode: multiply;
+
+          img {
+            width: 400px;
+            height: auto;
+
+            @include sp {
+              display: none;
+            }
+          }
+        }
+      }
+    }
   }
 }
