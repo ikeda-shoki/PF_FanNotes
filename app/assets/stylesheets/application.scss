@@ -39,6 +39,10 @@ $sp: 480px;
   line-height: 1.7;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 .fan-notes {
   width: 100%;
   background-color: $main-color;
@@ -52,37 +56,38 @@ $sp: 480px;
     width: 100%;
     opacity: 0.8;
     height: 80px;
-    
+
     nav {
       height: 100%;
-      
+      position: relative;
+
       .navbar-collapse {
         background-color: #f8f9fa;
         border-radius: 20px;
         text-align: center;
       }
-      
+
       h1 {
         font-weight: 800;
         margin-bottom: 0;
         font-family: 'Akaya Telivigala', cursive, 'Nunito', sans-serif;
       }
-      
+
       .nav-link {
         font-size: 14px;
         padding: 10px 20px;
         transition: 0.5s;
         -webkit-transition: 0.5s;
         margin-right: 10px;
-        
+
         @include sp {
           margin-bottom: 20px;
         }
-        
+
         &:last {
-          margin-right: 0;  
+          margin-right: 0;
         }
-        
+
         &:hover {
           background-color: $accent-color;
           color: #fff;
@@ -91,9 +96,52 @@ $sp: 480px;
         }
       }
     }
-    
+
+    .notification-action {
+      position: relative;
+
+      .action {
+        position: absolute;
+        top: 20%;
+        color: #efa04c;
+        font-size: 5px;
+      }
+    }
+
     .search-form {
-      
+      position: absolute;
+      top: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      background-color: $accent-color;
+      padding: 10px 20px;
+      border-radius: 5px;
+
+      @include sp {
+        display: none;
+      }
+
+      input, select {
+        border: none;
+        border-radius: 5px;
+        height: 37px;
+        padding: 0 15px;
+      }
+
+      input[type="search"] {
+        width: 230px;
+      }
+
+      input[type="submit"] {
+        background-color: #FFFFFE;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+
+        &:hover {
+          background-color: $main-color;
+        }
+      }
     }
   }
 }
@@ -112,7 +160,7 @@ $sp: 480px;
 }
 
 .main {
-  margin-top: 80px;
+  padding: 200px 0 60px;
 }
 
 .button {
@@ -131,7 +179,7 @@ $sp: 480px;
 	border-radius: 3px;
 	transition: 0.5s;
   -webkit-transition: 0.5s;
-  
+
   @include sp {
     width: 100%;
   }
@@ -245,6 +293,10 @@ $sp: 480px;
     object-fit: cover;
     object-position: center center;
   }
+  
+  .post-image-introduction {
+    text-overflow: ellipsis;
+  }
 }
 
 .post-comment {
@@ -331,7 +383,7 @@ $sp: 480px;
     }
 
   }
-  
+
 // flash_message
 
 .notice {
@@ -342,45 +394,6 @@ $sp: 480px;
   color: white;
   background-color: red;
 }
-
-// main
-
-.ranking-post-image {
-  width: 230px;
-  height: 350px;
-  border-radius: 20px;
-  background-color: #fff;
-  padding: 10px 0;
-  text-align: center;
-
-  img {
-    margin: 0 auto;
-    width: 210px;
-    height: 230px;
-    object-fit: cover;
-    object-position: center center;
-    border-radius: 20px;
-  }
-}
-
-.main-post-image {
-  width: 130px;
-  height: 150px;
-  border-radius: 20px;
-  background-color: #fff;
-  padding: 10px 0;
-  text-align: center;
-
-  img {
-    margin: 0 auto;
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    object-position: center center;
-    border-radius: 20px;
-  }
-}
-
 
 // post-image-index
 .post-image-index {
@@ -623,6 +636,10 @@ $sp: 480px;
   color: $accent-color !important;
 }
 
+.slick-track {
+  margin-bottom: 40px;
+}
+
 // chat-show
 
 #chats{
@@ -634,11 +651,11 @@ $sp: 480px;
   font-size: 14px;
   overflow: scroll;
   position: relative;
-  
+
   .fa-times-circle {
     transition: 0.8s;
     -webkit-transition: 0.8s;
-    
+
     &:hover {
       color: red;
     }
@@ -663,11 +680,11 @@ $sp: 480px;
       border-radius: 50%;
     }
   }
-  
+
   .chatting {
     width: 100%;
     text-align: left;
-    
+
     .says {
       display: inline-block;
       position: relative;
@@ -676,7 +693,7 @@ $sp: 480px;
       max-width: 250px;
       border-radius: 12px;
       background: #fff;
-      
+
       &:after {
         content: "";
         display: inline-block;
@@ -688,7 +705,7 @@ $sp: 480px;
         -webkit-transform: rotate(35deg);
         transform: rotate(35deg);
       }
-      
+
       p {
         margin: 0;
         padding: 0;
@@ -699,7 +716,7 @@ $sp: 480px;
 
 .mycomment {
   margin: 10px 0;
-  
+
   p {
     display: inline-block;
     position: relative;
@@ -709,7 +726,7 @@ $sp: 480px;
     border-radius: 12px;
     background: #30e852;
     font-size: 15px;
-    
+
     &:after {
       content: "";
       position: absolute;

@@ -1,8 +1,8 @@
 <div class="search-form ml-auto">
   <%= form_with url: search_path, method: :get, local: true do |f| %>
-    <%= f.search_field :search, placeholder: "キーワードから探す" %>
+    <%= f.search_field :search, placeholder: "Search" %>
     <%= select_tag(:model, options_for_select([["ユーザー", "1" ],["投稿イラスト", "2" ]])) %>
 
-    <%= f.submit "検索" %>
+    <%= f.submit "\uf002", class: "fa" %>
   <% end %>
 </div>

@@ -36,3 +36,13 @@ $(function() {
       autoplaySpeed: 2000,
     });
 });
+
+$(function() {
+    $('.favorite-hashtag-lists').slick({
+      slidesToShow: 5,
+      slidesToScroll: 5,
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 3000,
+    });
+});

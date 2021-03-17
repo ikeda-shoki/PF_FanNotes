@@ -30,8 +30,9 @@ class PostImagesController < ApplicationController
   
   def main
     @post_images = PostImage.limit(10).order('id desc')
-    @following_users = current_user.following_user if user_signed_in?
+    @following_users = current_user.following_user.limit(3).order('id desc') if user_signed_in?
     @ranking_post_images = PostImage.find(Favorite.group(:post_image_id).order('count(post_image_id) desc').limit(10).pluck(:post_image_id))
+    @hashtags = Hashtag.find(PostImageHashtagRelation.group(:hashtag_id).order('count(hashtag_id) desc').limit(20).pluck(:hashtag_id))
   end
 
   def create
