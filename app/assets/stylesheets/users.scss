@@ -140,7 +140,7 @@ $sp: 480px;
         margin: 0 0 15px;
       }
     }
-    
+
     .button {
       min-width: auto;
       padding: 5px 10px;
@@ -162,7 +162,119 @@ $sp: 480px;
   .request-success {
     min-width: auto;
     position: relative;
-    
+
+    .fas {
+      font-size: 25px;
+      color: $font-color;
+      position: absolute;
+      top: 50%;
+      right: -15%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .request-out {
+    min-width: auto;
+  }
+
+  .request-button {
+    margin-left: 30px;
+  }
+
+  .user-show-image {
+    @include sp {
+      margin-top: 80px;
+    }
+
+    h2 {
+      font-size: 30px;
+      font-weight: 700;
+
+      @include sp {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    }
+
+    .post-images {
+      justify-content: space-around;
+    }
+  }
+}
+
+// user-edit-profile
+
+.user-edit-profile {
+  border-radius: 20px;
+  padding: 150px 30px 30px!important;
+  position: relative;
+
+  @include sp {
+    margin-top: 200px!important;
+  }
+
+  .edit-profile-image {
+    img {
+       width: 200px;
+       height: 200px;
+       object-fit: cover;
+       border-radius: 50%;
+       padding: 5px;
+       border: solid 5px $accent-color;
+       position: absolute;
+       top: -10%;
+       left: 50%;
+       transform:translateX(-50%)
+    }
+  }
+
+  label[for="user_is_reception_true"],
+       [for="user_is_reception_false"] {
+    background-color: $main-color;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  input[type="radio"]:checked + label {
+      background-color: $accent-color;
+      font-weight: bold;
+      color: #fff;
+  }
+
+  .user-edit-reception {
+    @include sp {
+      justify-content: space-between;
+    }
+  }
+
+  .white-button {
+    @include sp {
+      background-color: #E15253;
+      color: #FFFFFE;
+    }
+
+    &:hover {
+      background-color: #E15253;
+    }
+  }
+}
+
+// follow
+.user-following,
+.user-followed {
+  min-height: 100vh;
+}
+
+.user-followed-right,
+.user-following-right {
+  .request-success {
+    min-width: auto;
+    position: relative;
+
     .fas {
       font-size: 25px;
       color: $font-color;
@@ -173,26 +285,55 @@ $sp: 480px;
     }
   }
   
-  .request-out {
-    min-width: auto;
-  }
-  
   .request-button {
     margin-left: 30px;
   }
   
-  .user-show-image {
+  @include sp {
+    display: none;
+  }
+}
+
+.follow-lists {
+  h2 {
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    
     @include sp {
-      margin-top: 80px;
+      width: 100px;
+      height: 100px;
     }
-      
-    h2 {
-      font-size: 30px;
-      font-weight: 700;
+  }
+
+  .follow-list {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    
+    .follow-accountname {
+      font-size: 20px;
+    }
+
+    .follow-dataile-buttons {
+      display: flex;
+      justify-content: center;
       
       @include sp {
-        text-align: center;
-        margin-bottom: 20px;
+        flex-direction: column;
+      }
+
+      .profile-btn,
+      .button,
+      .white-button {
+        min-width: auto;
+        margin-bottom: 10px;
       }
     }
   }

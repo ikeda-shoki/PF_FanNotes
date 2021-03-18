@@ -198,7 +198,7 @@ a {
 }
 
 .white-button {
-  border: none;
+  border: 2px solid $accent-color;
   text-align: center;
   padding: 80px;
 	display: inline-block;
@@ -208,7 +208,7 @@ a {
 	text-decoration: none;
 	margin: 0;
 	padding: 15px 16px;
-	background: $main-color;
+	background: #FFFFFE;
 	color: $accent-color;
 	border-radius: 3px;
 	transition: 0.5s;
@@ -280,7 +280,7 @@ a {
 	text-decoration: none;
 	margin: 0;
 	padding: 15px 16px;
-	background: #B5311B;
+	background: #E15253;
 	color: #FFFFFE;
 	border-radius: 20px;
 }
@@ -668,59 +668,6 @@ a {
 .alert {
   color: white;
   background-color: red;
-}
-
-// user-edit-profile
-
-.user-edit-profile {
-  border-radius: 20px;
-  padding: 150px 30px 30px;
-  position: relative;
-
-  .edit-profile-image {
-    img {
-       width: 200px;
-       height: 200px;
-       object-fit: cover;
-       border-radius: 50%;
-       padding: 5px;
-       border: solid 5px $accent-color;
-       position: absolute;
-       top: -10%;
-       left: 50%;
-       transform:translateX(-50%)
-    }
-  }
-
-  label[for="user_is_reception_true"],
-       [for="user_is_reception_false"] {
-    background-color: $main-color;
-    padding: 10px 20px;
-    border-radius: 10px;
-  }
-
-  input[type="radio"] {
-    display: none;
-  }
-
-  input[type="radio"]:checked + label {
-      background-color: $accent-color;
-      font-weight: bold;
-      color: #fff;
-  }
-}
-
-// follow
-
-.follow-lists {
-  margin-top: 100px;
-
-  img {
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 50%;
-      }
 }
 
 // request
