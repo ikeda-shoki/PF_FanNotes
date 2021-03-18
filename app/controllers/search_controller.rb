@@ -12,7 +12,7 @@ class SearchController < ApplicationController
   # post_image 並び替え
   def post_image_search
     @selection = params[:keyword]
-    @sort_post_images = PostImage.sort(@selection)
+    @sort_post_images = Kaminari.paginate_array(PostImage.sort(@selection)).page(params[:page]).per(8)
     render 'post_images/index'
   end
   

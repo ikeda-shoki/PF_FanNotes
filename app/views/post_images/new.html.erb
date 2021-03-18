@@ -1,38 +1,39 @@
 <div class="post-image-new">
-
-  <div class="row">
-    <div class="post col-md-6 mx-auto">
-      <%= render 'layouts/error_messages', model: @post_image %>
-      <%= form_with model: @post_image, local: true do |f| %>
-        <div class="field mb-4 row">
-          <dt class="col-md-4">
-            <%= f.label :title, "タイトル"%>
-          </dt>
-          <dl class="col-md-8">
-            <%= f.text_field :title, placeholder: "タイトルを入力してください" %>
-          </dl>
-        </div>
-        <div class="field mb-4 row">
-          <dt class="col-md-4">
-            <%= f.label :image_introduction, "説明"%>
-          </dt>
-          <dl class="col-md-8">
-            <%= f.text_area :image_introduction, placeholder: "作品の内容を入力してください" %>
-          </dl>
-        </div>
-        <div class="field mb-4 row">
-          <dt class="col-md-4">
-            <%= f.label :image, "イラスト"%>
-          </dt>
-          <dl class="col-md-8">
-            <%= f.attachment_field :image %>
-          </dl>
-        </div>
-        
-        <div class="post-button text-center">
-          <%= f.submit "投稿する", class: "button"%>
-        </div>
-      <% end %>
+  <div class="container">
+    <div class="row">
+      <div class="post col-md-8 mx-auto">
+        <%= render 'layouts/error_messages', model: @post_image %>
+        <%= form_with model: @post_image, local: true do |f| %>
+          <div class="field mb-4 row">
+            <dt class="col-md-4">
+              <%= f.label :title, "タイトル"%>
+            </dt>
+            <dl class="col-md-8">
+              <%= f.text_field :title, placeholder: "タイトルを入力してください" %>
+            </dl>
+          </div>
+          <div class="field mb-4 row">
+            <dt class="col-md-4">
+              <%= f.label :image_introduction, "説明"%>
+            </dt>
+            <dl class="col-md-8">
+              <%= f.text_area :image_introduction, placeholder: "作品の内容を入力してください" %>
+            </dl>
+          </div>
+          <div class="field mb-4 row">
+            <dt class="col-md-4">
+              <%= f.label :image, "イラスト"%>
+            </dt>
+            <dl class="col-md-8">
+              <%= f.attachment_field :image %>
+            </dl>
+          </div>
+          
+          <div class="post-button text-center">
+            <%= f.submit "投稿する", class: "btn button sp-button"%>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -161,6 +161,10 @@ a {
 
 .main {
   padding: 200px 0 60px;
+
+  @include sp {
+    padding: 100px 0 30px;
+  }
 }
 
 .button {
@@ -175,7 +179,7 @@ a {
 	margin: 0;
 	padding: 15px 16px;
 	background: $accent-color;
-	color: #fff;
+	color: #FFFFFE;
 	border-radius: 3px;
 	transition: 0.5s;
   -webkit-transition: 0.5s;
@@ -208,6 +212,10 @@ a {
 	transition: 0.5s;
   -webkit-transition: 0.5s;
 
+  @include sp {
+    width: 100%;
+  }
+
   &:hover {
     background-color: $accent-color;
     color: $main-color;
@@ -215,12 +223,44 @@ a {
   }
 }
 
+.profile-btn {
+  border: none;
+  text-align: center;
+  padding: 80px;
+	display: inline-block;
+	min-width: 230px;
+	font-size: 16px;
+	font-weight: 700;
+	text-decoration: none;
+	margin: 0;
+	padding: 15px 16px;
+	background: $font-color;
+	color: #FFFFFE;
+	border-radius: 3px;
+	transition: 0.5s;
+  -webkit-transition: 0.5s;
+
+  @include sp {
+    width: 100%;
+  }
+
+  &:hover {
+    background-color: $main-color;
+    color: $accent-color;
+    opacity: 0.8;
+  }
+}
+
 .post {
-  margin-top: 100px;
-  background-color: #fff;
+  margin: 200px 0 60px;
+  background-color: #FFFFFE;
   padding: 50px;
   border-radius: 20px;
   position: relative;
+
+  @include sp {
+    margin: 100px 0 30px;
+  }
 
   input[type="text"] {
     width: 100%;
@@ -277,67 +317,70 @@ a {
   }
 }
 
-.post-image {
-  text-align: center;
-  background-color: #fff;
-  width: 180px;
-  height: 230px;
-  padding: 10px 10px;
-  border-radius: 20px;
-  margin-bottom: 10px;
+.post-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 
-  img {
-    border-radius: 20px;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    object-position: center center;
-  }
-  
-  .post-image-introduction {
-    text-overflow: ellipsis;
-  }
-}
-
-.post-comment {
-  padding: 5px 30px;
-
-  img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: solid 2px $accent-color;
-  }
-
-  .post-comment-chat {
+  .post-image {
     position: relative;
-    display: inline-block;
-    margin: 1.5em 0 1.5em 30px;
+    text-align: center;
+    background-color: #FFFFFE;
+    width: 230px;
+    height: 230px;
     padding: 15px 10px;
-    min-width: 120px;
-    max-width: 100%;
-    color: #555;
-    font-size: 16px;
-    background: $main-color;
     border-radius: 20px;
-
-    &:before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: -30px;
-      margin-top: -15px;
-      border: 15px solid transparent;
-      border-right: 15px solid $main-color;
+    margin-bottom: 30px;
+    box-shadow: 0 3px 5px rgba(0,0,0,.2);
+    
+    @include sp {
+      width: 150px;
+      height: 150px;
+      padding: 10px;
     }
 
-    p {
-      margin: 0;
-      padding: 0;
+    img {
+      border-radius: 20px;
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      object-position: center center;
+      
+      @include sp {
+        width: 130px;
+        height: 130px;
+      }
+    }
+
+    .post-image-text {
+      position: absolute;
+      font-size: 13px;
+      font-weight: bold;
+      color: #FFFFFE;
+      width: 150px;
+      height: 60px;
+      border-radius: 20px;
+      background-color: rgba(0,0,0,0.4);
+      bottom: 5%;
+      right: 5%;
+      padding: 0 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      
+      @include sp {
+        right: 0;
+      }
+
+      i {
+        color: #FFFFFE;
+      }
+
+      .post-image-introduction {
+        color: #FFFFFE;
+      }
     }
   }
-
 }
 
 .user-item {
@@ -384,6 +427,51 @@ a {
 
   }
 
+// sort-form
+
+.sort-form {
+  label {
+    box-shadow: 0 3px 5px rgba(0,0,0,.2);
+    padding: 15px;
+    background: #FFFFFE;
+    width: 260px;
+    display: inline-block;
+    position: relative;
+    margin-left: 50px;
+
+    &:after {
+      content:"\25bc";
+      font-size: 16px;
+      color: #FFFFFE;
+      background: $accent-color;
+      width: 42px;
+      text-align: center;
+      line-height: 3.2em;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    select{
+      border: none;
+      outline: none;
+      display: inline-block;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: $font-color;
+      border-radius: 0;
+      width: 275px;
+      z-index: 2;
+      background: transparent;
+    }
+  }
+}
+
 // flash_message
 
 .notice {
@@ -393,93 +481,6 @@ a {
 .alert {
   color: white;
   background-color: red;
-}
-
-// post-image-index
-.post-image-index {
-  .post-image-index-left {
-    background-color: #fff;
-    padding: 20px 10px;
-    border-radius: 20px;
-  }
-}
-
-
-// post-image-show
-
-.image-show-left {
-  background-color: #fff;
-  border-radius: 20px;
-  text-align: center;
-  padding: 50px 0px;
-
-  img {
-    width: 90%;
-    height: auto;
-  }
-
-  .post-image-text {
-    width: 90%;
-    text-align: left;
-    padding: 30px 15px 0px 15px;
-  }
-}
-
-.image-show-comment-new {
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 15px 0px;
-
-  .image-show-comment-form {
-    width: 90%;
-  }
-}
-
-.image-show-comment-index {
-  background-color: #fff;
-  border-radius: 20px;
-}
-
-.image-show-right {
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 50px 20px;
-  margin-top: 100px;
-
-  .image-show-profile-image {
-
-    img {
-      width: 180px;
-       height: 180px;
-       object-fit: cover;
-       border-radius: 50%;
-       padding: 5px;
-       border: solid 5px $accent-color;
-    }
-  }
-
-  .image-show-profile-items {
-    border-bottom: dashed $font-color;
-  }
-
-  .image-show-profile-buttons {
-    border-bottom: dashed $font-color;
-  }
-
-  .image-show-profile-images {
-    border-bottom: dashed $font-color;
-
-    .post-image {
-      margin: 0;
-      height: auto;
-
-      img {
-        width: 80px;
-        height: 80px;
-      }
-    }
-  }
-
 }
 
 // user-edit-profile
@@ -638,6 +639,47 @@ a {
 
 .slick-track {
   margin-bottom: 40px;
+
+  @include sp {
+    margin-bottom: 10px;
+  }
+}
+
+// kaminari paginate css
+
+.pagination {
+  justify-content: center;
+
+  li {
+    padding: 0 5px;
+    
+    a {
+      border: none;
+      background-color: $main-color;
+      border-radius: 50%!important;
+      color: $font-color;
+      transition: 0.8s;
+      -webkit-transition: 0.8s;
+      
+      span {
+        &:hover {
+          color: #FFFFFE;
+        }
+      }
+      
+      &:hover {
+        background-color: $accent-color;
+        opacity: 0.6;
+        color: #FFFFFE;
+      }
+    }
+  }
+
+  .active {
+    a {
+      background-color: $accent-color!important;
+    }
+  }
 }
 
 // chat-show

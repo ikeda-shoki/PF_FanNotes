@@ -18,22 +18,39 @@
 //= require_tree .
 /*global $*/
 
-
 $(function() {
     $('.slider-favorite').slick({
       slidesToShow: 3,
-      slidesToScroll: 1,
-      dots: true
+      slidesToScroll: 3,
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 5000,
+
+      responsive: [{
+    		breakpoint: 767,
+    		settings: {
+		    	arrows: false,
+    		}
+    	}]
     });
 });
 
 $(function() {
     $('.slider-new').slick({
       slidesToShow: 5,
-      slidesToScroll: 1,
+      slidesToScroll: 5,
       dots: true,
       autoplay: true,
       autoplaySpeed: 2000,
+
+      responsive: [{
+    		breakpoint: 767,
+    		settings: {
+    			slidesToShow: 4,
+		    	slidesToScroll: 4,
+		    	arrows: false,
+    		}
+    	}]
     });
 });
 
@@ -44,5 +61,24 @@ $(function() {
       dots: true,
       autoplay: true,
       autoplaySpeed: 3000,
+
+      responsive: [{
+    		breakpoint: 767,
+    		settings: {
+    			slidesToShow: 2,
+		    	slidesToScroll: 2,
+		    	arrows: false,
+    		}
+    	}]
     });
+});
+
+
+// sp pc ボタンの変化
+$(window).resize(function(){
+  var screenWidth = $(window).width()
+  var spWidth = 767
+  if (screenWidth <= 767) {
+    $('.sp-button').addClass('button').removeClass('white-button')
+  }
 });

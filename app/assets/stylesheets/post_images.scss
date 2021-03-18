@@ -213,6 +213,10 @@ $font-color: #3e1300;
   h2 {
     font-size: 30px;
     font-weight: bold;
+
+    @include sp {
+      font-size: 25px;
+    }
   }
 
   .ranking-post-image {
@@ -223,6 +227,11 @@ $font-color: #3e1300;
     position: relative;
     transition: 0.5s;
     -webkit-transition: 0.5s;
+
+    @include sp {
+      width: 100px;
+      height: 100px;
+    }
 
     &:hover {
       opacity: 0.6;
@@ -236,10 +245,18 @@ $font-color: #3e1300;
       top: 5%;
       left: 5%;
 
+      @include sp {
+        padding: 10px;
+      }
+
       span {
         color: $accent-color;
         font-weight: 700;
         font-size: 30px;
+
+        @include sp {
+          font-size: 20px;
+        }
       }
     }
 
@@ -255,6 +272,10 @@ $font-color: #3e1300;
       position: absolute;
       bottom: 5%;
       right: 5%;
+
+      @include sp {
+        display: none;
+      }
 
       .post-image-text-items {
         display: flex;
@@ -276,6 +297,10 @@ $font-color: #3e1300;
     transition: 0.5s;
     -webkit-transition: 0.5s;
 
+    @include sp {
+      width: 80px;
+    }
+
     &:hover {
       opacity: 0.6;
     }
@@ -287,31 +312,51 @@ $font-color: #3e1300;
       object-fit: cover;
       object-position: center center;
       border-radius: 20px;
+
+      @include sp {
+        width: 70px;
+        height: 70px;
+      }
     }
 
-    .post-image-introduction {
-      text-overflow: ellipsis;
+    .post-image-text {
+      @include sp {
+        display: none;
+      }
+
+      .post-image-introduction {
+        text-overflow: ellipsis;
+      }
     }
+
   }
 
   .favorite-hashtags {
     margin-bottom: 80px;
-    
+
     .favorite-hashtag-lists {
       height: 50px;
 
       .favorite-hashtag {
+        width: 100%;
         height: 100%;
         color: $font-color;
         background-color: #FFFFFE;
         border-radius: 20px;
         text-align: center;
         line-height: 50px;
+        padding: 0 10px;
         margin-right: 20px;
+        overflow: hidden;
+        white-space: nowrap;
         text-overflow: ellipsis;
         transition: 0.5s;
         -webkit-transition: 0.5s;
-        
+
+        @include sp {
+          font-size: 15px;
+        }
+
         &:hover {
           color: #FFFFFE;
           font-weight: bold;
@@ -326,6 +371,25 @@ $font-color: #3e1300;
 
     .follow-image {
       display: flex;
+
+      @include sp {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 100%;
+
+        .main-post-image {
+          width: 150px;
+
+          &:last-child {
+            margin-bottom: 30px;
+          }
+
+          img {
+            width: 150px;
+            height: 150px;
+          }
+        }
+      }
     }
   }
 
@@ -333,10 +397,16 @@ $font-color: #3e1300;
     text-align: right;
     padding-bottom: 40px;
 
+    @include sp {
+      font-size: 13px;
+      padding-bottom: 20px;
+    }
+
     a {
       color: $font-color;
        transition: 0.5s;
       -webkit-transition: 0.5s;
+
 
       &:hover {
         color: $accent-color;
@@ -348,6 +418,255 @@ $font-color: #3e1300;
   }
 }
 
+// new
 
+
+// post-image-show
+
+.image-show-left {
+  background-color: #FFFFFE;
+  border-radius: 20px;
+  text-align: center;
+  padding: 50px 0px 30px;
+
+  img {
+    width: 90%;
+    height: auto;
+  }
+
+  .post-image-text {
+    width: 90%;
+    text-align: left;
+    padding: 30px 15px 0px 15px;
+
+    .post-image-time, .post-image-heart {
+      font-size: 13px;
+    }
+
+    a {
+      @include sp {
+        display: block;
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.image-show-comment-new {
+  background-color: #FFFFFE;
+  border-radius: 20px;
+  padding: 15px 0px;
+
+  .image-show-comment-form {
+    width: 80%;
+
+    form {
+      @include sp {
+        flex-direction: column;
+      }
+
+      input[type="text"] {
+        width: 70%;
+        padding: 5px 10px;
+
+        @include sp {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+
+    .comment-btn {
+      min-width: auto;
+      border-radius: 20px;
+      padding: 10px 25px;
+    }
+  }
+}
+
+.image-show-comment-index {
+  background-color: #FFFFFE;
+  border-radius: 20px;
+
+  .post-comment {
+    padding: 5px 30px;
+
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: solid 2px $accent-color;
+    }
+
+    .post-comment-accountname {
+      font-size: 13px;
+    }
+
+    .post-comment-chat {
+      position: relative;
+      display: inline-block;
+      margin: 1.5em 0 1.5em 30px;
+      padding: 15px 10px;
+      min-width: 120px;
+      max-width: 100%;
+      color: $font-color;
+      font-size: 16px;
+      background: $main-color;
+      border-radius: 20px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -30px;
+        margin-top: -15px;
+        border: 15px solid transparent;
+        border-right: 15px solid $main-color;
+      }
+
+      p {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    .post-comment-delete-button {
+      color: $font-color;
+      font-size: 27px;
+      transition: 0.3s;
+      -webkit-transition: 0.3s;
+
+      &:hover {
+        color: $accent-color;
+      }
+    }
+  }
+}
+
+.image-show-right {
+  background-color: #FFFFFE;
+  border-radius: 20px;
+  padding: 50px 20px;
+
+  @include sp {
+    display: none;
+  }
+
+  .image-show-profile-image {
+
+    img {
+      width: 180px;
+       height: 180px;
+       object-fit: cover;
+       border-radius: 50%;
+       padding: 5px;
+       border: solid 5px $accent-color;
+    }
+  }
+
+  .image-show-profile-items {
+    border-bottom: dashed $font-color;
+
+    .image-show-profile-item {
+      padding: 0;
+
+      h6 {
+        font-size: 13px;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .image-show-profile-buttons {
+    border-bottom: dashed $font-color;
+
+    .button {
+      min-width: auto;
+      font-size: 13px;
+      padding: 10px 5px;
+    }
+
+    .white-button {
+      min-width: auto;
+      font-size: 13px;
+      padding: 10px 5px;
+    }
+  }
+
+  .image-show-profile-images {
+    border-bottom: dashed $font-color;
+
+    .image-show-post-image {
+      width: 100px;
+      height: 100px;
+      padding: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+// edit
+
+.post-image-edit {
+  .button {
+    @include sp {
+      margin-bottom: 50px;
+    }
+  }
+}
+
+// index
+
+.post-image-index {
+  &-head {
+    @include sp {
+      flex-direction: column-reverse;
+    }
+  }
+  
+  h2 {
+    font-size: 40px;
+    font-weight: bold;
+    
+    @include sp {
+      font-size: 25px
+    }
+  }
+  
+  form {
+    @include sp {
+      margin: 10px 0 30px;
+      flex-direction: column;
+    }
+    
+    label {
+      margin-bottom: 0;
+      margin-right: 20px;
+      
+      @include sp {
+        margin: 0 0 15px;
+      }
+    }
+    .button {
+      min-width: auto;
+      padding: 5px 10px;
+      box-shadow: 0 3px 5px rgba(0,0,0,.2);
+      
+      @include sp {
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .post-image-index-head {
+    margin-bottom: 30px;
+  }
+}
 
 

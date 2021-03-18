@@ -76,6 +76,7 @@ gem "refile-mini_magick"
 
 gem 'pry-byebug'
 gem 'rails-i18n'
+gem 'kaminari'
 
 group :production do
   gem 'mysql2'

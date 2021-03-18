@@ -91,11 +91,11 @@
               <% end %>
             </div>
           <% end %>
-          <div class="post-image-main-link">
+          <div class="post-image-main-link d-flex justify-content-between">
             <%= link_to users_path do %>
-              ユーザー一覧へ<i class="fas fa-chevron-right ml-3"></i>
+              <i class="fas fa-chevron-left mr-3"></i>ユーザー一覧へ
             <% end %>
-            <%= link_to following_path(current_user), class: "ml-4" do %>
+            <%= link_to following_path(current_user) do %>
               フォローユーザー一覧へ<i class="fas fa-chevron-right ml-3"></i>
             <% end %>
           </div>
