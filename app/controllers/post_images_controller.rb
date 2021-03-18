@@ -69,7 +69,7 @@ class PostImagesController < ApplicationController
   def hashtag
     @user = current_user
     @tag = Hashtag.find_by(hashname: params[:name])
-    @post_images = @tag.post_images
+    @post_images = @tag.post_images.page(params[:page]).per(8)
   end
 
   private

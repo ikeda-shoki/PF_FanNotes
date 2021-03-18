@@ -19,7 +19,7 @@ class SearchController < ApplicationController
   # user 並び替え
   def user_search
     @selection = params[:keyword]
-    @sort_users = User.sort(@selection)
+    @sort_users = Kaminari.paginate_array(User.sort(@selection)).page(params[:page]).per(5)
     render 'users/index'
   end
 

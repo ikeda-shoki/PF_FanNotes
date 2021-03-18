@@ -1,13 +1,18 @@
 <div class="user-show main">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 mx-auto text-center">
+      <div class="col-md-5 mx-auto text-center">
         <%= render 'users/user_profile', user: @user %>
       </div>
       
-      <div class="user-show-image col-md-8">
+      <div class="user-show-image col-md-7">
         <h2>投稿一覧</h2>
-        <%= render 'post_images/post_image_item', post_images: @user.post_images %>
+        <% if @post_images.empty? %>
+          <p>現在の投稿はありません。</p>
+        <% else %>
+          <%= render 'post_images/post_image_item', post_images: @post_images %>
+          <%= paginate @post_images %>
+        <% end %>
       </div>
     </div>
   </div>
