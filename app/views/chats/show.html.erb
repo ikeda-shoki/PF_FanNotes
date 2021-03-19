@@ -1,4 +1,4 @@
-<div class="chat-show main">
+<div class="chat-show">
   <div class="container">
     <h2 class="text-center"><%="#{@user.account_name}さんとのチャット"%></h2>
     <div id="chats">
@@ -9,14 +9,20 @@
       <div class="chat-form">
         <div id="chat-error-messages">
         </div>
-        <%= form_with model: @chat do |f| %>
+        <%= form_with model: @chat, html: { class: "d-flex align-items-center"} do |f| %>
+          <%= f.hidden_field :room_id %>
+          <%= f.hidden_field :id %>
+          
+          <div class="chat-form-message">
             <%= f.text_field :message %>
-            <%= f.hidden_field :room_id %>
-            <%= f.hidden_field :id %>
-            <%= f.submit "送信する", class: "btn btn-primary" %>
+          </div>
+          <div class="chat-form-button">
+            <%= f.submit "送信", class: "btn white-button sp-button" %>
+          </div>
         <% end %>
       </div>
     </div>
+    <%= render 'layouts/back_button'%>
   </div>
 </div>
 

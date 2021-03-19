@@ -1,6 +1,7 @@
 <div class="hashtag main">
   <div class="container">
-    <h2>ハッシュタグ #<%= @tag.hashname %></h2>
-      <%= render 'post_images/post_image_item', post_images: @post_images %>
+    <h2 class="hashtag-title">#<%= @tag.hashname %></h2><span class="hashtag-count"><%= @tag.post_images.count %></span><span>作品</span>
+    <%= render 'post_images/post_image_item', post_images: @post_images %>
+    <%= paginate @post_images %>
   </div>
 </div>

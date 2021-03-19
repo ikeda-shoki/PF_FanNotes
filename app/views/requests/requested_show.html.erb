@@ -2,68 +2,68 @@
   <div class="row">
     <div class="post col-md-6 mx-auto">
       <h3 class="text-center mb-5">
-        <%= link_to @request.requester.account_name, user_path(@request.requester)%>さんからの依頼<i class="fas fa-comment-medical ml-2"></i>
+       <%= link_to @request.requester.account_name, user_path(@request.requester)%>さんからの依頼
       </h3>
 
-      <div class="request-show-introduction mb-4 row">
-        <dt class="col-md-4">
+      <div class="request-show-introduction mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>内容詳細</h6>
         </dt>
-        <dl class="col-md-8">
+        <dl class="flex-grow-1">
           <h4><%= @request.request_introduction %></h4>
         </dl>
       </div>
 
-      <div class="request-show-image mb-4 row">
-        <dt class="col-md-4">
+      <div class="request-show-image mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>参考画像</h6>
         </dt>
-        <dl class="col-md-8">
-          <%= attachment_image_tag @request, :reference_image, fallback: "no_image.jpg", size: "300x300" %>
+        <dl class="flex-grow-1 request-reference-image">
+          <%= attachment_image_tag @request, :reference_image, fallback: "no_image.jpg" %>
         </dl>
       </div>
 
-      <div class="request-show-file-format mb-4 row">
-        <dt class="col-md-4">
+      <div class="request-show-file-format mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>ファイル形式</h6>
         </dt>
-        <dl class="col-md-8">
+        <dl class="flex-grow-1">
           <h4><%= @request.file_format %>形式</h4>
         </dl>
       </div>
 
-      <div class="request-show-file-format mb-4 row">
-        <dt class="col-md-4">
+      <div class="request-show-file-format mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>用途</h6>
         </dt>
-        <dl class="col-md-8">
+        <dl class="flex-grow-1">
           <h4><%= @request.use %></h4>
         </dl>
       </div>
 
-      <div class="request-show-amount mb-4 row">
-        <dt class="col-md-4">
+      <div class="request-show-amount mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>枚数</h6>
         </dt>
-        <dl class="col-md-8">
+        <dl class="flex-grow-1">
           <h4><%= @request.amount %>枚</h4>
         </dl>
       </div>
 
-      <div class="request-show-deadline mb-4 row">
-        <dt class="col-md-4">
+      <div class="request-show-deadline mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>納期</h6>
         </dt>
-        <dl class="col-md-8">
+        <dl class="flex-grow-1">
           <h4><%= l @request.deadline %></h4>
         </dl>
       </div>
 
-      <div class="request-show-status mb-4 row">
-        <dt class="col-md-4">
+      <div class="request-show-status mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>受付状況</h6>
         </dt>
-        <dl class="col-md-8">
+        <dl class="flex-grow-1">
           <%= render 'layouts/request_status_buttons', request: @request %>
         </dl>
       </div>
@@ -71,45 +71,49 @@
       <div class="request-show-buttons">
         <%= render 'layouts/error_messages', model: @request %>
         <% if @request.request_status === "未受付" %>
-          <%= form_with model: @request, url: user_update_request_status_path(@request), html: { class: "row" }, local: true do |f| %>
-            <dt class="col-md-4">
-              製作ステータス
-            </dt>
-            <dl class="col-md-8">
-              <div class="d-inline-block">
-                <%= f.radio_button :request_status,  "製作中", checked: true %>
-                <%= f.label :request_status, '製作する', value: "製作中" %>
-              </div>
-              <div class="d-inline-block ml-2">
-                <%= f.radio_button :request_status, "受付不可" %>
-                <%= f.label :request_status, '製作しない', value: "受付不可" %>
-              </div>
-            </dl>
-            <div class="mx-auto">
-              <%= f.submit "登録する", class: "btn btn-info"%>
+          <%= form_with model: @request, url: user_update_request_status_path(@request),local: true do |f| %>
+            <div class="request-show-status-button d-flex align-items-center">
+              <dt class="request-show-post-title">
+                製作ステータス
+              </dt>
+              <dl class="flex-grow-1">
+                <div class="d-inline-block">
+                  <%= f.radio_button :request_status,  "製作中", checked: true %>
+                  <%= f.label :request_status, '製作する', value: "製作中" %>
+                </div>
+                <div class="d-inline-block ml-2">
+                  <%= f.radio_button :request_status, "受付不可" %>
+                  <%= f.label :request_status, '製作しない', value: "受付不可" %>
+                </div>
+              </dl>
+            </div>
+            <div class="text-center my-5">
+              <%= f.submit "登録する", class: "btn white-button sp-button"%>
             </div>
           <% end %>
         <% elsif @request.request_status === "製作中" %>
-          <%= form_with model: @request, url: user_update_request_complete_image_path(@request), html: { class: "row" }, local: true do |f| %>
-            <dt class="col-md-4">
-              <h6>完成したイラスト</h6>
-            </dt>
-            <dl class="col-md-8">
-              <%= f.attachment_field :request_images_complete_images, multiple: true %>
-            </dl>
-            <div class="mx-auto">
-              <%= f.submit "完成したイラストを登録する", class: "btn btn-info" %>
+          <%= form_with model: @request, url: user_update_request_complete_image_path(@request), local: true do |f| %>
+            <div class="request-show-status-button d-flex align-items-center">
+              <dt class="request-show-post-title">
+                <h6>完成したイラスト</h6>
+              </dt>
+              <dl class="flex-grow-1">
+                <%= f.attachment_field :request_images_complete_images, multiple: true %>
+              </dl>
+            </div>
+            <div class="text-center my-5">
+              <%= f.submit "完成したイラストを登録する", class: "btn white-button sp-button" %>
             </div>
           <% end %>
         <% elsif @request.request_status === "製作完了" %>
-          <div class="text-center">
-            <%= link_to "送信した作品を確認する", user_request_done_path(user_id: @request.requester, id: @request), class: "btn btn-success"%>
+          <div class="text-center my-5">
+            <%= link_to "送信した作品を確認する", user_request_done_path(user_id: @request.requester, id: @request), class: "btn white-button sp-button"%>
           </div>
         <% end %>
       </div>
 
-      <div class="chat-button">
-        <%= link_to @request.requester.account_name + "とチャットを始める", request_chat_path(request_id: @request, id: @request.requester), class: "btn btn-info" %>
+      <div class="request-chat-button">
+        <%= link_to "チャットを始める", request_chat_path(request_id: @request, id: @request.requester), class: "chat-button" %>
       </div>
 
       <div class="back-button d-inline-block">

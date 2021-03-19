@@ -30,10 +30,10 @@
         
         <div class="post-image-edit-buttons row">
           <div class="post-button text-center col-md-6">
-            <%= f.submit "更新する", class: "button"%>
+            <%= f.submit "更新する", class: "btn button sp-button"%>
           </div>
           <div class="destroy-button text-center col-md-6">
-            <%= link_to "投稿を削除する", post_image_path(@post_image), method: :delete, data: {confirm: "本当にイラストを削除しますか"}, class: "btn btn-danger"%>
+            <%= link_to "投稿を削除する", post_image_path(@post_image), method: :delete, data: {confirm: "本当にイラストを削除しますか"}, class: "btn white-button"%>
           </div>
         </div>
       <% end %>

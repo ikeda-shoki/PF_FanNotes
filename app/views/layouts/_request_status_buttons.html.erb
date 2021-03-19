@@ -1,9 +1,9 @@
 <% if request.request_status === "未受付" %>
-  <h6 class="request-status-0 btn btn-success mb-0"><%= request.request_status %></h6>
+  <h6 class="request-status-0 request-status-button mb-0"><%= request.request_status %></h6>
 <% elsif request.request_status === "受付不可" %>
-  <h6 class="request-status-1 btn btn-danger mb-0"><%= request.request_status %></h6>
+  <h6 class="request-status-1 request-status-button mb-0"><%= request.request_status %></h6>
 <% elsif request.request_status === "製作中" %>
-  <h6 class="request-status-2 btn btn-info mb-0"><%= request.request_status %></h6>
+  <h6 class="request-status-2 request-status-button mb-0"><%= request.request_status %></h6>
 <% else %>
-  <h6 class="request-status-3 btn btn-primary mb-0"><%= request.request_status %></h6>
+  <h6 class="request-status-3 request-status-button mb-0"><%= request.request_status %></h6>
 <% end %>
