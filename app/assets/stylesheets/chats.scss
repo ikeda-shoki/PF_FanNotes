@@ -1,3 +1,166 @@
 // Place all the styles related to the chats controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$main-color: #f7f4f2;
+$accent-color: #e65b20;
+$back-ground-color: #d1cbc3;
+$font-color: #3e1300;
+
+@mixin sp {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+
+// chat-show
+.chat-show {
+  padding: 200px 0 20px;
+  
+  @include sp {
+    padding-top: 100px;
+  }
+
+  .container {
+    min-height: 100vh;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  #chats{
+    padding: 20px 10px;
+    max-width: 500px;
+    margin: 15px auto;
+    text-align: right;
+    height: 100vh;
+    font-size: 14px;
+    overflow: scroll;
+    position: relative;
+
+    .fa-times-circle {
+      transition: 0.8s;
+      -webkit-transition: 0.8s;
+
+      &:hover {
+        color: red;
+      }
+    }
+  }
+
+  .fukidasi {
+    width: 100%;
+    margin: 10px 0;
+    overflow: hidden;
+
+    .faceicon {
+      float: left;
+      margin-right: -50px;
+      width: 40px;
+
+      img{
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        object-position: center center;
+        border-radius: 50%;
+      }
+    }
+
+    .chatting {
+      width: 100%;
+      text-align: left;
+
+      .says {
+        display: inline-block;
+        position: relative;
+        margin: 0 0 0 50px;
+        padding: 10px;
+        max-width: 250px;
+        border-radius: 12px;
+        background: #fff;
+
+        &:after {
+          content: "";
+          display: inline-block;
+          position: absolute;
+          top: 3px;
+          left: -19px;
+          border: 8px solid transparent;
+          border-right: 18px solid #fff;
+          -webkit-transform: rotate(35deg);
+          transform: rotate(35deg);
+        }
+
+        p {
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .mycomment {
+    margin: 10px 0;
+
+    p {
+      display: inline-block;
+      position: relative;
+      margin: 0 10px 0 0;
+      padding: 8px;
+      max-width: 250px;
+      border-radius: 12px;
+      background: #30e852;
+      font-size: 15px;
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        right: -19px;
+        border: 8px solid transparent;
+        border-left: 18px solid #30e852;
+        -webkit-transform: rotate(-35deg);
+        transform: rotate(-35deg);
+      }
+    }
+  }
+
+  .chat-form {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    border: 5px solid $accent-color;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    
+    .chat-form-message {
+      width: 70%;
+      input {
+        width: 100%;
+        padding: 5px 10px;
+      }
+    }
+    .chat-form-button {
+      .white-button {
+        min-width: auto;
+        padding: 10px 20px;
+        margin-left: 30px;
+      }
+      
+      @include sp {
+        .button {
+          min-width: auto;
+          padding: 10px 20px;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
