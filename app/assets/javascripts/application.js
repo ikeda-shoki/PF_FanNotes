@@ -74,11 +74,10 @@ $(function() {
 });
 
 
-// sp pc ボタンの変化
-$(window).resize(function(){
-  var screenWidth = $(window).width()
-  var spWidth = 767
-  if (screenWidth <= 767) {
-    $('.sp-button').addClass('button').removeClass('white-button')
+// sp pc ボタン チャットボタンの変化
+$(function() {
+  if (window.matchMedia( "(max-width: 768px)" ).matches) {
+    $('.sp-button').addClass('button').removeClass('white-button');
+    $('.chat-button').html("<i class='fas fa-comments text-white h5'></i>");
   }
-});
+})

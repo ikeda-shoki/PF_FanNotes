@@ -1,3 +1,313 @@
 // Place all the styles related to the Requests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$main-color: #f7f4f2;
+$accent-color: #e65b20;
+$back-ground-color: #d1cbc3;
+$font-color: #3e1300;
+
+@mixin sp {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+// request-status-button
+.request-status-button {
+  display: inline-block;
+  text-decoration: none;
+  background: #AACB56;
+  color: #FFFFFE;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  overflow: hidden;
+
+  @include sp {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 15px;
+  }
+}
+
+.request-status-1 {
+  background-color: #E15253;
+}
+
+.request-status-2 {
+  background-color: #6BB8FF;
+}
+
+.request-status-3 {
+  background-color: #FBC52C;
+}
+
+// request-chat-button
+.request-chat-button {
+  width: 150px;
+  height: 150px;
+  z-index: 100;
+  position: fixed;
+  bottom: 20%;
+  right: 10%;
+
+  @include sp {
+    width: 80px;
+    height: 80px;
+    left: 10%;
+    bottom: 15%;
+  }
+
+  .chat-button {
+    display: inline-block;
+    text-decoration: none;
+    background: $accent-color;
+    color: #FFFFFE;
+    width: 100%;
+    height: 100%;
+    line-height: 150px;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
+    overflow: hidden;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    border-bottom: solid 3px #bd6565;
+    transition: .4s;
+
+    @include sp {
+      line-height: 80px;
+    }
+
+    &:hover {
+      opacity: .8;
+    }
+
+    &:active {
+      -webkit-transform: translateY(2px);
+      transform: translateY(2px);
+      box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+      border-bottom: none;
+    }
+  }
+}
+
+
+// request
+
+.requesting,
+.requested {
+  min-height: 100vh;
+
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .user-profile {
+    @include sp {
+      display: none;
+    }
+  }
+
+  .request {
+    background-color: #FFFFFE;
+    border-radius: 20px;
+    box-shadow: 0 3px 5px rgba(0,0,0,.2);
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .request-user-image {
+      margin-right: 20px;
+
+      img {
+        border-radius: 20px;
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .request-info {
+      width: 100%;
+
+      h4 {
+        font-size: 20px;
+        font-weight: bold;
+
+        @include sp {
+          font-size: 15px;
+        }
+      }
+
+      .request-info-items {
+        @include sp {
+          flex-direction: column;
+        }
+      }
+
+      .request-info-deadline {
+        span {
+          font-size: 13px;
+        }
+
+        h5 {
+          font-weight: bold;
+          font-size: 18px;
+
+          @include sp {
+            font-size: 15px;
+          }
+        }
+      }
+
+      .request-info-status {
+        @include sp {
+          margin-left: 0!important;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+// request-show
+.requesting-show,
+.requested-show {
+  .post {
+    position: relative;
+  }
+
+  h3 {
+    font-size: 25px;
+
+    @include sp {
+      font-size: 18px;
+    }
+
+    a {
+      color: $font-color;
+      font-size: 35px;
+      font-weight: bold;
+
+      @include sp {
+        font-size: 25px;
+      }
+    }
+  }
+
+  h6 {
+    margin: 0;
+  }
+
+  dl {
+    margin: 0;
+
+    h4 {
+      font-weight: bold;
+      font-size: 25px;
+      margin: 0;
+
+      @include sp {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .request-show-post-title {
+    width: 200px;
+
+    @include sp {
+      width: 120px;
+    }
+  }
+
+  .request-reference-image {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 60%;
+      height: 100%;
+    }
+  }
+
+  .request-status-button {
+    text-align: center;
+  	display: inline-block;
+  	min-width: 230px;
+  	font-size: 16px;
+  	font-weight: 700;
+  	text-decoration: none;
+  	margin: 0;
+  	border-radius: 3px;
+  	height: 50px;
+  	line-height: 50px;
+
+  	@include sp {
+  	  min-width: 150px;
+  	}
+  }
+}
+
+.requested-show {
+
+  label[for="request_request_status_受付不可"],
+       [for="request_request_status_製作中"] {
+    background-color: $main-color;
+    padding: 10px 20px;
+    border-radius: 10px;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  input[type="radio"]:checked + label {
+      background-color: $accent-color;
+      font-weight: bold;
+      color: #fff;
+  }
+}
+
+// request-complete
+
+.request-complete,
+.request-done {
+  min-height: 100vh;
+
+  h3 {
+    font-size: 30px;
+    font-weight: bold;
+    
+    @include sp {
+      font-size: 20px;
+    }
+  }
+
+  .request-complete-image {
+    border: solid 1px $accent-color;
+    background-color: $main-color;
+    box-shadow: 0 0 8px gray;
+
+    img {
+      width: 500px;
+      height: auto;
+
+      @include sp {
+        width: 200px;
+      }
+    }
+  }
+}

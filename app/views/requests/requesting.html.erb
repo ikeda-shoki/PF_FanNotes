@@ -1,45 +1,45 @@
 <div class="requesting main">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 mx-auto text-center">
+      <div class="col-md-5 mx-auto text-center">
         <%= render 'users/user_profile', user: current_user %>
       </div>
 
-      <div class="mx-auto col-md-8">
-        <h2>依頼中の内容一覧</h2>
+      <div class="mx-auto col-md-7">
+        <div class="requesting-title d-flex">
+          <h2>依頼中の内容一覧</h2>
+          <h3 class="ml-auto font-weight-bold">全<%= current_user.request.count %>件</h3>
+        </div>
         <div class="requests">
           <% @requests.each do |request| %>
             <%= link_to user_requesting_show_path(user_id: request.requested_id, id: request) do %>
-            <div class="request mb-4">
-              <div class="row">
-
-                <div class="request-user-image col-md-3">
+              <div class="request mb-4">
+                <div class="request-user-image">
                   <%= attachment_image_tag request.requested, :profile_image, fallback: "no_image.jpg" %>
                 </div>
 
-                <div class="request-info col-md-9 py-3">
+                <div class="request-info py-3">
                   <h4><%= request.requested.account_name %></h4>
 
-                  <div class="row">
-                    <div class="request-info-deadline col-md-6">
-                      <div class="row">
-                        <span class="col-md-4">依頼日</span><h5 class="d-inline-block col-md-8"><%= l request.created_at, format: :date %></h5>
-                        <span class="col-md-4">納期</span><h5 class="d-inline-block col-md-8"><%= l request.deadline %></h5>
+                  <div class="d-flex request-info-items">
+                    <div class="request-info-deadline">
+                      <div class="d-flex flex-column flex-wrap">
+                        <span class="request-info-deadline-title">依頼日</span><h5 class="d-inline-block"><%= l request.created_at, format: :date %></h5>
+                        <span class="request-info-deadline-title">納期</span><h5 class="d-inline-block"><%= l request.deadline %></h5>
                       </div>
                     </div>
-                    <div class="request-info-status col-md-6">
+                    <div class="request-info-status ml-5">
                       <%= render 'layouts/request_status_buttons', request: request %>
                     </div>
                   </div>
 
                 </div>
               </div>
-
-            </div>
             <% end %>
           <% end %>
         </div>
-        
+        <%= paginate @requests %>
+
       </div>
     </div>
   </div>

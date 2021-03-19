@@ -1,6 +1,65 @@
 <div class="request-edit">
-  <%= render 'requests/request_post', request: @request, 
-                                      submit_text: "依頼を変更する",
-                                      title: "への依頼を変更する"
-                                      %>
+  <div class="row">
+    <div class="post col-md-6 mx-auto">
+      <%= render 'layouts/error_messages', model: @request %>
+      <%= form_with model: @request, url: user_request_path(@request.requested), local: true do |f| %>
+        <div class="field mb-4 text-center">
+          <h4><%= @request.requested.account_name %>への依頼を変更する</h4>
+        </div>
+        <div class="field mb-4 row">
+          <dt class="col-md-4">
+            <%= f.label :request_introduction, "依頼内容"%>
+          </dt>
+          <dl class="col-md-8">
+            <%= f.text_area :request_introduction, placeholder: "依頼内容を入力してください" %>
+          </dl>
+        </div>
+        <div class="field mb-4 row">
+          <dt class="col-md-4">
+            <%= f.label :reference_image, "参考画像"%>
+          </dt>
+          <dl class="col-md-8">
+            <%= f.attachment_field :reference_image %>
+          </dl>
+        </div>
+        <div class="field mb-4 row">
+          <dt class="col-md-4">
+            <%= f.label :file_format, "ファイル形式" %>
+          </dt>
+          <dl class="col-md-8">
+            <%= f.select :file_format, Request.file_formats.keys, :selected=>Request.file_formats[@request.file_format] %>
+          </dl>
+        </div>
+        <div class="field mb-4 row">
+          <dt class="col-md-4">
+            <%= f.label :use, "用途"%>
+          </dt>
+          <dl class="col-md-8">
+            <%= f.text_area :use, placeholder: "用途を入力してください" %>
+          </dl>
+        </div>
+        <div class="field mb-4 row">
+          <dt class="col-md-4">
+            <%= f.label :amount, "枚数"%>
+          </dt>
+          <dl class="col-md-8">
+            <%= f.number_field :amount %>
+          </dl>
+        </div>
+        <div class="field mb-4 row">
+          <dt class="col-md-4">
+            <%= f.label :deadline, "締め切り"%>
+          </dt>
+          <dl class="col-md-8">
+            <%= f.date_field :deadline %>
+            <h6>※締切には最短で3日後から入力してください</h6>
+          </dl>
+        </div>
+
+        <div class="post-button text-center">
+          <%= f.submit "依頼を変更する", class: "button"%>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
