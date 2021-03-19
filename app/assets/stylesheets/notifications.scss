@@ -1,3 +1,73 @@
 // Place all the styles related to the notifications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$main-color: #f7f4f2;
+$accent-color: #e65b20;
+$back-ground-color: #d1cbc3;
+$font-color: #3e1300;
+
+@mixin sp {
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+
+// notification
+
+.notification {
+  min-height: 100vh;
+  
+  .notification-contents {
+    position: relative;
+    
+    .notification-top {
+      border-bottom: 1px solid $font-color;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      
+      img {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        object-position: center center;
+        margin-right: 10px;
+      }
+      
+      a {
+        color: $accent-color;
+      }
+      
+      .notification-delete-button {
+        a {
+          i {
+            &:hover {
+              color: red;
+            }
+          }
+        }
+      }
+    }
+    
+    .notification-all-delete-button {
+      position: absolute;
+      top: -37px;
+      right: 0;
+      
+      
+      a {
+        background-color: #E15253;
+        padding: 5px 10px;
+        font-weight: bold;
+        border-radius: 5px;
+        
+        span {
+          color: #FFFFFE;
+        }
+      }
+    }
+  }
+}

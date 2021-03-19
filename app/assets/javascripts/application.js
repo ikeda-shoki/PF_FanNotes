@@ -80,4 +80,4 @@ $(function() {
     $('.sp-button').addClass('button').removeClass('white-button');
     $('.chat-button').html("<i class='fas fa-comments text-white h5'></i>");
   }
-})
+});

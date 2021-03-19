@@ -161,6 +161,7 @@ a {
 
 .main {
   padding: 200px 0 60px;
+  position: relative;
 
   @include sp {
     padding: 100px 0 30px;
@@ -601,12 +602,12 @@ a {
     .profile-item {
       @include sp {
         width: 50%;
-        
+
         &:last-child {
           margin-top: 1.5rem;
         }
       }
-      
+
       h6 {
         font-size: 13px;
       }
@@ -726,4 +727,3 @@ a {
     }
   }
 }
-
