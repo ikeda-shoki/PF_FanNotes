@@ -1,89 +1,96 @@
-<div class="request-show">
+<div class="requesting-show">
   <div class="row">
     <div class="post col-md-6 mx-auto">
       <h3 class="mb-5 text-center">
-        <%= link_to @request.requested.account_name, user_path(@request.requested)%>への依頼<i class="fas fa-comment-medical ml-2"></i>
+        <%= link_to @request.requested.account_name, user_path(@request.requested)%>への依頼
       </h3>
 
-      <div class="request-show-introduction mb-3 row">
-        <dt class="col-md-4">
+      <div class="request-show-introduction mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>内容詳細</h6>
         </dt>
-        <dl class="col-md-8">
+        <dl class="flex-grow-1">
           <h4><%= @request.request_introduction %></h4>
         </dl>
       </div>
 
-      <div class="request-show-image mb-3 row">
-        <dt class="col-md-4">
+      <div class="request-show-image mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>参考画像</h6>
         </dt>
-        <dl class="col-md-8">
-          <%= attachment_image_tag @request, :reference_image, fallback: "no_image.jpg", size: "300x300" %>
+        <dl class="flex-grow-1 request-reference-image">
+          <%= attachment_image_tag @request, :reference_image, fallback: "no_image.jpg" %>
         </dl>
       </div>
 
-      <div class="request-show-file-format mb-3 row">
-        <dt class="col-md-4">
+      <div class="request-show-file-format mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>ファイル形式</h6>
         </dt>
-        <dl class="col-md-8">
+        <dl class="flex-grow-1">
           <h4><%= @request.file_format %>形式</h4>
         </dl>
       </div>
 
-      <div class="request-show-file-format mb-3 row">
-        <dt class="col-md-4">
+      <div class="request-show-file-format mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>用途</h6>
         </dt>
-        <dl class="col-md-8">
+        <dl class="flex-grow-1">
           <h4><%= @request.use %></h4>
         </dl>
       </div>
-      
-      
 
-      <div class="request-show-deadline mb-3 row">
-        <dt class="col-md-4">
+      <div class="request-show-amount mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
+          <h6>枚数</h6>
+        </dt>
+        <dl class="flex-grow-1">
+          <h4><%= @request.amount %>枚</h4>
+        </dl>
+      </div>
+
+      <div class="request-show-deadline mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>納期</h6>
         </dt>
-        <dl class="col-md-8">
+        <dl class="flex-grow-1">
           <h4><%= l @request.deadline %></h4>
         </dl>
       </div>
 
-      <div class="request-show-status row">
-        <dt class="col-md-4">
+      <div class="request-show-status mb-4 d-flex align-items-center">
+        <dt class="request-show-post-title">
           <h6>受付状況</h6>
         </dt>
-        <dl class="col-md-8">
+        <dl class="flex-grow-1">
           <%= render 'layouts/request_status_buttons', request: @request %>
         </dl>
       </div>
-      
-      <div class="request-show-buttons row">
+
+      <div class="request-show-buttons d-flex align-items-center mb-5">
         <div class="mx-auto">
           <% if @request.request_status === "未受付" %>
-            <%= link_to "依頼を変更する", edit_user_request_path(user_id: @request.requested_id, id: @request), class: "btn btn-info"%>
+            <%= link_to "依頼を変更する", edit_user_request_path(user_id: @request.requested_id, id: @request), class: "btn white-button sp-button mb-2"%>
             <%= link_to "依頼を取り消す", user_request_path(user_id: @request.requested_id, id: @request ),
                                           method: :delete,
                                           data: {confirm: "本当に依頼を取り消しますか？この動作は元には戻せません"},
-                                          class: "btn btn-danger" %>
+                                          class: "btn white-button sp-button danger-button mb-2" %>
           <% elsif @request.request_status === "受付不可" %>
             <div class="text-center">
-              <%= link_to "依頼を削除する", user_request_path(@request), 
-                                        method: :delete, 
+              <%= link_to "依頼を削除する", user_request_path(@request),
+                                        method: :delete,
                                         data: {confirm: "製作者からの了承が得られませんでした。依頼を削除しますか？"},
-                                        class: "btn btn-danger"%>
+                                        class: "btn white-button danger-button sp-button"%>
             </div>
           <% elsif @request.request_status === "製作完了" %>
-            <%= link_to "完成した作品を確認する", user_request_complete_path(user_id: @request.requested_id, id: @request ), class: "btn btn-info"%>
+            <%= link_to "完成した作品を確認する", user_request_complete_path(user_id: @request.requested_id, id: @request ), class: "btn white-button sp-button"%>
           <% end %>
         </div>
       </div>
-      
-      <div class="chat-button">
-        <%= link_to @request.requested.account_name + "とチャットを始める", chat_path(@request.requested), class: "btn btn-info" %>
+
+      <div class="request-chat-button">
+        <%= link_to "チャットを始める", request_chat_path(request_id: @request, id: @request.requested), class: "chat-button" %>
       </div>
 
       <div class="back-button d-inline-block">

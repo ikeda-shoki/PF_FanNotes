@@ -15,6 +15,7 @@ class NotificationsController < ApplicationController
   def all_destroy
     user_notifications = Notification.where(visited_id: current_user.id)
     user_notifications.destroy_all
+    redirect_to notifications_path
   end
   
 end

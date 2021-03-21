@@ -1,6 +1,6 @@
 <div class="request-complete">
   <div class="row">
-    <div class="post col-md-6 mx-auto">
+    <div class="post col-md-8 mx-auto">
       <h3 class="text-center mb-4"><%= @request.requested.account_name %>さんからのイラストが届きました！</h3>
       <% @request.request_images.each do |request_image| %>
         <div class="request-complete-image text-center p-5">
@@ -11,7 +11,7 @@
         <%= link_to "依頼を完了する", user_request_path(@request), 
                                       method: :delete, 
                                       data: {confirm: "依頼の完了をすると依頼データは削除されます。本当に完了しますか？"},
-                                      class: "btn btn-danger"%>
+                                      class: "btn white-button sp-button mb-5"%>
       </div>
       
       <div class="back-button d-inline-block">

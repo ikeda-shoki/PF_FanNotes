@@ -1,0 +1,11 @@
+<!--search_controllerに記載-->
+<%= form_with url: post_image_search_path, method: :get, html: { class: "d-flex sort-form" }, local: true do |f| %>
+  <%= f.label :keyword do %>
+    <%= select_tag(:keyword, options_for_select([["投稿が新しい順", "new" ],
+                                                 ["投稿が古い順", "old" ],
+                                                 ["いいねが多い順", "many_favorites"],
+                                                 ["いいねが少ない順", "less_favorites"]
+                                                 ], selected: @selection)) %>
+  <% end %>
+  <%= f.submit "並び替える", class: "btn button" %>
+<% end %>

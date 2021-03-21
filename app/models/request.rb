@@ -2,7 +2,9 @@ class Request < ApplicationRecord
 
   belongs_to :requester, class_name: "User"
   belongs_to :requested, class_name: "User"
+  has_one :room, dependent: :destroy
   has_many :request_images, dependent: :destroy
+
   accepts_attachments_for :request_images, attachment: :complete_image, append: true
 
   attachment :reference_image
@@ -24,7 +26,7 @@ class Request < ApplicationRecord
       errors.add(:deadline, 'は、最短で本日から3日後で設定してください') if deadline < Time.now || deadline < Time.current.since(2.days)
     end
   end
-  
+
   def create_notification_request(current_user)
     notification = current_user.active_notifications.new(
       request_id: id,
@@ -34,10 +36,10 @@ class Request < ApplicationRecord
     )
     notification.save
   end
-  
+
   #製作ステータスが更新された時
   def create_notification_request_status(current_user)
-    if self.request_status === "製作中" 
+    if self.request_status === "製作中"
       notification = current_user.active_notifications.new(
         request_id: id,
         visitor_id: requested_id,

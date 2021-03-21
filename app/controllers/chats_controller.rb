@@ -1,12 +1,13 @@
 class ChatsController < ApplicationController
   def show
     @user = User.find(params[:id])
-    rooms = current_user.user_rooms.pluck(:room_id)
-    user_room = UserRoom.find_by(user_id: @user.id, room_id: rooms)
-    unless user_room.nil?
+    rooms = current_user.user_rooms
+    request_room = rooms.find_by(room_id: params[:request_id])
+    unless request_room.nil?
+      user_room = UserRoom.find_by(user_id: @user.id, room_id: request_room.room_id)
       @room = user_room.room
     else
-      @room = Room.create
+      @room = Room.create(request_id: params[:request_id])
       UserRoom.create(user_id: current_user.id, room_id: @room.id)
       UserRoom.create(user_id: @user.id, room_id: @room.id)
     end
@@ -18,10 +19,11 @@ class ChatsController < ApplicationController
     @chat = current_user.chats.new(chat_params)
     room = Room.find_by(id: @chat.room_id)
     @chats = room.chats
-    unless @chat.save
+    if @chat.save
+      @chat.create_notification_chat(current_user)
+    else
       render 'error'
     end
-    @chat.create_notification_chat(current_user)
   end
   
   def destroy

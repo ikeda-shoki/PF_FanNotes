@@ -1,39 +1,42 @@
 <div class="post-image-index main">
   <div class="container">
-    <div class="row">
-      <div class="col-md-4 mx-auto mt-5 post-image-index-left text-center">
-        <h4>並び替え</h4>
-        
-        <!--search_controllerに記載-->
-        <%= form_with url: post_image_search_path, method: :get, html: { class: "d-flex flex-column" }, local: true do |f| %>
-          <%= select_tag(:keyword, options_for_select([["投稿が新しい順", "new" ],
-                                                       ["投稿が古い順", "old" ],
-                                                       ["いいねが多い順", "many_favorites"],
-                                                       ["いいねが少ない順", "less_favorites"]
-                                                       ])) %>
-          <%= f.submit "並び替える", class: "btn btn-info mt-5"%>
-        <% end %>
+    
+    <% if @selection.blank? %>
+      <div class="post-image-index-head d-flex justify-content-between align-items-center">
+        <h2>投稿一覧</h2>
+        <%= render 'search/sort_post_image' %>
       </div>
-  
-      <div class="col-md-8 mx-auto">
-        <% if @selection.blank? %>
-          <h2 class="mb-5">投稿一覧</h2>
-          <%= render 'post_images/post_image_item', post_images: @post_images %>
-        <% elsif @selection == 'new' %>
-            <h2 class="mb-5">新しい投稿順</h2>
-            <%= render 'post_images/post_image_item', post_images: @sort_post_images %>
-        <% elsif @selection == 'old' %>
-            <h2 class="mb-5">古い投稿順</h2>
-            <%= render 'post_images/post_image_item', post_images: @sort_post_images %>
-        <% elsif @selection == 'many_favorites' %>
-          <h2 class="mb-5">いいねが多い順</h2>
-          <%= render 'post_images/post_image_item', post_images: @sort_post_images %>
-        <% else %>
-          <h2 class="mb-5">いいねが少ない順</h2>
-          <%= render 'post_images/post_image_item', post_images: @sort_post_images %>
-        <% end %>
-        </div>
+      <%= render 'post_images/post_image_item', post_images: @post_images %>
+      <%= paginate @post_images %>
+    <% elsif @selection == 'new' %>
+      <div class="post-image-index-head d-flex justify-content-between align-items-center">
+        <h2>新しい投稿順</h2>
+        <%= render 'search/sort_post_image' %>
       </div>
-    </div>
+      <%= render 'post_images/post_image_item', post_images: @sort_post_images %>
+      <%= paginate @sort_post_images %>
+    <% elsif @selection == 'old' %>
+      <div class="post-image-index-head d-flex justify-content-between align-items-center">
+        <h2>古い投稿順</h2>
+        <%= render 'search/sort_post_image' %>
+      </div>
+      <%= render 'post_images/post_image_item', post_images: @sort_post_images %>
+      <%= paginate @sort_post_images %>
+    <% elsif @selection == 'many_favorites' %>
+      <div class="post-image-index-head d-flex justify-content-between align-items-center">
+        <h2>いいねが多い順</h2>
+        <%= render 'search/sort_post_image' %>
+      </div>
+      <%= render 'post_images/post_image_item', post_images: @sort_post_images %>
+      <%= paginate @sort_post_images %>
+    <% else %>
+      <div class="post-image-index-head d-flex justify-content-between align-items-center">
+        <h2>いいねが少ない順</h2>
+        <%= render 'search/sort_post_image' %>
+      </div>
+      <%= render 'post_images/post_image_item', post_images: @sort_post_images %>
+      <%= paginate @sort_post_images %>
+    <% end %>
+    
   </div>
 </div>

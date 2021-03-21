@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_13_080935) do
+ActiveRecord::Schema.define(version: 2021_03_15_061346) do
 
   create_table "chats", force: :cascade do |t|
     t.integer "user_id"
@@ -42,13 +42,11 @@ ActiveRecord::Schema.define(version: 2021_03_13_080935) do
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
     t.integer "post_image_id"
-    t.integer "post_image_comment_id"
     t.integer "request_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_image_comment_id"], name: "index_notifications_on_post_image_comment_id"
     t.index ["post_image_id"], name: "index_notifications_on_post_image_id"
     t.index ["request_id"], name: "index_notifications_on_request_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
@@ -120,6 +118,8 @@ ActiveRecord::Schema.define(version: 2021_03_13_080935) do
   create_table "rooms", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "request_id"
+    t.index ["request_id"], name: "index_rooms_on_request_id"
   end
 
   create_table "user_rooms", force: :cascade do |t|

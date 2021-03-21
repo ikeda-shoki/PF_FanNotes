@@ -2,75 +2,87 @@
   <div class="profile-image">
     <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg" %>
   </div>
-  
+
   <h3><%= user.account_name %></h3>
-  
+
   <div class="profile-introduction">
     <p>
       <%= user.user_introduction %>
     </p>
   </div>
-  
+
   <div class="profile-items row my-4">
-    <div class="profile-item col-md-3">
-      <h6>依頼</h6>
+    <div class="profile-item col-md-6 mb-4">
+      <p class="h6">現在の依頼数</p>
       <span><%= user.requested.count %></span>
     </div>
-    <div class="profile-item col-md-3">
+    <div class="profile-item col-md-6 mb-4">
+      <p class="h6">依頼達成数</p>
+      <span><%= user.complete_request_count %></span>回
+    </div>
+    <div class="profile-item col-md-4">
       <%= link_to user_path(user) do %>
         <h6>投稿</h6>
-        <span><%= user.post_images.count %></span>
+        <span><%= user.post_images.count %></span>回
       <% end %>
     </div>
-    <div class="profile-item col-md-3">
+    <div class="profile-item col-md-4">
       <%= link_to following_path(user) do %>
         <h6>フォロー</h6>
-        <span><%= user.following_user.count %></span>
+        <span><%= user.following_user.count %></span>人
       <% end %>
     </div>
-    <div class="profile-item col-md-3">
+    <div class="profile-item col-md-4">
       <%= link_to followed_path(user) do %>
         <h6>フォロワー</h6>
-        <span id="followed_user_count_<%= user.id %>"><%= user.followed_user.count %></span>
+        <span id="followed_user_count_<%= user.id %>"><%= user.followed_user.count %></span>人
       <% end %>
     </div>
   </div>
-  
+
   <div class="my-4">
     <% if user === current_user %>
-      <%= link_to "編集する", edit_user_path(user), class: "btn btn-info text-right"%>
+      <%= link_to "編集する", edit_user_path(user), class: "btn button"%>
     <% else %>
-      <% if reception?(user) && user_signed_in? %>
-        <%= link_to "イラストの依頼をする", new_user_request_path(user), class: "btn btn-info text-right"%>
-      <% end %>
+      <div id="follow_button_<%= user.id %>" class="profile-follow-button follow-button">
+        <%= render 'relationships/follow_button', user: user %>
+      </div>
     <% end %>
   </div>
-  
-  <div class="profile-contents">
-    <div class="profile-content-status mb-5">
+
+  <div class="d-flex justify-content-center align-items-center mb-3">
+    <div class="profile-content-status">
       <h6>
-        受付:
         <% if user.is_reception === true %>
-          <span class="ml-3 font-weight-bold bg-success p-3 rounded-pill">
+          <span class="request-success">
             依頼受付中
+            <i class="fas fa-arrow-right"></i>
           </span>
         <% else %>
-          <span class="ml-3 font-weight-bold bg-danger p-3 rounded-pill">
+          <span class="request-out">
             依頼不可
           </span>
         <% end %>
       </h6>
     </div>
-    <div class="prfile-content-request">
-      <% if user === current_user %>
-        <% if reception?(user)%>
-          <%= link_to "依頼状況", user_requested_path(current_user), class: "btn btn-primary" %>
+
+    <div>
+      <% if reception?(user) && user_signed_in? %>
+        <% unless user === current_user %>
+          <%= link_to new_user_request_path(user), class: "btn request-button" do %>
+            依頼する
+          <% end %>
         <% end %>
-        <%= link_to "依頼中の内容", user_requesting_path(current_user), class: "btn btn-info" %>
       <% end %>
     </div>
-    <div id="follow_button_<%= user.id %>" class="profile-follow-button follow-button">
-      <%= render 'relationships/follow_button', user: user %>
-    </div>
+  </div>
+
+  <div class="prfile-content-request">
+    <% if user === current_user %>
+      <% if reception?(user)%>
+        <%= link_to "依頼状況", user_requested_path(current_user), class: "btn white-button sp-button mb-2" %>
+      <% end %>
+        <%= link_to "依頼内容", user_requesting_path(current_user), class: "btn white-button sp-button" %>
+    <% end %>
   </div>
 </div>

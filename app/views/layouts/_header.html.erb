@@ -3,37 +3,47 @@
     <div class="container">
 
       <%= link_to main_path, class: "navbar-brand" do %>
-        <h2>FanNotes</h2>
+        <h1>FanNotes</h1>
       <% end %>
-      
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
           <% if user_signed_in? %>
             <li class="nav-item">
-              <%= link_to "投稿する", new_post_image_path, class: "nav-link active"%>
+              <%= link_to new_post_image_path, class: "nav-link active" do %>
+                投稿する<i class="far fa-plus-square ml-2"></i>
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "投稿一覧", post_images_path, class: "nav-link active"%>
+              <%= link_to user_path(current_user), class: "nav-link" do %>
+                マイページ<i class="far fa-user ml-2"></i>
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "ユーザー一覧", users_path, class: "nav-link active"%>
+              <%= link_to notifications_path, class: "nav-link notification-action" do %>
+                <% if unchecked_notifications.any? %>
+                  通知<i class="far fa-bell ml-2"></i>
+                  <i class="fas fa-circle action"></i>
+                <% else %>
+                  通知<i class="far fa-bell ml-2"></i>
+                <% end %>
+              <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "マイページ", user_path(current_user), class: "nav-link"%>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link"%>
-            </li>
-            <li>
-              <%= render 'notifications/notification_icon' %>
+              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                ログアウト<i class="fas fa-sign-out-alt ml-2"></i>
+              <% end %>
             </li>
           <% else %>
             <li class="nav-item">
               <%= link_to "トップページ", root_path, class: "nav-link active"%>
+            </li>
+            <li class="nav-item">
+              <a href="#about" class="nav-link">このサイトについて</a>
             </li>
             <li class="nav-item">
               <%= link_to "ログイン", new_user_session_path, class: "nav-link"%>
@@ -43,9 +53,12 @@
             </li>
           <% end %>
         </ul>
-        <%= render "layouts/search_form" %>
-        
       </div>
+      
+      
     </div>
+    <% if user_signed_in? %>
+      <%= render "layouts/search_form" %>
+    <% end %>
   </nav>
 </div>

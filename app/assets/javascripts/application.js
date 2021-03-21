@@ -18,21 +18,66 @@
 //= require_tree .
 /*global $*/
 
-
 $(function() {
     $('.slider-favorite').slick({
       slidesToShow: 3,
-      slidesToScroll: 1,
-      dots: true
+      slidesToScroll: 3,
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 5000,
+
+      responsive: [{
+    		breakpoint: 767,
+    		settings: {
+		    	arrows: false,
+    		}
+    	}]
     });
 });
 
 $(function() {
     $('.slider-new').slick({
       slidesToShow: 5,
-      slidesToScroll: 1,
+      slidesToScroll: 5,
       dots: true,
       autoplay: true,
       autoplaySpeed: 2000,
+
+      responsive: [{
+    		breakpoint: 767,
+    		settings: {
+    			slidesToShow: 4,
+		    	slidesToScroll: 4,
+		    	arrows: false,
+    		}
+    	}]
     });
+});
+
+$(function() {
+    $('.favorite-hashtag-lists').slick({
+      slidesToShow: 5,
+      slidesToScroll: 5,
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 3000,
+
+      responsive: [{
+    		breakpoint: 767,
+    		settings: {
+    			slidesToShow: 2,
+		    	slidesToScroll: 2,
+		    	arrows: false,
+    		}
+    	}]
+    });
+});
+
+
+// sp pc ボタン チャットボタンの変化
+$(function() {
+  if (window.matchMedia( "(max-width: 768px)" ).matches) {
+    $('.sp-button').addClass('button').removeClass('white-button');
+    $('.chat-button').html("<i class='fas fa-comments text-white h5'></i>");
+  }
 });

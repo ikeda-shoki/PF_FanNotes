@@ -21,18 +21,12 @@ class RequestsController < ApplicationController
 
   #自分の依頼一覧画面
   def requesting
-    @requests = current_user.request
-    @requests.each do |request|
-      @requested = request.requested
-    end
+    @requests = Kaminari.paginate_array(current_user.request).page(params[:page]).per(5)
   end
 
   #自分に来ている依頼
   def requested
-    @requests = current_user.requested
-    @requests.each do |request|
-      @requester = request.requester
-    end
+    @requests = Kaminari.paginate_array(current_user.requested).page(params[:page]).per(5)
   end
 
   #自分の依頼詳細画面
