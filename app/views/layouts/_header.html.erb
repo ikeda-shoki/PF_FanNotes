@@ -23,21 +23,34 @@
                 マイページ<i class="far fa-user ml-2"></i>
               <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to notifications_path, class: "nav-link notification-action" do %>
-                <% if unchecked_notifications.any? %>
-                  通知<i class="far fa-bell ml-2"></i>
-                  <i class="fas fa-circle action"></i>
-                <% else %>
-                  通知<i class="far fa-bell ml-2"></i>
-                <% end %>
-              <% end %>
+            <li class="nav-item" data-toggle="modal" data-target="#exampleModalLong" id="notification-modal-button">
+              <%= render 'notifications/notification_icon'%>
             </li>
             <li class="nav-item">
               <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
                 ログアウト<i class="fas fa-sign-out-alt ml-2"></i>
               <% end %>
             </li>
+          
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">通知一覧</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  
+                  <div id="notification-modal">
+                    <%= render 'notifications/notification_modal', notifications: @notifications %>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          
           <% else %>
             <li class="nav-item">
               <%= link_to "トップページ", root_path, class: "nav-link active"%>

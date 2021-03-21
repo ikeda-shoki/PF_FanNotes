@@ -30,7 +30,7 @@
   </span>
 
   <span class="ml-auto notification-delete-button">
-    <%= link_to notification_path(notification), method: :delete, data: {confirm: "対象の通知を削除しますか？"} do %>
+    <%= link_to notification_path(notification), method: :delete, data: {confirm: "対象の通知を削除しますか？"}, remote: true do %>
       <i class="fas fa-times-circle"></i>
     <% end %>
   </span>
