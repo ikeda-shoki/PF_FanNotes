@@ -24,7 +24,7 @@
     あなたの<%= link_to 'イラストの依頼', user_requesting_show_path(user_id: notification.visitor_id, id: notification.request_id) %>を製作を完了しました
   <% when 'chat' then %>
     <%= notification.visitor.account_name %>さんが
-    あなたに<%= link_to 'メッセージ', chat_path(notification.visited_id) %>を送信しました
+    あなたに<%= link_to 'メッセージ', request_chat_path(request_id: notification.request_id, id: notification.visitor_id) %>を送信しました
   <% end %>
 
   <span class="ml-3 notification-delete-button">
@@ -38,4 +38,4 @@
 </div>
 
 
-  
+

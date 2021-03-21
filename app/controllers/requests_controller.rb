@@ -94,7 +94,6 @@ class RequestsController < ApplicationController
   end
 
   def destroy
-    Room.find(params[:id]).destroy
     @request.destroy
     redirect_to user_requesting_path(current_user)
   end
