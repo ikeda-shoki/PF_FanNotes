@@ -19,10 +19,11 @@ class ChatsController < ApplicationController
     @chat = current_user.chats.new(chat_params)
     room = Room.find_by(id: @chat.room_id)
     @chats = room.chats
-    unless @chat.save
+    if @chat.save
+      @chat.create_notification_chat(current_user)
+    else
       render 'error'
     end
-    @chat.create_notification_chat(current_user)
   end
   
   def destroy

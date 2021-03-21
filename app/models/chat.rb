@@ -11,6 +11,7 @@ class Chat < ApplicationRecord
     notification = current_user.active_notifications.new(
       visitor_id: current_user.id,
       visited_id: visited_user_room.user_id,
+      request_id: self.room.request_id,
       action: 'chat'
     )
     notification.save
