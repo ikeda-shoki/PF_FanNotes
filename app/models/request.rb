@@ -4,6 +4,7 @@ class Request < ApplicationRecord
   belongs_to :requested, class_name: "User"
   has_one :room, dependent: :destroy
   has_many :request_images, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   accepts_attachments_for :request_images, attachment: :complete_image, append: true
 

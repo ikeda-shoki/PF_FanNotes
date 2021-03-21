@@ -52,7 +52,7 @@ class RequestsController < ApplicationController
     if @request.save
       flash[:notice] = '依頼が成功しました'
       @request.create_notification_request(current_user)
-      redirect_to user_path(@user)
+      redirect_to user_path(current_user)
     else
       render 'new'
     end

@@ -3,31 +3,33 @@
     <%= attachment_image_tag notification.visitor, :profile_image, fallback: "no_image.jpg" %>
   </span>
 
-  <% case notification.action
-  when 'follow' then %>
-    <%= notification.visitor.account_name %>さんがあなたをフォローしました
-  <% when 'favorite' then %>
-    <%= notification.visitor.account_name %>さんが<%= link_to 'あなたの投稿', post_image_path(notification.post_image) %>にいいねしました
-  <% when 'post_image_comment' then %>
-    <%= notification.visitor.account_name %>さんが<%= link_to 'あなたの投稿', post_image_path(notification.post_image) %>にコメントしました
-  <% when 'request' then %>
-    <%= notification.visitor.account_name %>さんからあなたに
-    <%= link_to 'イラストの依頼', user_requested_show_path(user_id: notification.visited_id, id: notification.request_id) %>が届きました
-  <% when 'request_ok' then %>
-    <%= notification.visitor.account_name %>さんが
-    あなたの<%= link_to 'イラストの依頼', user_requesting_show_path(user_id: notification.visitor_id, id: notification.request_id) %>の製作を開始しました
-  <% when 'request_out' then %>
-    <%= notification.visitor.account_name %>さんが
-    あなたの<%= link_to 'イラストの依頼', user_requesting_show_path(user_id: notification.visitor_id, id: notification.request_id) %>の製作をしないが選択されました
-  <% when 'request_complete' then %>
-    <%= notification.visitor.account_name %>さんが
-    あなたの<%= link_to 'イラストの依頼', user_requesting_show_path(user_id: notification.visitor_id, id: notification.request_id) %>を製作を完了しました
-  <% when 'chat' then %>
-    <%= notification.visitor.account_name %>さんが
-    あなたに<%= link_to 'メッセージ', request_chat_path(request_id: notification.request_id, id: notification.visitor_id) %>を送信しました
-  <% end %>
+  <span>
+    <% case notification.action
+    when 'follow' then %>
+      <%= notification.visitor.account_name %>さんがあなたをフォローしました
+    <% when 'favorite' then %>
+      <%= notification.visitor.account_name %>さんが<%= link_to 'あなたの投稿', post_image_path(notification.post_image) %>にいいねしました
+    <% when 'post_image_comment' then %>
+      <%= notification.visitor.account_name %>さんが<%= link_to 'あなたの投稿', post_image_path(notification.post_image) %>にコメントしました
+    <% when 'request' then %>
+      <%= notification.visitor.account_name %>さんからあなたに
+      <%= link_to 'イラストの依頼', user_requested_show_path(user_id: notification.visited_id, id: notification.request_id) %>が届きました
+    <% when 'request_ok' then %>
+      <%= notification.visitor.account_name %>さんが
+      あなたの<%= link_to 'イラストの依頼', user_requesting_show_path(user_id: notification.visitor_id, id: notification.request_id) %>の製作を開始しました
+    <% when 'request_out' then %>
+      <%= notification.visitor.account_name %>さんが
+      あなたの<%= link_to 'イラストの依頼', user_requesting_show_path(user_id: notification.visitor_id, id: notification.request_id) %>の製作をしないが選択されました
+    <% when 'request_complete' then %>
+      <%= notification.visitor.account_name %>さんが
+      あなたの<%= link_to 'イラストの依頼', user_requesting_show_path(user_id: notification.visitor_id, id: notification.request_id) %>を製作を完了しました
+    <% when 'chat' then %>
+      <%= notification.visitor.account_name %>さんが
+      あなたに<%= link_to 'メッセージ', request_chat_path(request_id: notification.request_id, id: notification.visitor_id) %>を送信しました
+    <% end %>
+  </span>
 
-  <span class="ml-3 notification-delete-button">
+  <span class="ml-auto notification-delete-button">
     <%= link_to notification_path(notification), method: :delete, data: {confirm: "対象の通知を削除しますか？"} do %>
       <i class="fas fa-times-circle"></i>
     <% end %>

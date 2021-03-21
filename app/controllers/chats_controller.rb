@@ -7,7 +7,8 @@ class ChatsController < ApplicationController
       user_room = UserRoom.find_by(user_id: @user.id, room_id: request_room.room_id)
       @room = user_room.room
     else
-      @room = Room.create(request_id: params[:request_id])
+      @room = Room.create(id: params[:request_id], request_id: params[:request_id])
+      binding.pry
       UserRoom.create(user_id: current_user.id, room_id: @room.id)
       UserRoom.create(user_id: @user.id, room_id: @room.id)
     end
