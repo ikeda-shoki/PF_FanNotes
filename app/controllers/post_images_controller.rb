@@ -27,7 +27,7 @@ class PostImagesController < ApplicationController
   def index
     @post_images = PostImage.all.page(params[:page]).per(8)
   end
-  
+
   def main
     @post_images = PostImage.limit(10).order('id desc')
     @following_users = current_user.following_user.limit(3).order('id desc') if user_signed_in?
@@ -65,7 +65,7 @@ class PostImagesController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def hashtag
     @user = current_user
     @tag = Hashtag.find_by(hashname: params[:name])

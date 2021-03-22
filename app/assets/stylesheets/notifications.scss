@@ -17,17 +17,14 @@ $font-color: #3e1300;
 // notification
 
 .notification {
-  min-height: 100vh;
   
   .notification-contents {
-    position: relative;
     
     .notification-top {
       border-bottom: 1px solid $font-color;
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: space-between;
       
       img {
         width: 30px;
@@ -51,23 +48,36 @@ $font-color: #3e1300;
         }
       }
     }
+  }
+  
+  p {
+    margin: 0;
+  }
+}
+
+// 
+
+.modal-header {
+  padding: .3rem 1rem .3rem 2rem!important;
+  h5 {
+    font-size: 25px;
+    line-height: 73px;
+    font-weight: 700;
+    text-align: center;
+  }
+}
+
+.notification-all-delete-button {
+      
+  a {
+    background-color: #E15253;
+    padding: 10px 15px;
+    font-weight: bold;
+    border-radius: 5px;
     
-    .notification-all-delete-button {
-      position: absolute;
-      top: -37px;
-      right: 0;
-      
-      
-      a {
-        background-color: #E15253;
-        padding: 5px 10px;
-        font-weight: bold;
-        border-radius: 5px;
-        
-        span {
-          color: #FFFFFE;
-        }
-      }
+    span {
+      color: #FFFFFE;
     }
   }
 }
+

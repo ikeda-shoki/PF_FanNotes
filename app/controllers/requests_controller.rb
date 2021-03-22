@@ -52,7 +52,7 @@ class RequestsController < ApplicationController
     if @request.save
       flash[:notice] = '依頼が成功しました'
       @request.create_notification_request(current_user)
-      redirect_to user_path(@user)
+      redirect_to user_path(current_user)
     else
       render 'new'
     end
@@ -120,20 +120,20 @@ class RequestsController < ApplicationController
    def ensure_request_user
      @request = Request.find(params[:id])
      unless current_user === @request.requester || current_user === @request.requested
-       redirect_to post_images_path
+       redirect_to main_path
      end
    end
 
    def ensure_request_current_user
      @user = User.find_by(id: params[:user_id])
      unless @user === current_user
-       redirect_to post_images_path
+       redirect_to main_path
      end
    end
 
    def ensure_request_requester
      unless @request.requester === current_user
-       redirect_to post_images_path
+       redirect_to main_path
      end
    end
 

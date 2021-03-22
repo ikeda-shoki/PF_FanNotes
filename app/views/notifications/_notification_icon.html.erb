@@ -1,10 +1,8 @@
-<span class="notification-icon">
-  <%= link_to notifications_path do %>
-    <% if unchecked_notifications.any? %>
-      <i class="far fa-bell"></i>
-      <i class="fas fa-circle"></i>
-    <% else %>
-      <i class="fas fa-bell"></i>
-    <% end %>
+<%= link_to notifications_path, class: "nav-link notification-action", remote: true do %>
+  <% if unchecked_notifications.any? %>
+    通知<i class="far fa-bell ml-2"></i>
+    <i class="fas fa-circle action"></i>
+  <% else %>
+    通知<i class="far fa-bell ml-2"></i>
   <% end %>
-</span>
+<% end %>

@@ -1,0 +1,25 @@
+<div class="modal-body">
+  <div class="notification">
+    <% if @notifications.exists? %>
+      <div class="mx-auto">
+        <div class="notification-contents">
+          <% @notifications.each do |notification| %>
+            <%= render 'notifications/notification', notification: notification %>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      <p>現在の通知はありません</p>
+    <% end %>
+  </div>
+</div>
+
+<% if @notifications.exists? %>
+  <div class="modal-footer">
+    <div class="notification-all-delete-button">
+      <%= link_to notifications_all_destroy_path, method: :delete, data: {confirm: "通知を全て削除しますか？"}, remote: true do %>
+        <span>全ての通知を削除</span>
+      <% end %>
+    </div>
+  </div>
+<% end %>
