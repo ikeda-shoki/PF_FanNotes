@@ -120,20 +120,20 @@ class RequestsController < ApplicationController
    def ensure_request_user
      @request = Request.find(params[:id])
      unless current_user === @request.requester || current_user === @request.requested
-       redirect_to post_images_path
+       redirect_to main_path
      end
    end
 
    def ensure_request_current_user
      @user = User.find_by(id: params[:user_id])
      unless @user === current_user
-       redirect_to post_images_path
+       redirect_to main_path
      end
    end
 
    def ensure_request_requester
      unless @request.requester === current_user
-       redirect_to post_images_path
+       redirect_to main_path
      end
    end
 
