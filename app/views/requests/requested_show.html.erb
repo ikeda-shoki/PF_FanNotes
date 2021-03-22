@@ -93,7 +93,7 @@
           <% end %>
         <% elsif @request.request_status === "製作中" %>
           <%= form_with model: @request, url: user_update_request_complete_image_path(@request), local: true do |f| %>
-            <div class="request-show-status-button d-flex align-items-center">
+            <div class="request-show-status-button d-flex align-items-center mb-4">
               <dt class="request-show-post-title">
                 <h6>完成したイラスト</h6>
               </dt>
@@ -101,6 +101,17 @@
                 <%= f.attachment_field :request_images_complete_images, multiple: true %>
               </dl>
             </div>
+
+            <div class="request-show-deadline mb-4 d-flex align-items-center">
+              <dt class="request-show-post-title">
+              </dt>
+              <dl class="flex-grow-1">
+                <% @request.amount.times do |id| %>
+                  <img id="request_preview_<%= id %>" class="request_preview">
+                <% end %>
+              </dl>
+            </div>
+
             <div class="text-center my-5">
               <%= f.submit "完成したイラストを登録する", class: "btn white-button sp-button" %>
             </div>

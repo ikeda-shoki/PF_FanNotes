@@ -232,34 +232,6 @@ a {
   }
 }
 
-.profile-btn {
-  border: none;
-  text-align: center;
-  padding: 80px;
-	display: inline-block;
-	min-width: 230px;
-	font-size: 16px;
-	font-weight: 700;
-	text-decoration: none;
-	margin: 0;
-	padding: 15px 16px;
-	background: $font-color;
-	color: #FFFFFE;
-	border-radius: 3px;
-	transition: 0.5s;
-  -webkit-transition: 0.5s;
-
-  @include sp {
-    width: 100%;
-  }
-
-  &:hover {
-    background-color: $main-color;
-    color: $accent-color;
-    opacity: 0.8;
-  }
-}
-
 .request-success {
   border: none;
   text-align: center;
@@ -781,4 +753,16 @@ a {
       margin-right: 20px;
     }
   }
+}
+
+// preview
+#preview {
+  width: 100%;
+  height: auto;
+}
+
+.request_preview {
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
 }
