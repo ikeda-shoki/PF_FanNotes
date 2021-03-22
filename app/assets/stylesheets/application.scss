@@ -727,3 +727,58 @@ a {
     }
   }
 }
+
+// flash message
+
+#flash-message {
+  position: fixed;
+  top: 10%;
+  right: 0;
+  font-size: 20px;
+  font-weight: 700;
+  max-width: 500px;
+  z-index: 2000;
+  color: #FFFFFE;
+
+  @include sp {
+    max-width: 300px;
+  }
+
+  .notice {
+    background-color: rgba(170, 203, 86, .8);
+    padding: 18px;
+    border-radius: 5px;
+
+    &:before {
+      font-family: "Font Awesome 5 Free";
+      content: "\f00c";
+
+      -webkit-font-smoothing: antialiased;
+      display: inline-block;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      margin-right: 20px;
+    }
+  }
+
+  .alert {
+    background-color: rgba(225, 82, 83, .8);
+    padding: 18px;
+    border-radius: 5px;
+
+    &:before {
+      font-family: "Font Awesome 5 Free";
+      content: "\f00c";
+
+      -webkit-font-smoothing: antialiased;
+      display: inline-block;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      line-height: 1;
+      margin-right: 20px;
+    }
+  }
+}

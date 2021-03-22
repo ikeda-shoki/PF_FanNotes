@@ -1,2 +1,8 @@
 $("#follow_button_<%= @user.id %>").html("<%= j(render 'relationships/follow_button', user: @user) %>")
 $("#followed_user_count_<%= @user.id %>").html("<%= @user.followed_user.count %>")
+
+setTimeout("$('#flash-message').fadeOut('slow')", 1500);
+
+<% flash.each do |key, value| %>
+  $("#flash-message").css('display', '').html("<div class='<%= key %>'><%= value %></div>");
+<% end %>

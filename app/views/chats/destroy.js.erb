@@ -1,1 +1,7 @@
 $("#chat_items").html("<%= j(render 'chats/chat', chats: @chats) %>");
+
+setTimeout("$('#flash-message').fadeOut('slow')", 1500);
+
+<% flash.each do |key, value| %>
+  $("#flash-message").css('display', '').html("<div class='<%= key %>'><%= value %></div>");
+<% end %>

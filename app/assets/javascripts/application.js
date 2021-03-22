@@ -81,3 +81,8 @@ $(function() {
     $('.chat-button').html("<i class='fas fa-comments text-white h5'></i>");
   }
 });
+
+// flash-messageの削除
+$(function() {
+  setTimeout("$('#flash-message').fadeOut('slow')", 1500);
+})

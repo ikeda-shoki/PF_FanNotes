@@ -6,16 +6,23 @@ class PostImageCommentsController < ApplicationController
     @post_image_comments = @post_image.post_image_comments.order('created_at DESC')
     @post_image_comment = PostImageComment.new(post_image_comment_params)
     @post_image_comment.post_image_id = @post_image.id
-    unless @post_image_comment.save
+    if @post_image_comment.save
+      respond_to do |format|
+        format.js { flash.now[:notice] = "コメントを送信しました" }
+      end
+      @post_image.create_notification_post_image_comment(current_user)
+    else
       render 'error'
     end
-    @post_image.create_notification_post_image_comment(current_user)
   end
 
   def destroy
     @post_image = PostImage.find_by(id: params[:post_image_id])
     @post_image_comments = @post_image.post_image_comments.order('created_at DESC')
     PostImageComment.find_by(id: params[:id], post_image_id: params[:post_image_id]).destroy
+    respond_to do |format|
+      format.js { flash.now[:alert] = "コメントを削除しました" }
+    end
   end
 
   private

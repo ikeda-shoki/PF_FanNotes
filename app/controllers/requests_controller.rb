@@ -50,9 +50,8 @@ class RequestsController < ApplicationController
     @request = Request.new(request_params)
     @request.requested_id = @user.id
     if @request.save
-      flash[:notice] = '依頼が成功しました'
       @request.create_notification_request(current_user)
-      redirect_to user_path(current_user)
+      redirect_to user_path(current_user), notice: "#{ @user.account_name }に依頼を送信しました"
     else
       render 'new'
     end
@@ -63,7 +62,7 @@ class RequestsController < ApplicationController
 
   def update
     if @request.update(request_params)
-      redirect_to user_requesting_show_path(user_id: @request.requested.id, id: @request)
+      redirect_to user_requesting_show_path(user_id: @request.requested.id, id: @request), notice: "依頼を更新しました"
     else
       render 'edit'
     end
@@ -73,7 +72,7 @@ class RequestsController < ApplicationController
   def update_request_status
     if @request.update(request_update_params)
       @request.create_notification_request_status(current_user)
-      redirect_to user_requested_path(current_user)
+      redirect_to user_requested_path(current_user), notice: "依頼を承諾しました"
     else
       render 'requested_show'
     end
@@ -87,7 +86,7 @@ class RequestsController < ApplicationController
         @request.requested.increment!(:complete_request_count, 1)
       end
       @request.create_notification_request_status(current_user)
-      redirect_to user_request_done_path(user_id: @request.requester, id: @request)
+      redirect_to user_request_done_path(user_id: @request.requester, id: @request), notice: "依頼されたイラストを送信しました"
     else
       render 'requested_show'
     end
@@ -95,7 +94,7 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
-    redirect_to user_requesting_path(current_user)
+    redirect_to user_requesting_path(current_user), alert: "依頼が削除されました"
   end
 
   private

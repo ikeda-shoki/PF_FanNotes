@@ -38,7 +38,7 @@ class PostImagesController < ApplicationController
   def create
     @post_image = PostImage.new(post_image_params)
     if @post_image.save
-      redirect_to main_path
+      redirect_to user_path(current_user), notice: '投稿に成功しました'
     else
       render 'new'
     end
@@ -51,7 +51,7 @@ class PostImagesController < ApplicationController
   def update
     @post_image = PostImage.find(params[:id])
     if @post_image.update(post_image_params)
-      redirect_to post_image_path(@post_image)
+      redirect_to post_image_path(@post_image), notice: '投稿を更新しました'
     else
       render 'edit'
     end
@@ -60,7 +60,7 @@ class PostImagesController < ApplicationController
   def destroy
     @post_image = PostImage.find(params[:id])
     if @post_image.destroy
-      redirect_to post_images_path
+      redirect_to user_path(current_user), alert: '投稿を削除しました'
     else
       render 'edit'
     end
