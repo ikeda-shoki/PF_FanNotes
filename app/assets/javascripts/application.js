@@ -113,11 +113,11 @@ $(function() {
   $('#request_request_images_complete_images').on('change', function(e){
     var reader = new Array(99);
 
-    for(let i = 0; i < 99; i++) {
+    for(var i = 0; i < 99; i++) {
       $(`#request_preview_${i}`).attr('src', "");
     }
 
-    for(let i = 0; i < e.target.files.length; i++) {
+    for(var i = 0; i < e.target.files.length; i++) {
       reader[i] = new FileReader();
       reader[i].onload = finisher(i,e);
       reader[i].readAsDataURL(e.target.files[i]);
