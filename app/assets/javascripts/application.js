@@ -111,7 +111,7 @@ $(function() {
 
 $(function() {
   $('#request_request_images_complete_images').on('change', function(e){
-    let reader = new Array(99);
+    var reader = new Array(99);
 
     for(let i = 0; i < 99; i++) {
       $(`#request_preview_${i}`).attr('src', "");
