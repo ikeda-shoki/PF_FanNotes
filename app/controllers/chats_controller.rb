@@ -34,6 +34,9 @@ class ChatsController < ApplicationController
     room = @chat.room
     @chats = room.chats
     @chat.destroy
+    respond_to do |format|
+      format.js { flash.now[:alert] = "対象のコメントを削除しました" }
+    end
   end
   
   private

@@ -17,6 +17,7 @@
 //= require activestorage
 //= require_tree .
 /*global $*/
+/*global i*/
 
 $(function() {
     $('.slider-favorite').slick({
@@ -80,4 +81,52 @@ $(function() {
     $('.sp-button').addClass('button').removeClass('white-button');
     $('.chat-button').html("<i class='fas fa-comments text-white h5'></i>");
   }
+});
+
+// flash-messageの削除
+$(function() {
+  setTimeout("$('#flash-message').fadeOut('slow')", 1500);
+});
+
+// preview
+$(function() {
+  $('#post_image_image').on('change', function(e) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#preview').attr('src', e.target.result);
+    };
+    return reader.readAsDataURL(e.target.files[0]);
+  });
+});
+
+$(function() {
+  $('#request_reference_image').on('change', function(e) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#reference_preview').attr('src', e.target.result);
+    };
+    return reader.readAsDataURL(e.target.files[0]);
+  });
+});
+
+$(function() {
+  $('#request_request_images_complete_images').on('change', function(e){
+    let reader = new Array(99);
+
+    for(let i = 0; i < 99; i++) {
+      $(`#request_preview_${i}`).attr('src', "");
+    }
+
+    for(let i = 0; i < e.target.files.length; i++) {
+      reader[i] = new FileReader();
+      reader[i].onload = finisher(i,e);
+      reader[i].readAsDataURL(e.target.files[i]);
+
+      function finisher(i,e){
+        return function(e){
+          $(`#request_preview_${i}`).attr('src', e.target.result);
+        };
+      }
+    }
+  });
 });

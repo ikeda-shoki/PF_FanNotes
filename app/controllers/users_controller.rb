@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :withdrawal]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :ensure_current_user, only: [:edit, :update, :destroy]
   
   def show
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), notice: "ユーザー情報を更新しました"
     else
       render 'edit'
     end
