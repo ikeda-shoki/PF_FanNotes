@@ -89,7 +89,6 @@ $(function() {
 });
 
 // preview
-
 $(function() {
   $('#post_image_image').on('change', function(e) {
     var reader = new FileReader();
@@ -101,16 +100,26 @@ $(function() {
 });
 
 $(function() {
+  $('#request_reference_image').on('change', function(e) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#reference_preview').attr('src', e.target.result);
+    };
+    return reader.readAsDataURL(e.target.files[0]);
+  });
+});
+
+$(function() {
   $('#request_request_images_complete_images').on('change', function(e){
     let reader = new Array(99);
-    
+
     for(let i = 0; i < 99; i++) {
       $(`#request_preview_${i}`).attr('src', "");
     }
-    
+
     for(let i = 0; i < e.target.files.length; i++) {
       reader[i] = new FileReader();
-      reader[i].onload = finisher(i,e); 
+      reader[i].onload = finisher(i,e);
       reader[i].readAsDataURL(e.target.files[i]);
 
       function finisher(i,e){

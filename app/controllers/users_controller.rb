@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :withdrawal]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :ensure_current_user, only: [:edit, :update, :destroy]
   
   def show

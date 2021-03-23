@@ -5,8 +5,9 @@
         <%= render 'layouts/error_messages', model: @post_image %>
         <%= form_with model: @post_image, local: true do |f| %>
           <div class="field mb-4 row">
-            <dt class="col-md-4">
+            <dt class="col-md-4 d-flex align-items-center flex-wrap">
               <%= f.label :title, "タイトル"%>
+              <span class="require-icon">必須</span>
             </dt>
             <dl class="col-md-8">
               <%= f.text_field :title, placeholder: "タイトルを入力してください" %>
@@ -21,8 +22,9 @@
             </dl>
           </div>
           <div class="field mb-4 row">
-            <dt class="col-md-4">
+            <dt class="col-md-4 d-flex align-items-center flex-wrap">
               <%= f.label :image, "イラスト"%>
+              <span class="require-icon">必須</span>
             </dt>
             <dl class="col-md-8">
               <%= f.attachment_field :image %>
