@@ -1,1 +1,6 @@
 $("#post_image_comment").html("<%= j(render 'post_image_comments/post_comment', post_image_comments: @post_image_comments) %>");
+setTimeout("$('#flash-message').fadeOut('slow')", 1500);
+
+<% flash.each do |key, value| %>
+  $("#flash-message").css('display', '').html("<div class='<%= key %>'><%= value %></div>");
+<% end %>

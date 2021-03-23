@@ -4,6 +4,7 @@ class Request < ApplicationRecord
   belongs_to :requested, class_name: "User"
   has_one :room, dependent: :destroy
   has_many :request_images, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   accepts_attachments_for :request_images, attachment: :complete_image, append: true
 
@@ -16,7 +17,7 @@ class Request < ApplicationRecord
   validates :file_format, presence: true
   validates :use, presence: true
   validates :deadline, presence: true
-  validates :amount, numericality: { greater_than_or_equal_to: 1 }
+  validates :amount, numericality: { greater_than_or_equal_to: 1 } && { less_than_or_equal_to: 99 }
   validates :request_status, presence: true
   validates :request_images_complete_images, presence: true, on: :update_complete_image
   validate :deadline_limit, on: [:create, :update]

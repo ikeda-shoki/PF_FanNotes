@@ -1,4 +1,7 @@
 class ChatsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_request_user, only: [:show]
+  
   def show
     @user = User.find(params[:id])
     rooms = current_user.user_rooms
@@ -7,7 +10,7 @@ class ChatsController < ApplicationController
       user_room = UserRoom.find_by(user_id: @user.id, room_id: request_room.room_id)
       @room = user_room.room
     else
-      @room = Room.create(request_id: params[:request_id])
+      @room = Room.create(id: params[:request_id], request_id: params[:request_id])
       UserRoom.create(user_id: current_user.id, room_id: @room.id)
       UserRoom.create(user_id: @user.id, room_id: @room.id)
     end
@@ -31,10 +34,20 @@ class ChatsController < ApplicationController
     room = @chat.room
     @chats = room.chats
     @chat.destroy
+    respond_to do |format|
+      format.js { flash.now[:alert] = "対象のコメントを削除しました" }
+    end
   end
   
   private
   def chat_params
     params.require(:chat).permit(:message, :room_id)
+  end
+  
+  def ensure_request_user
+    @request = Request.find(params[:request_id])
+    unless current_user === @request.requester || current_user === @request.requested
+      redirect_to main_path
+    end
   end
 end

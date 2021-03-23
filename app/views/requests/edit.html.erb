@@ -7,8 +7,9 @@
           <h4><%= @request.requested.account_name %>への依頼を変更する</h4>
         </div>
         <div class="field mb-4 row">
-          <dt class="col-md-4">
+          <dt class="col-md-4 d-flex align-items-start flex-wrap">
             <%= f.label :request_introduction, "依頼内容"%>
+            <span class="require-icon">必須</span>
           </dt>
           <dl class="col-md-8">
             <%= f.text_area :request_introduction, placeholder: "依頼内容を入力してください" %>
@@ -24,31 +25,49 @@
         </div>
         <div class="field mb-4 row">
           <dt class="col-md-4">
+          </dt>
+          <dl class="col-md-8">
+            <% if @request.reference_image.present? %>
+              <p>現在の画像</p>
+              <%= attachment_image_tag @request, :reference_image, id: "reference_preview" %>
+            <% else %>
+              <img id="reference_preview">
+            <% end %>
+          </dl>
+        </div>
+        
+        <div class="field mb-4 row">
+          <dt class="col-md-4 d-flex align-items-start flex-wrap">
             <%= f.label :file_format, "ファイル形式" %>
+            <span class="require-icon">必須</span>
           </dt>
           <dl class="col-md-8">
             <%= f.select :file_format, Request.file_formats.keys, :selected=>Request.file_formats[@request.file_format] %>
           </dl>
         </div>
         <div class="field mb-4 row">
-          <dt class="col-md-4">
+          <dt class="col-md-4 d-flex align-items-start flex-wrap">
             <%= f.label :use, "用途"%>
+            <span class="require-icon">必須</span>
           </dt>
           <dl class="col-md-8">
             <%= f.text_area :use, placeholder: "用途を入力してください" %>
           </dl>
         </div>
         <div class="field mb-4 row">
-          <dt class="col-md-4">
+          <dt class="col-md-4 d-flex align-items-start flex-wrap">
             <%= f.label :amount, "枚数"%>
+            <span class="require-icon">必須</span>
           </dt>
           <dl class="col-md-8">
             <%= f.number_field :amount %>
+            <h6>※枚数は1枚以上99枚以下での範囲で選択してください</h6>
           </dl>
         </div>
         <div class="field mb-4 row">
-          <dt class="col-md-4">
+          <dt class="col-md-4 d-flex align-items-start flex-wrap">
             <%= f.label :deadline, "締め切り"%>
+            <span class="require-icon">必須</span>
           </dt>
           <dl class="col-md-8">
             <%= f.date_field :deadline %>

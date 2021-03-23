@@ -1,2 +1,7 @@
 $('#favorite_buttons_<%= @post_image.id %>').html("<%= j(render 'favorites/favorites_button', post_image: @post_image) %>");
 $('#favorite_count_<%= @post_image.id %>').html("<%= @post_image.favorites.count %>");
+setTimeout("$('#flash-message').fadeOut('slow')", 3000);
+
+<% flash.each do |key, value| %>
+  $("#flash-message").css('display', '').html("<div class='<%= key %>'><%= value %></div>");
+<% end %>

@@ -59,10 +59,9 @@ class PostImage < ApplicationRecord
         visited_id: user_id,
         action: 'favorite'
       )
-      if notification.visitor_id === notification.visited_id
-        notification.checked = true
+      unless notification.visitor_id === notification.visited_id
+        notification.save
       end
-      notification.save
     end
   end
   
