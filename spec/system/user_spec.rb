@@ -154,15 +154,45 @@ describe 'Userのテスト' do
         end
       end
     end
-  end
-  describe "ユーザー詳細画面(users/edit)のテスト" do
-    before do
-      visit '/users/sign_in'
-      fill_in "user_email", with: reception_user.email
-      fill_in "user_password", with: reception_user.password
-      click_on "Log In"
-      visit '/users/' + reception_user.id.to_s + '/edit'
+    
+    describe "ユーザー詳細画面(users/edit)のテスト" do
+      before do
+        visit '/users/sign_in'
+        fill_in "user_email", with: reception_user.email
+        fill_in "user_password", with: reception_user.password
+        click_on "Log In"
+        visit '/users/' + reception_user.id.to_s + '/edit'
+      end
+      context "ユーザー情報が更新できた時" do
+        it "更新するボタンは存在するか" do
+          expect(page).to have_button("更新する")
+        end
+        it "退会するボタンは存在するか" do
+          expect(page).to have_link("退会する")
+        end
+        it "更新できるか" do
+          fill_in "user_account_name", with: reception_user.account_name
+          fill_in "user_user_introduction", with: "よろしくお願いします！"
+          find("input[type='file']").click
+          attach_file "user_profile_image", "app/assets/images/original_profile.png"
+          find('label[for=user_is_reception_false]').click
+          click_button '更新する'
+          expect(page).to have_content('更新しました')
+        end
+        it "更新先は正しいか" do
+          fill_in "user_account_name", with: reception_user.account_name
+          fill_in "user_user_introduction", with: "よろしくお願いします！"
+          find("input[type='file']").click
+          attach_file "user_profile_image", "app/assets/images/original_profile.png"
+          click_button '更新する'
+          expect(current_path).to eq('/users/' + reception_user.id.to_s)
+        end
+        it "退会できるか" do
+          click_link "退会する"
+          expect(current_path).to eq("/user/withdrawal")
+          expect(page).to have_content "退会が完了しました"
+        end
+      end
     end
-    context ""
   end
 end
