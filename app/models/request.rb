@@ -17,7 +17,7 @@ class Request < ApplicationRecord
   validates :file_format, presence: true
   validates :use, presence: true
   validates :deadline, presence: true
-  validates :amount, numericality: { greater_than_or_equal_to: 1 } && { less_than_or_equal_to: 99 }
+  validates :amount, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 99 }
   validates :request_status, presence: true
   validates :request_images_complete_images, presence: true, on: :update_complete_image
   validate :deadline_limit, on: [:create, :update]

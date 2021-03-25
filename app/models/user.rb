@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  validates :account_name, presence: true
+  validates :account_name, presence: true, uniqueness: true
 
 
   def follow(user_id)
