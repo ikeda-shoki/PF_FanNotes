@@ -297,6 +297,7 @@ $font-color: #3e1300;
 
   .main-post-image {
     width: 200px;
+    height: 250px;
     border-radius: 20px;
     padding: 10px 0;
     text-align: center;
@@ -326,12 +327,16 @@ $font-color: #3e1300;
     }
 
     .post-image-text {
+      padding: 10px 20px;
+      p {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: 0;
+      }
+      
       @include sp {
         display: none;
-      }
-
-      .post-image-introduction {
-        text-overflow: ellipsis;
       }
     }
 

@@ -211,12 +211,27 @@ $font-color: #3e1300;
 
   h6 {
     margin: 0;
+    
+    @include sp {
+      font-size: 13px;
+    }
   }
 
   dl {
     margin-left: auto;
     margin-bottom: 0;
     width: 350px;
+    
+    @include sp {
+      width: 180px;
+      
+      .d-inline-block {
+        &:last-child {
+          margin-left: 0!important;
+          margin-top: 10px;
+        }
+      }
+    }
 
     h4 {
       font-weight: bold;

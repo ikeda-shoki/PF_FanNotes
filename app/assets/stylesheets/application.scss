@@ -407,9 +407,14 @@ a {
       bottom: 5%;
       right: 5%;
       padding: 0 10px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      
+      p {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: 0;
+        color: #FFFFFE;
+      }
 
       @include sp {
         right: 0;

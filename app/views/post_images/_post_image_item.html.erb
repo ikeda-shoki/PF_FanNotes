@@ -4,8 +4,8 @@
       <div class="post-image">
         <%= attachment_image_tag post_image, :image %>
         <div class="post-image-text pt-2">
-          <i class="fas fa-user mr-2"></i><%= post_image.user.account_name %><br />
-          <span class="post-image-introduction"><%= post_image.title %></span>
+          <p><i class="fas fa-user mr-2"></i><%= post_image.user.account_name %></p>
+          <p class="post-image-introduction"><%= post_image.title %></p>
         </div>
       </div>
     <% end %>

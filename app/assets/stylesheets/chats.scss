@@ -18,7 +18,7 @@ $font-color: #3e1300;
 .chat-show {
   padding: 200px 0 20px;
   position: relative;
-  
+
   @include sp {
     padding-top: 100px;
   }
@@ -139,7 +139,7 @@ $font-color: #3e1300;
     position: absolute;
     left: 0;
     width: 100%;
-    
+
     .chat-form-message {
       width: 70%;
       input {
@@ -153,7 +153,7 @@ $font-color: #3e1300;
         padding: 10px 20px;
         margin-left: 30px;
       }
-      
+
       @include sp {
         .button {
           min-width: auto;
@@ -163,9 +163,13 @@ $font-color: #3e1300;
       }
     }
   }
-  
+
   .back-button {
     top: 150px;
+
+    @include sp {
+      display: none!important;
+    }
   }
 }
 
