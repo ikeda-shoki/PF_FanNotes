@@ -2,11 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="user-edit-profile col-md-8 mx-auto post">
-        
+
         <div class="edit-profile-image">
-          <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg" %>
+          <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg", id: "profile_preview" %>
         </div>
-        
+
         <%= render 'layouts/error_messages', model: @user %>
         <%= form_with model: @user, local: true do |f| %>
           <div class="field mb-4 row">
@@ -55,13 +55,13 @@
           </div>
           <div class="user-destroy-button mt-5 text-center">
             <%= link_to "退会する", user_path(@user),
-                                    method: :delete, 
+                                    method: :delete,
                                     data: {confirm: "本当に退会しますか?退会するとこれまでのあなたの情報は全て削除されます。"},
                                     class: "btn white-button sp-button"
                                     %>
           </div>
         <% end %>
-        
+
       </div>
     </div>
   </div>
