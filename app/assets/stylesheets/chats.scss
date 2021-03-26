@@ -17,6 +17,7 @@ $font-color: #3e1300;
 // chat-show
 .chat-show {
   padding: 200px 0 20px;
+  position: relative;
   
   @include sp {
     padding-top: 100px;
@@ -161,6 +162,10 @@ $font-color: #3e1300;
         }
       }
     }
+  }
+  
+  .back-button {
+    top: 150px;
   }
 }
 
