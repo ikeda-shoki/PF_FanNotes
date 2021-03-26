@@ -288,7 +288,7 @@ $font-color: #3e1300;
       }
     }
   }
-  
+
   .new-images {
     .slick-track {
       margin-bottom: 10px;
@@ -306,6 +306,7 @@ $font-color: #3e1300;
 
     @include sp {
       width: 80px;
+      height: auto;
     }
 
     &:hover {
@@ -334,7 +335,7 @@ $font-color: #3e1300;
         text-overflow: ellipsis;
         margin: 0;
       }
-      
+
       @include sp {
         display: none;
       }
@@ -488,7 +489,6 @@ $font-color: #3e1300;
       }
     }
 
-
     .comment-btn {
       min-width: auto;
       border-radius: 20px;
@@ -504,29 +504,51 @@ $font-color: #3e1300;
   .post-comment {
     padding: 5px 30px;
 
-    img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: solid 2px $accent-color;
-    }
+    .post-comment-left-icon {
+      width: 80px;
+      text-align: center;
+      margin-top: 40px;
 
-    .post-comment-accountname {
-      font-size: 13px;
+      @include sp {
+        width: 50px;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: solid 2px $accent-color;
+      }
+
+      .post-comment-accountname {
+        margin: 10px 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 13px;
+
+        @include sp {
+          font-size: 8px;
+        }
+      }
     }
 
     .post-comment-chat {
       position: relative;
       display: inline-block;
-      margin: 1.5em 0 1.5em 30px;
+      margin: 15px 0 15px 30px;
       padding: 15px 10px;
       min-width: 120px;
-      max-width: 100%;
+      width: 430px;
       color: $font-color;
       font-size: 16px;
       background: $main-color;
       border-radius: 20px;
+
+      @include sp {
+        width: 200px;
+      }
 
       &:before {
         content: "";
@@ -693,7 +715,7 @@ $font-color: #3e1300;
     margin-bottom: 40px;
     display: inline-block;
   }
-  
+
   .hashtag-count {
     font-size: 30px;
     margin-left: 20px;
