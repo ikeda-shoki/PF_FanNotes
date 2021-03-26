@@ -110,6 +110,16 @@ $(function() {
 });
 
 $(function() {
+  $('#user_profile_image').on('change', function(e) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#profile_preview').attr('src', e.target.result);
+    };
+    return reader.readAsDataURL(e.target.files[0]);
+  });
+});
+
+$(function() {
   $('#request_request_images_complete_images').on('change', function(e){
     var reader = new Array(99);
 
