@@ -23,6 +23,17 @@
       </div>
     </div>
     <%= render 'layouts/back_button'%>
+    <div class="back-button chat-request-button">
+      <% if @request.requester === @user %>
+        <%= link_to user_requested_show_path(user_id: current_user.id, id: @request.id) do %>
+          <i class="fas fa-arrow-circle-left mr-2"></i>注文情報へ
+        <% end %>
+      <% elsif @request.requested === @user %>
+        <%= link_to user_requesting_show_path(user_id: current_user.id, id: @request.id) do %>
+         <i class="fas fa-arrow-circle-left mr-2"></i>注文情報へ
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 

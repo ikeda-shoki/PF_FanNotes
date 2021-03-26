@@ -4,6 +4,7 @@ class ChatsController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @request = Request.find(params[:request_id])
     rooms = current_user.user_rooms
     request_room = rooms.find_by(room_id: params[:request_id])
     unless request_room.nil?
