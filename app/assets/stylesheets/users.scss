@@ -23,7 +23,24 @@ $sp: 480px;
 
 .sign-up {
   .center-container {
-    padding-top: 150px;
+    padding: 120px 0 60px;
+  }
+
+  #error_explanation {
+    text-align: center;
+    padding: 20px 30px;
+    border-radius: 20px;
+    background-color: #ffd9e1;
+    
+    h2 {
+      &:before {
+        display: none;
+      }
+    }
+    
+    ul {
+      list-style: none;
+    }
   }
 }
 
@@ -284,11 +301,11 @@ $sp: 480px;
       transform: translateY(-50%);
     }
   }
-  
+
   .request-button {
     margin-left: 30px;
   }
-  
+
   @include sp {
     display: none;
   }
@@ -305,7 +322,7 @@ $sp: 480px;
     height: 150px;
     object-fit: cover;
     border-radius: 50%;
-    
+
     @include sp {
       width: 100px;
       height: 100px;
@@ -316,7 +333,7 @@ $sp: 480px;
     display: flex;
     align-items: center;
     margin-bottom: 30px;
-    
+
     .follow-accountname {
       font-size: 20px;
     }
@@ -324,7 +341,7 @@ $sp: 480px;
     .follow-dataile-buttons {
       display: flex;
       justify-content: center;
-      
+
       @include sp {
         flex-direction: column;
       }
