@@ -103,27 +103,27 @@ a {
           color: #FFFFFE;
           font-weight: 800;
           border-radius: 20px;
-          
+
           i {
             color: #FFFFFE;
             font-weight: 800;
           }
         }
       }
-      
+
       .dropdown-menu {
         .dropdown-item {
           &:hover {
             background-color: $accent-color;
             color: #FFFFFE;
             font-weight: bold;
-            
+
             i {
               color: #FFFFFE;
               font-weight: bold;
             }
           }
-          
+
         }
       }
     }
@@ -174,25 +174,42 @@ a {
         }
       }
     }
-    
+
     .exit-modal {
       .modal-header {
         border-bottom: none;
       }
       .modal-footer {
         border-top: none;
-        
+
         .white-button,
         .button{
           min-width: auto;
           font-size: 13px;
           margin-left: 20px;
-          
+
           @include sp {
             margin-bottom: 20px;
           }
         }
       }
+    }
+  }
+  #top-slide-button {
+    font-size: 80px;
+    position: fixed;
+    right: 50px;
+    bottom: 100px;
+    opacity: 0.4;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    
+    &:hover {
+      opacity: 1;
+    }
+    
+    i {
+      color: $accent-color;
     }
   }
 }

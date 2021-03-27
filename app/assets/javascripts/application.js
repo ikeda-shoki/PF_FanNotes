@@ -162,3 +162,20 @@ $(function() {
   });
 });
 
+// スクロール
+$(function() {
+  var topBtn = $("#top-slide-button");
+  topBtn.hide();
+  $(window).scroll(function(){
+    if ($(this).scrollTop() > 80) {
+      topBtn.fadeIn(1000);
+    } else {
+      topBtn.fadeOut(1000);
+    }
+  });
+  topBtn.click(function(){
+    $('html, body').animate({
+      scrollTop: 0
+    }, 500);
+  })
+})
