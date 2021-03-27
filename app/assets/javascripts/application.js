@@ -172,10 +172,26 @@ $(function() {
     } else {
       topBtn.fadeOut(1000);
     }
+    return false;
   });
   topBtn.click(function(){
     $('html, body').animate({
       scrollTop: 0
     }, 500);
-  })
-})
+    return false;
+  });
+});
+
+$(function() {
+  $('#top-about-link').hover(function(){
+    $("html,body").animate({scrollTop:$('#about').offset().top});
+    return false;
+  });
+});
+
+$(function() {
+  $('#top-link').hover(function(){
+    $("html,body").animate({scrollTop:$('html, body').offset().top});
+    return false;
+  });
+});

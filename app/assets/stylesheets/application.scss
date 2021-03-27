@@ -203,11 +203,11 @@ a {
     opacity: 0.4;
     transition: 0.5s;
     -webkit-transition: 0.5s;
-    
+
     &:hover {
       opacity: 1;
     }
-    
+
     i {
       color: $accent-color;
     }

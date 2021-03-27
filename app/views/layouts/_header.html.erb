@@ -95,10 +95,10 @@
 
           <% else %>
             <li class="nav-item">
-              <%= link_to "トップページ", root_path, class: "nav-link active"%>
+              <%= link_to "トップページ", root_path, class: "nav-link active", id: "top-link"%>
             </li>
             <li class="nav-item">
-              <a href="#about" class="nav-link">このサイトについて</a>
+              <%= link_to "このサイトについて", root_path, class: "nav-link active", id: "top-about-link" %>
             </li>
             <li class="nav-item">
               <%= link_to "ログイン", new_user_session_path, class: "nav-link"%>
