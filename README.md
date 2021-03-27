@@ -1,4 +1,4 @@
-<img src="app/assets/images/logo.png" alt="ロゴ" width="50" height="50"> # FanNotes
+<h1><img src="app/assets/images/logo.png" alt="ロゴ" width="80" height="80">FanNotes</h1>
 ## サイト概要
 自分で描いたイラストを投稿、閲覧するサイトです。 <br >
 自分の好きなイラストを描く人を見つけて、オリジナルキャラクターやアイコン、HPの素材の作成依頼が可能です。<br >
