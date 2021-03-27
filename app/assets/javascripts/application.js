@@ -74,6 +74,26 @@ $(function() {
     });
 });
 
+$(function() {
+    $('.slide-follow-image').slick({
+      slidesToShow: 5,
+      slidesToScroll: 5,
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 2000,
+
+      responsive: [{
+    		breakpoint: 767,
+    		settings: {
+    			slidesToShow: 4,
+		    	slidesToScroll: 4,
+		    	arrows: false,
+    		}
+    	}]
+    });
+});
+
+
 
 // sp pc ボタン チャットボタンの変化
 $(function() {
@@ -119,6 +139,7 @@ $(function() {
   });
 });
 
+// 複数枚の画像のpreview(request_complete)
 $(function() {
   $('#request_request_images_complete_images').on('change', function(e){
     var reader = new Array(99);
@@ -140,3 +161,4 @@ $(function() {
     }
   });
 });
+
