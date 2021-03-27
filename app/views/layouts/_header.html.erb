@@ -1,7 +1,7 @@
 <div class="header">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      
+
       <div class="header-logo">
         <%= image_tag 'logo.png' %>
       </div>
@@ -31,13 +31,30 @@
             <li class="nav-item" data-toggle="modal" data-target="#exampleModalLong" id="notification-modal-button">
               <%= render 'notifications/notification_icon'%>
             </li>
-            <li class="nav-item">
-              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
-                ログアウト<i class="fas fa-sign-out-alt ml-2"></i>
-              <% end %>
+            <li class="nav-item dropdown">
+              <span class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                メニュー
+              </span>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <%= link_to main_path, class: "dropdown-item" do %>
+                  メイン画面<i class="fas fa-home ml-2"></i>
+                <% end %>
+                <%= link_to post_images_path, class: "dropdown-item" do %>
+                  イラスト一覧<i class="far fa-copy ml-2"></i>
+                <% end %>
+                <%= link_to users_path, class: "dropdown-item" do %>
+                  ユーザー一覧<i class="fas fa-users ml-2"></i>
+                <% end %>
+              </div>
             </li>
-          
-            <!-- Modal -->
+            <li class="nav-item" data-toggle="modal" data-target="#exampleModalCenter">
+              <sapn class="nav-link">ログアウト<i class="fas fa-sign-out-alt ml-2"></i></sapn>
+            </li>
+            <li class="nav-item">
+
+            </li>
+
+            <!-- Notification Modal -->
             <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -47,15 +64,35 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  
+
                   <div id="notification-modal">
                     <%= render 'notifications/notification_modal', notifications: @notifications %>
                   </div>
-                  
+
                 </div>
               </div>
             </div>
-          
+
+            <!-- 退会 Modal -->
+            <div class="modal fade exit-modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">本当にログアウトしますか？</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn white-button sp-button" data-dismiss="modal">ログアウトしない</button>
+                    <%= link_to destroy_user_session_path, method: :delete, class: "button" do %>
+                      ログアウトする<i class="fas fa-sign-out-alt ml-2"></i>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           <% else %>
             <li class="nav-item">
               <%= link_to "トップページ", root_path, class: "nav-link active"%>
@@ -72,8 +109,8 @@
           <% end %>
         </ul>
       </div>
-      
-      
+
+
     </div>
     <% if user_signed_in? %>
       <%= render "layouts/search_form" %>
