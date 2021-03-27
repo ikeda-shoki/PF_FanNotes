@@ -88,7 +88,7 @@
               </dl>
             </div>
             <div class="text-center my-5">
-              <%= f.submit "登録する", class: "btn white-button sp-button", data: {confirm: "依頼内容を本当に製作しますか？製作するを選択した場合取り消すことは出来なくなります"} %>
+              <%= f.submit "登録する", class: "btn white-button sp-button", data: {confirm: "制作ステータスに間違いはありませんか？製作するを選択した場合取り消すことは出来なくなります。制作しないを選んだ場合、再度依頼を制作することはできなくなります。"} %>
             </div>
           <% end %>
         <% elsif @request.request_status === "製作中" %>
