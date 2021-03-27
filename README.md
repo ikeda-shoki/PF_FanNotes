@@ -74,7 +74,8 @@ https://fannote.work/
 - 全体のテストの充実（現在は一部のテストのみの為）
 - 外部アカウント認証機能（Google, Twitter）
 - ユーザーの評価機能
-- 依頼するユーザーによって金額が発生する仕様 etc...
+- 依頼するユーザーによって金額が発生する仕様
+- Vue.jsを使用したフロントエンドの開発 etc...
 
 ## 使用素材
 - [hatchful(ロゴの制作)](https://hatchful.shopify.com/ja/onboarding/logo-usages)
