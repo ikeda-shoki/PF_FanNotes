@@ -31,7 +31,7 @@ class PostImagesController < ApplicationController
 
   def main
     @post_images = PostImage.limit(10).order('id desc')
-    @following_users = current_user.following_user.limit(3).order('id desc') if user_signed_in?
+    @following_users_post_images = PostImage.where(user_id: current_user.following_user.pluck(:id)).limit(15).order('id desc') if user_signed_in?
     @ranking_post_images = PostImage.find(Favorite.group(:post_image_id).order(Arel.sql('count(post_image_id) desc')).limit(10).pluck(:post_image_id))
     @hashtags = Hashtag.find(PostImageHashtagRelation.group(:hashtag_id).order(Arel.sql('count(hashtag_id) desc')).limit(20).pluck(:hashtag_id))
   end
