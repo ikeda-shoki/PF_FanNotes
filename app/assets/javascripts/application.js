@@ -74,6 +74,26 @@ $(function() {
     });
 });
 
+$(function() {
+    $('.slide-follow-image').slick({
+      slidesToShow: 5,
+      slidesToScroll: 5,
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 2000,
+
+      responsive: [{
+    		breakpoint: 767,
+    		settings: {
+    			slidesToShow: 4,
+		    	slidesToScroll: 4,
+		    	arrows: false,
+    		}
+    	}]
+    });
+});
+
+
 
 // sp pc ボタン チャットボタンの変化
 $(function() {
@@ -119,6 +139,7 @@ $(function() {
   });
 });
 
+// 複数枚の画像のpreview(request_complete)
 $(function() {
   $('#request_request_images_complete_images').on('change', function(e){
     var reader = new Array(99);
@@ -138,5 +159,39 @@ $(function() {
         };
       }
     }
+  });
+});
+
+// スクロール
+$(function() {
+  var topBtn = $("#top-slide-button");
+  topBtn.hide();
+  $(window).scroll(function(){
+    if ($(this).scrollTop() > 80) {
+      topBtn.fadeIn(1000);
+    } else {
+      topBtn.fadeOut(1000);
+    }
+    return false;
+  });
+  topBtn.click(function(){
+    $('html, body').animate({
+      scrollTop: 0
+    }, 500);
+    return false;
+  });
+});
+
+$(function() {
+  $('#top-about-link').hover(function(){
+    $("html,body").animate({scrollTop:$('#about').offset().top});
+    return false;
+  });
+});
+
+$(function() {
+  $('#top-link').hover(function(){
+    $("html,body").animate({scrollTop:$('html, body').offset().top});
+    return false;
   });
 });
