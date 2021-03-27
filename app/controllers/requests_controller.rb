@@ -62,7 +62,7 @@ class RequestsController < ApplicationController
 
   def update
     if @request.update(request_params)
-      redirect_to user_requesting_show_path(user_id: @request.requested.id, id: @request), notice: "依頼を更新しました"
+      redirect_to user_requesting_show_path(user_id: @request.requested.id, id: @request), notice: "依頼ステータスを変更しました"
     else
       render 'edit'
     end

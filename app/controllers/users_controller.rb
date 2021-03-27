@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all.page(params[:page]).per(5)
+    # 並び替え機能はsearch_controller, post_image.rbに記載
   end
   
   def edit

@@ -211,10 +211,27 @@ $font-color: #3e1300;
 
   h6 {
     margin: 0;
+    
+    @include sp {
+      font-size: 13px;
+    }
   }
 
   dl {
-    margin: 0;
+    margin-left: auto;
+    margin-bottom: 0;
+    width: 350px;
+    
+    @include sp {
+      width: 180px;
+      
+      .d-inline-block {
+        &:last-child {
+          margin-left: 0!important;
+          margin-top: 10px;
+        }
+      }
+    }
 
     h4 {
       font-weight: bold;
@@ -227,21 +244,11 @@ $font-color: #3e1300;
     }
   }
 
-  .request-show-post-title {
-    width: 200px;
-
-    @include sp {
-      width: 120px;
-    }
-  }
-
   .request-reference-image {
-    width: 100%;
-    height: 100%;
 
     img {
       width: 60%;
-      height: 100%;
+      height: auto;
     }
   }
 

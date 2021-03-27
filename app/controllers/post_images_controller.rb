@@ -26,6 +26,7 @@ class PostImagesController < ApplicationController
 
   def index
     @post_images = PostImage.all.page(params[:page]).per(8)
+    # 並び替え機能はsearch_controller, post_image.rbに記載
   end
 
   def main
@@ -42,6 +43,7 @@ class PostImagesController < ApplicationController
     else
       render 'new'
     end
+    #post_imageモデルでafter_createを使用して＃を追加する
   end
 
   def edit
@@ -50,6 +52,7 @@ class PostImagesController < ApplicationController
 
   def update
     @post_image = PostImage.find(params[:id])
+    #post_imageモデルでbefore_updateを使用して＃を1から追加する
     if @post_image.update(post_image_params)
       redirect_to post_image_path(@post_image), notice: '投稿を更新しました'
     else

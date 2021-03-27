@@ -9,7 +9,7 @@
         <dt class="request-show-post-title">
           <h6>内容詳細</h6>
         </dt>
-        <dl class="flex-grow-1">
+        <dl>
           <h4><%= @request.request_introduction %></h4>
         </dl>
       </div>
@@ -18,7 +18,7 @@
         <dt class="request-show-post-title">
           <h6>参考画像</h6>
         </dt>
-        <dl class="flex-grow-1 request-reference-image">
+        <dl class="request-reference-image">
           <%= attachment_image_tag @request, :reference_image, fallback: "no_image.jpg" %>
         </dl>
       </div>
@@ -27,7 +27,7 @@
         <dt class="request-show-post-title">
           <h6>ファイル形式</h6>
         </dt>
-        <dl class="flex-grow-1">
+        <dl>
           <h4><%= @request.file_format %>形式</h4>
         </dl>
       </div>
@@ -36,7 +36,7 @@
         <dt class="request-show-post-title">
           <h6>用途</h6>
         </dt>
-        <dl class="flex-grow-1">
+        <dl>
           <h4><%= @request.use %></h4>
         </dl>
       </div>
@@ -45,7 +45,7 @@
         <dt class="request-show-post-title">
           <h6>枚数</h6>
         </dt>
-        <dl class="flex-grow-1">
+        <dl>
           <h4><%= @request.amount %>枚</h4>
         </dl>
       </div>
@@ -54,7 +54,7 @@
         <dt class="request-show-post-title">
           <h6>納期</h6>
         </dt>
-        <dl class="flex-grow-1">
+        <dl>
           <h4><%= l @request.deadline %></h4>
         </dl>
       </div>
@@ -63,7 +63,7 @@
         <dt class="request-show-post-title">
           <h6>受付状況</h6>
         </dt>
-        <dl class="flex-grow-1">
+        <dl>
           <%= render 'layouts/request_status_buttons', request: @request %>
         </dl>
       </div>
@@ -74,9 +74,9 @@
           <%= form_with model: @request, url: user_update_request_status_path(@request),local: true do |f| %>
             <div class="request-show-status-button d-flex align-items-center">
               <dt class="request-show-post-title">
-                製作ステータス
+                <h6>製作ステータス</h6>
               </dt>
-              <dl class="flex-grow-1">
+              <dl>
                 <div class="d-inline-block">
                   <%= f.radio_button :request_status,  "製作中", checked: true %>
                   <%= f.label :request_status, '製作する', value: "製作中" %>
@@ -88,7 +88,7 @@
               </dl>
             </div>
             <div class="text-center my-5">
-              <%= f.submit "登録する", class: "btn white-button sp-button", data: {confirm: "依頼内容を本当に製作しますか？製作するを選択した場合取り消すことは出来なくなります"} %>
+              <%= f.submit "登録する", class: "btn white-button sp-button", data: {confirm: "制作ステータスに間違いはありませんか？製作するを選択した場合取り消すことは出来なくなります。制作しないを選んだ場合、再度依頼を制作することはできなくなります。"} %>
             </div>
           <% end %>
         <% elsif @request.request_status === "製作中" %>
@@ -97,7 +97,7 @@
               <dt class="request-show-post-title">
                 <h6>完成したイラスト</h6>
               </dt>
-              <dl class="flex-grow-1">
+              <dl>
                 <%= f.attachment_field :request_images_complete_images, multiple: true %>
               </dl>
             </div>
@@ -105,7 +105,7 @@
             <div class="request-show-deadline mb-4 d-flex align-items-center">
               <dt class="request-show-post-title">
               </dt>
-              <dl class="flex-grow-1">
+              <dl>
                 <% @request.amount.times do |id| %>
                   <img id="request_preview_<%= id %>" class="request_preview">
                 <% end %>
