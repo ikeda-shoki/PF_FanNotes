@@ -60,6 +60,12 @@ a {
     nav {
       height: 100%;
       position: relative;
+      
+      img {
+        height: 80px;
+        width: auto;
+        mix-blend-mode: multiply;
+      }
 
       .navbar-collapse {
         background-color: #f8f9fa;
