@@ -4,10 +4,14 @@
 <img src="app/assets/images/logo.png" alt="ロゴ" width="20%">
 自分で描いたイラストを投稿、閲覧するサイトです。 <br >
 自分の好きなイラストを描く人を見つけて、オリジナルキャラクターやアイコン、HPの素材の作成依頼が可能です。<br >
+またスマートフォン表示にも対応しています。<br >
 <br >
 <br >
+トップ画面(PC)
 <img src="app/assets/images/top_screen_shot.png" alt="トップ画面" width="100%">
 
+メイン画面(SP)
+<img src="app/assets/images/sp_screenshot.png" alt="メイン画面" width="20%">
 
 ### サイトテーマ
 自分の好きなイラストを描く人に出会いもっと手軽で簡単に似顔絵や、オリジナルイラストの制作を依頼しよう！<br >
@@ -17,7 +21,7 @@
 実際に趣味でイラストを描いているのですが、インスタグラムのメッセージでこんな絵を描いて欲しいと依頼がきたことがありました。<br >
 その時に、自分の絵を投稿できて、その絵を見てくれた人が手軽にイラストなどを描いて欲しいと依頼できるようなサービスはあまりないなと感じ、pixivとcoconalaが一緒になったようなサービスがあれば、便利だなと思いこのテーマを作成しました。
 
-### ターゲットユーザ
+### ターゲットユーザー
 イラストが好きで実際に自分のアイコンなどを描いて欲しいやHPなどでの独自のイラストが欲しいユーザー <br >
 自分の絵を宣伝してもらうことで、自分の知名度を上げたいと考えているイラストを描いているユーザー
 
@@ -33,12 +37,14 @@ https://fannote.work/
 ゲストログインからメールアドレス、アカウントネームなしでのログインが可能です。
 
 ## 設計書
-[ER図](https://drive.google.com/drive/folders/1Lcz4txyvfHj5rb0BkR737gsyz9pfaC5X)
-<br>
+- ER図
+
+<br >
 <img src="app/assets/images/ER.png" alt="ER図" width="100%">
 
 ## 機能一覧
 [機能要素一覧](https://docs.google.com/spreadsheets/d/1xGH92fN1MlcEEDbYz5IXmz-6vFFc0-o3LSYVyaYTkGo/edit#gid=0)
+<br >
 - ユーザー登録、ログイン機能(devise)
 - 投稿機能(refile)
   - いいね機能（非同期通信）

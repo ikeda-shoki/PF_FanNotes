@@ -60,11 +60,15 @@ a {
     nav {
       height: 100%;
       position: relative;
-      
-      img {
-        height: 80px;
+
+      .header-logo {
+        height: 70px;
         width: auto;
         mix-blend-mode: multiply;
+
+        img {
+          height: 100%;
+        }
       }
 
       .navbar-collapse {
@@ -317,7 +321,7 @@ a {
     height: 250px;
     padding: 5px 10px;
   }
-  
+
   select {
     padding: 5px 10px;
   }
@@ -413,7 +417,7 @@ a {
       bottom: 5%;
       right: 5%;
       padding: 0 10px;
-      
+
       p {
         overflow: hidden;
         white-space: nowrap;
