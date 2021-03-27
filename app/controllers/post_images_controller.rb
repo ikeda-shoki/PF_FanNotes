@@ -26,6 +26,7 @@ class PostImagesController < ApplicationController
 
   def index
     @post_images = PostImage.all.page(params[:page]).per(8)
+    # 並び替え機能はsearch_controller, post_image.rbに記載
   end
 
   def main

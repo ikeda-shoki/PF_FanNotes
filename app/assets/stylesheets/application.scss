@@ -61,6 +61,16 @@ a {
       height: 100%;
       position: relative;
 
+      .header-logo {
+        height: 70px;
+        width: auto;
+        mix-blend-mode: multiply;
+
+        img {
+          height: 100%;
+        }
+      }
+
       .navbar-collapse {
         background-color: #f8f9fa;
         border-radius: 20px;
@@ -311,7 +321,7 @@ a {
     height: 250px;
     padding: 5px 10px;
   }
-  
+
   select {
     padding: 5px 10px;
   }
@@ -407,7 +417,7 @@ a {
       bottom: 5%;
       right: 5%;
       padding: 0 10px;
-      
+
       p {
         overflow: hidden;
         white-space: nowrap;
