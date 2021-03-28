@@ -472,7 +472,7 @@ a {
 .post-images {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 
   .post-image {
     position: relative;
@@ -678,7 +678,7 @@ a {
       padding: 5px;
       border: solid 5px $accent-color;
       position: absolute;
-      top: -10%;
+      top: -75px;
       left: 50%;
       transform:translateX(-50%);
 

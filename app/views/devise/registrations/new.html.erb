@@ -28,12 +28,9 @@
         </div>
       <% end %>
 
-      <div class="devise-buttons">
-        <%= link_to new_session_path(resource_name), class: "devise-link" do %>
-          <i class="fas fa-arrow-left mr-2"></i>Log In
-        <% end %>
-        <%= link_to new_password_path(resource_name), class: "devise-link ml-auto" do %>
-          Forgot Your Password?<i class="fas fa-arrow-right ml-2"></i>
+      <div class="devise-buttons text-right">
+        <%= link_to new_session_path(resource_name), class: "devise-link ml-auto" do %>
+          Log In<i class="fas fa-arrow-right ml-2"></i>
         <% end %>
       </div>
     </div>

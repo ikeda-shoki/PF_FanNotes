@@ -17,7 +17,7 @@
         <div class="actions mb-3">
           <%= f.submit "Log In", class: "btn button" %>
         </div>
-        
+
         <% if devise_mapping.rememberable? %>
           <div class="field mb-3">
             <%= f.check_box :remember_me %>
@@ -27,12 +27,9 @@
 
       <% end %>
 
-      <div class="devise-buttons">
+      <div class="devise-buttons text-left">
         <%= link_to new_registration_path(resource_name), class: "devise-link" do %>
           <i class="fas fa-arrow-left mr-2"></i>Sign Up
-        <% end %>
-        <%= link_to new_password_path(resource_name), class: "devise-link ml-auto" do %>
-          Forgot Your Password?<i class="fas fa-arrow-right ml-2"></i>
         <% end %>
       </div>
     </div>
