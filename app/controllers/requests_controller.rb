@@ -21,12 +21,12 @@ class RequestsController < ApplicationController
 
   #自分の依頼一覧画面
   def requesting
-    @requests = Kaminari.paginate_array(current_user.request).page(params[:page]).per(5)
+    @requests = Kaminari.paginate_array(current_user.request.preload(:requested)).page(params[:page]).per(5)
   end
 
   #自分に来ている依頼
   def requested
-    @requests = Kaminari.paginate_array(current_user.requested).page(params[:page]).per(5)
+    @requests = Kaminari.paginate_array(current_user.requested.preload(:requester)).page(params[:page]).per(5)
   end
 
   #自分の依頼詳細画面

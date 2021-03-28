@@ -77,6 +77,7 @@ gem 'pry-byebug'
 gem 'rails-i18n'
 gem 'kaminari'
 gem 'faker'
+gem "bullet"
 
 group :production do
   gem 'mysql2'
