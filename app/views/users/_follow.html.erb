@@ -11,7 +11,7 @@
         <div class="follow-detaile">
           <h3 class="mb-3 follow-accountname"><i class="fas fa-user mr-2"></i><%= follow.account_name %></h3>
           <div class="follow-dataile-buttons follow-button">
-            <%= link_to "プロフィール", user_path(follow), class: "btn profile-btn mr-4" %>
+            <%= link_to "プロフィール", user_path(follow), class: "button" %>
             <%= render 'relationships/follow_button', user: follow %>
           </div>
         </div>

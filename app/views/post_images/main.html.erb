@@ -1,6 +1,8 @@
 <div class="post-image-main main">
   <div class="container">
-
+    <% unless user_signed_in? %>
+      <%= render 'layouts/info' %>
+    <% end %>
     <div class="favorite-images">
       <h2>人気の作品</h2>
       <div class="slider-favorite">

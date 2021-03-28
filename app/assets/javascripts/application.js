@@ -191,7 +191,7 @@ $(function() {
 
 $(function() {
   $('#top-link').hover(function(){
-    $("html,body").animate({scrollTop:$('html, body').offset().top});
+    $("html,body").animate({scrollTop:$('#top').offset().top});
     return false;
   });
 });
