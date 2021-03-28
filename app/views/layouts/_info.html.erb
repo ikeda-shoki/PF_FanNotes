@@ -1,25 +1,35 @@
 <div class="info">
   <div class="info-buttons">
     <div class="info-button-signup signup-button">
-      <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success" %>
+      <%= link_to "Sign Up", new_user_registration_path, class: "white-button sp-button mb-2" %>
     </div>
     <div class="info-button-login login-button">
-      <%= link_to "Log In", new_user_session_path, class: "btn btn-primary" %>
+      <%= link_to "Log In", new_user_session_path, class: "white-button sp-button mb-2" %>
     </div>
     <div class="info-button-guest guest-button">
-      <%= link_to "ゲストログイン", guest_sign_in_path, method: :post ,class: "btn btn-info" %>
+      <%= link_to "ゲストログイン", guest_sign_in_path, method: :post ,class: "white-button sp-button" %>
     </div>
   </div>
   
   <div class="info-introduction">
-    <h5>未ログイン状態です</h5>
+    <h6><span class="info-introduction-accent"><i class="fas fa-times-circle mr-1"></i>未ログイン</span>状態です</h6>
     <p>未ログイン状態では以下の機能が使用できません</p>
     <ul>
-      <li>イラスト投稿機能</li>
-      <li>イラスト依頼機能</li>
-      <li>いいね機能</li>
-      <li>コメント機能</li>
-      <li>フォロー機能</li>
+      <div class="mb-1">
+        <i class="fas fa-check mr-1"></i><li>イラスト投稿機能</li>
+      </div>
+      <div class="mb-1">
+        <i class="fas fa-check mr-1"></i><li>イラスト依頼機能</li>
+      </div>
+      <div class="mb-1">
+        <i class="fas fa-check mr-1"></i><li>いいね機能</li>
+      </div>
+      <div class="mb-1">
+        <i class="fas fa-check mr-1"></i><li>コメント機能</li>
+      </div>
+      <div class="mb-1">
+        <i class="fas fa-check mr-1"></i><li>フォロー機能</li>
+      </div>
     </ul>
     <p>ログイン、新規登録して全ての機能を使用しよう！</p>
   </div>
