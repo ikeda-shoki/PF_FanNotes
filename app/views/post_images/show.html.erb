@@ -49,6 +49,7 @@
               <%= render 'post_image_comments/post_comment', post_image_comments: @post_image_comments %>
             </div>
           </div>
+          <%= paginate @post_image_comments %>
         <% end %>
       </div>
 

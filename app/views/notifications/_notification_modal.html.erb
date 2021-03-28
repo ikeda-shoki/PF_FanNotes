@@ -3,7 +3,7 @@
     <% if @notifications.exists? %>
       <div class="mx-auto">
         <div class="notification-contents">
-          <% @notifications.preload(:visitor, :post_image, :request).each do |notification| %>
+          <% @notifications.preload(:visitor).each do |notification| %>
             <%= render 'notifications/notification', notification: notification %>
           <% end %>
         </div>
