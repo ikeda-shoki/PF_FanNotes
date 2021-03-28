@@ -4,15 +4,35 @@
       <div class="col-md-5 mx-auto text-center">
         <%= render 'users/user_profile', user: @user %>
       </div>
-      
+
       <div class="user-show-image col-md-7">
-        <h2>投稿一覧</h2>
-        <% if @post_images.empty? %>
-          <p>現在の投稿はありません。</p>
-        <% else %>
-          <%= render 'post_images/post_image_item', post_images: @post_images %>
-          <%= paginate @post_images %>
-        <% end %>
+        <div class="user-show-image-mypost mb-3">
+          <h2>投稿一覧</h2>
+          <% if @post_images.empty? %>
+            <p>現在の投稿はありません。</p>
+          <% else %>
+            <%= render 'post_images/post_image_item', post_images: @post_images %>
+            <%= paginate @post_images, param_name: 'normal_page' %>
+          <% end %>
+        </div>
+        <div class="user-show-image-favorite">
+          <h2>お気に入りした投稿一覧</h2>
+          <% if @my_favorite_images.empty? %>
+            <p>現在の投稿はありません。</p>
+          <% else %>
+            <%= render 'post_images/post_image_item', post_images: @my_favorite_images %>
+            <%= paginate @my_favorite_images, param_name: 'favorite_page' %>
+          <% end %>
+        </div>
+        <div class="user-show-image-follow">
+          <h2>フォロワーの投稿一覧</h2>
+          <% if @my_follower_images.empty? %>
+            <p>現在、フォローしているユーザーはいません。</p>
+          <% else %>
+            <%= render 'post_images/post_image_item', post_images: @my_follower_images %>
+            <%= paginate @my_follower_images, param_name: 'follow_page' %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

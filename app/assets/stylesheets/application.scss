@@ -225,29 +225,46 @@ a {
   box-shadow: 0 3px 5px rgba(0,0,0,.2);
   padding: 20px 30px;
 
+  @include sp {
+    flex-direction: column-reverse;
+  }
+
   .info-buttons {
     margin-right: 50px;
-    
+
+    @include sp {
+      margin: 0 auto;
+      margin-top: 30px;
+    }
+
     .white-button {
       min-width: 180px;
     }
   }
-  
+
   .info-introduction {
     &-accent {
       font-weight: 700;
       color: #E15253;
       font-size: 28px;
       margin-right: 10px;
-      
+
+      @include sp {
+        font-size: 20px;
+      }
+
       i {
         color: #E15253;
       }
     }
     
+    .h5 {
+      font-size: 18px;
+    }
+
     ul {
       list-style: none;
-      
+
       li {
         display: inline-block;
       }
