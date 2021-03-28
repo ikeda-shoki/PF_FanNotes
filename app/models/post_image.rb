@@ -20,14 +20,14 @@ class PostImage < ApplicationRecord
   def self.sort(selection)
     case selection
     when 'new'
-      return all.order(created_at: :DESC)
+      return self.preload(:user).all.order(created_at: :DESC)
     when 'old'
-      return all.order(created_at: :ASC)
+      return self.preload(:user).all.order(created_at: :ASC)
     when 'many_favorites'
       #いいね数が0を含めた投稿も表示させる
-      return all.sort { |a, b| b.favorites.count <=> a.favorites.count}
+      return self.preload(:user).all.sort { |a, b| b.favorites.count <=> a.favorites.count}
     when 'less_favorites'
-      return all.sort { |a, b| b.favorites.count <=> a.favorites.count}.reverse
+      return self.preload(:user).all.sort { |a, b| b.favorites.count <=> a.favorites.count}.reverse
     end
   end
 

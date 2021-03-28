@@ -106,7 +106,6 @@ $sp: 480px;
         }
 
   .devise-buttons {
-    display: flex;
 
     .devise-link {
       color: $accent-color;
@@ -119,6 +118,11 @@ $sp: 480px;
       &:hover {
         background-color: $accent-color;
         color: #FFFFFE;
+        font-weight: bold;
+        
+        i {
+          color: #FFFFFE;
+        }
       }
     }
   }

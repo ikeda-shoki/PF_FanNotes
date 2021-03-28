@@ -214,6 +214,47 @@ a {
   }
 }
 
+// info(unless user_signed_in)
+.info {
+  width: 80%;
+  margin: 0 auto 100px;
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFE;
+  border-radius: 20px;
+  box-shadow: 0 3px 5px rgba(0,0,0,.2);
+  padding: 20px 30px;
+
+  .info-buttons {
+    margin-right: 50px;
+    
+    .white-button {
+      min-width: 180px;
+    }
+  }
+  
+  .info-introduction {
+    &-accent {
+      font-weight: 700;
+      color: #E15253;
+      font-size: 28px;
+      margin-right: 10px;
+      
+      i {
+        color: #E15253;
+      }
+    }
+    
+    ul {
+      list-style: none;
+      
+      li {
+        display: inline-block;
+      }
+    }
+  }
+}
+
 // footer
 
 .footer {
@@ -431,7 +472,7 @@ a {
 .post-images {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 
   .post-image {
     position: relative;
@@ -637,7 +678,7 @@ a {
       padding: 5px;
       border: solid 5px $accent-color;
       position: absolute;
-      top: -10%;
+      top: -75px;
       left: 50%;
       transform:translateX(-50%);
 

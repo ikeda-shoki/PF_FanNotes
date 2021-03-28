@@ -62,6 +62,21 @@ https://fannote.work/
 - 日本語機能(rails-i18n)
 - 環境変数(dotenv-rails)
 
+## 使用追加gem
+- repec(テスト)
+  - factory_bot_rails(データの作成)
+- devise(ログイン機能)
+- dotenv-rails(環境変数)
+- refile/redile-mini-magick(画像投稿)
+- rails-in18s(日本語)
+- kaminari(ページネーション)
+- bullet(N+1)
+- faker(サンプルデータ作成)
+- pry-byebug(デバック)
+- bootstrap(bootstrap使用)
+- jquery-rails(jquery使用/slick)
+- font-awesome-sass(fontawesome)
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
@@ -81,3 +96,4 @@ https://fannote.work/
 - [hatchful(ロゴの制作)](https://hatchful.shopify.com/ja/onboarding/logo-usages)
 - [Unsplash photo for everyone(画像の使用)](https://unsplash.com/)
 - [unDraw(画像の使用)](https://undraw.co/)
+- [fontawesome(アイコンの)](https://fontawesome.com/)
