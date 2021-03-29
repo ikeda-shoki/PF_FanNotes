@@ -71,8 +71,8 @@ class PostImage < ApplicationRecord
       visited_id: user_id,
       action: 'post_image_comment'
     )
-    if notification.visitor_id === notification.visited_id
-      notification.checked = true
+    unless notification.visitor_id === notification.visited_id
+      notification.save
     end
     notification.save
   end
