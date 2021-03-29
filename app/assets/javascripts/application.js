@@ -105,7 +105,7 @@ $(function() {
 
 // flash-messageの削除
 $(function() {
-  setTimeout("$('#flash-message').fadeOut('slow')", 3000);
+  setTimeout("$('#flash-message').fadeOut('slow')", 5000);
 });
 
 // preview

@@ -62,6 +62,7 @@ https://fannote.work/
 - ページネーション機能(kaminari)
 - 日本語機能(rails-i18n)
 - 環境変数(dotenv-rails)
+- N+1問題(bullet)
 
 ## 使用追加gem
 - repec(テスト)
@@ -88,6 +89,7 @@ https://fannote.work/
 
 ## 今後の開発予定
 - 全体のテストの充実（現在は一部のテストのみの為）
+- お問い合わせ
 - 外部アカウント認証機能（Google, Twitter）
 - ユーザーの評価機能
 - 依頼するユーザーによって金額が発生する仕様
