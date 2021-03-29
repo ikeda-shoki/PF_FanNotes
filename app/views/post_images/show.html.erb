@@ -18,9 +18,15 @@
               <%= link_to user_path(@user), class: "post-image-text-usere-link" do %>
                 <span class="post-image-account-name mr-2"><i class="far fa-user"></i></span><span class="mr-3"><%= @user.account_name %></span>
               <% end %>
-              <span class="post-image-time mr-2"><i class="fas fa-pen"></i></span><span class="mr-3"><%= l @post_image.created_at, format: :long %></span>
-              <span class="post-image-time mr-2"><i class="far fa-arrow-alt-circle-up"></i></span><span class="mr-3"><%=l @post_image.updated_at, format: :long %></span>
-              <span class="post-image-heart mr-2"><i class="far fa-heart"></i></span><span id="favorite_count_<%= @post_image.id %>"><%= @post_image.favorites.count %></span>
+              <span class="post-image-time mr-2">
+                <i class="fas fa-pen"></i></span><span class="mr-3"><%= l @post_image.created_at, format: :long %>
+              </span>
+              <span class="post-image-time mr-2">
+                <i class="far fa-arrow-alt-circle-up"></i>
+              </span>
+              <span class="mr-3"><%=l @post_image.updated_at, format: :long %></span>
+              <span class="post-image-heart mr-2"><i class="far fa-heart"></i></span>
+              <span id="favorite_count_<%= @post_image.id %>"><%= @post_image.favorites.count %></span>
             </div>
             <% if user_signed_in? %>
               <% if current_user === @user %>

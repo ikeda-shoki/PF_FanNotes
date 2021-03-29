@@ -119,26 +119,26 @@ class RequestsController < ApplicationController
    def ensure_request_user
      @request = Request.find(params[:id])
      unless current_user === @request.requester || current_user === @request.requested
-       redirect_to main_path
+       redirect_to main_path, alert: '注文に関するページへは関係者以外接続することはできません'
      end
    end
 
    def ensure_request_current_user
      @user = User.find_by(id: params[:user_id])
      unless @user === current_user
-       redirect_to main_path
+       redirect_to main_path, alert: '注文一覧ページへは本人以外接続することはできません'
      end
    end
 
    def ensure_request_requester
      unless @request.requester === current_user
-       redirect_to main_path
+       redirect_to main_path, alert: '完成したイラストは発注関係者以外は閲覧できません'
      end
    end
 
    def ensure_request_requested
      unless @request.requested === current_user
-       redirect_to post_images_path
+       redirect_to main_path, alert: '完成したイラストは発注関係者以外は閲覧できません'
      end
    end
 end

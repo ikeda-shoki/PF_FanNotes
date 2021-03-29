@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: "post_images#top"
-  post '/guest_sign_in', to: 'post_images#new_guest'
+  post '/guest_sign_in', to: 'users#new_guest'
 
   devise_for :users
 
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     get '/request/:id/complete', to: 'requests#request_complete', as: 'request_complete'
     resources :requests, only: [:new, :create, :edit, :update, :destroy]
   end
-  
+
   get '/request/:request_id/chat/:id', to: 'chats#show', as: 'request_chat'
   resources :chats, only: [:create, :destroy]
 

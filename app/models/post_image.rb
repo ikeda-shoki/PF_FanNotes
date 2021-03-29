@@ -50,7 +50,7 @@ class PostImage < ApplicationRecord
       post_image.hashtags << tag
     end
   end
-  
+
   def create_notification_favorite(current_user)
     favorited = Notification.where(["visitor_id = ? and visited_id = ? and post_image_id = ? and action = ?", current_user.id, user_id, id, 'favorite'])
     if favorited.blank?
@@ -64,7 +64,7 @@ class PostImage < ApplicationRecord
       end
     end
   end
-  
+
   def create_notification_post_image_comment(current_user)
     notification = current_user.active_notifications.new(
       post_image_id: id,
@@ -75,5 +75,5 @@ class PostImage < ApplicationRecord
       notification.checked = true
     end
     notification.save
-  end  
+  end
 end

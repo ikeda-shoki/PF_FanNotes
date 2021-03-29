@@ -1,0 +1,6 @@
+<div class="post-image-index-head d-flex justify-content-between align-items-center">
+  <h2><%= sort_index_title %></h2>
+  <%= render 'search/sort_post_image' %>
+</div>
+<%= render 'post_images/post_image_item', post_images: post_images %>
+<%= paginate post_images %>
