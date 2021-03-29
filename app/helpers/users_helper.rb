@@ -1,4 +1,5 @@
 module UsersHelper
+  # userが受付可能か
   def reception?(user)
     user.is_reception?
   end
