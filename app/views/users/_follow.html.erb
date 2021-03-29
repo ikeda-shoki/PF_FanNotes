@@ -3,20 +3,21 @@
   <% if follows.empty? %>
     <p>ユーザーはいません</p>
   <% else %>
-    <% follows.each do |follow| %>
-      <div class="follow-list">
-        <div class="follow-image pr-4">
-          <%= attachment_image_tag follow, :profile_image, fallback: 'no_image.jpg' %>
-        </div>
-        <div class="follow-detaile">
-          <h3 class="mb-3 follow-accountname"><i class="fas fa-user mr-2"></i><%= follow.account_name %></h3>
-          <div class="follow-dataile-buttons follow-button">
-            <%= link_to "プロフィール", user_path(follow), class: "button mr-2" %>
-            <%= render 'relationships/follow_button', user: follow %>
+    <div class="follow-items">
+      <% follows.each do |follow| %>
+        <div class="follow-list">
+          <div class="follow-image pr-4">
+            <%= attachment_image_tag follow, :profile_image, fallback: 'no_image.jpg' %>
+          </div>
+          <div class="follow-detaile">
+            <h3 class="mb-3 follow-accountname"><i class="fas fa-user mr-2"></i><%= follow.account_name %></h3>
+            <div class="follow-dataile-buttons follow-button">
+              <%= link_to "プロフィール", user_path(follow), class: "button mr-2" %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
     <%= paginate follows %>
   <% end %>
 </div>

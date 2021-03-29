@@ -38,7 +38,6 @@ class Request < ApplicationRecord
     notification.save
   end
 
-  #製作ステータスが更新された時
   def create_notification_request_status(current_user)
     if self.request_status === "製作中"
       notification = current_user.active_notifications.new(

@@ -326,41 +326,43 @@ $sp: 480px;
     font-size: 30px;
     font-weight: 700;
   }
-
-  img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-
-    @include sp {
-      width: 100px;
-      height: 100px;
-    }
-  }
-
-  .follow-list {
+  
+  .follow-items {
     display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-
-    .follow-accountname {
-      font-size: 20px;
-    }
-
-    .follow-dataile-buttons {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    
+    .follow-list {
       display: flex;
-      justify-content: center;
-
-      @include sp {
-        flex-direction: column;
+      align-items: center;
+      margin: 0 10px 50px 0px;
+      width: 250px;
+      
+      img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+    
+        @include sp {
+          width: 70px;
+          height: 70px;
+        }
       }
-
-      .profile-btn,
-      .button,
-      .white-button {
-        min-width: auto;
-        margin-bottom: 10px;
+  
+      .follow-accountname {
+        font-size: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+  
+      .follow-dataile-buttons {
+        .button, {
+          min-width: auto;
+          margin-bottom: 10px;
+          font-size: 13px;
+        }
       }
     }
   }
