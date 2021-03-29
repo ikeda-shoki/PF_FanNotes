@@ -131,11 +131,15 @@ describe 'PostImageのテスト' do
           expect(current_path).to eq("/users/" + post_image.user_id.to_s ) 
         end
         it "投稿の編集リンクは存在するか" do
-          expect(page).to have_link("投稿を編集する")
+          if post_image.user === test_user
+            expect(page).to have_link("投稿を編集する")
+          end
         end
         it "投稿の編集リンク先は正しいか" do
-          click_link("投稿を編集する")
-          expect(current_path).to eq("/post_images/" + post_image.id.to_s + "/edit") 
+          if post_image.user === test_user
+            click_link("投稿を編集する")
+            expect(current_path).to eq("/post_images/" + post_image.id.to_s + "/edit")
+          end
         end
       end
     end
