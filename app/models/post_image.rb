@@ -74,6 +74,5 @@ class PostImage < ApplicationRecord
     unless notification.visitor_id === notification.visited_id
       notification.save
     end
-    notification.save
   end
 end
