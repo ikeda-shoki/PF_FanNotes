@@ -45,6 +45,7 @@ a {
 
 .fan-notes {
   width: 100%;
+  min-height: 100vh;
   background-color: $main-color;
   position: relative;
 
@@ -445,8 +446,8 @@ a {
 
 .back-button {
   position: absolute;
-  bottom: 20px;
-  right: 40px;
+  top: 100px;
+  left: 40px;
   padding: 5px 15px;
   border-radius: 20px;
   transition: 0.8s;

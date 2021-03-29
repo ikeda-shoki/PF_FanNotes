@@ -25,33 +25,17 @@
             <% end %>
           <% end %>
       </div>
-      <div class="post-image-main-link">
-        <%= link_to post_images_path do %>
-          作品一覧へ<i class="fas fa-chevron-right ml-3"></i>
-        <% end %>
-      </div>
+      <%= render 'post_images/post_images_link' %>
     </div>
 
     <div class="new-images">
       <h2>新着作品</h2>
       <div class="slider-new">
         <% @post_images.each do |post_image|%>
-          <%= link_to post_image_path(post_image), class: "d-block" do %>
-            <div class="main-post-image">
-              <%= attachment_image_tag post_image, :image %>
-              <div class="post-image-text pt-2">
-                <p><i class="fas fa-user mr-2"></i><%= post_image.user.account_name %></p>
-                <p class="post-image-introduction"><%= post_image.title %></p>
-              </div>
-            </div>
-          <% end %>
+          <%= render 'post_images/main_post_image_item', post_image: post_image %>
         <% end %>
       </div>
-      <div class="post-image-main-link">
-        <%= link_to post_images_path do %>
-          作品一覧へ<i class="fas fa-chevron-right ml-3"></i>
-        <% end %>
-      </div>
+      <%= render 'post_images/post_images_link' %>
     </div>
 
     <div class="favorite-hashtags">
@@ -79,15 +63,7 @@
           <h2 class="mb-4">フォローユーザーの新着作品</h2>
           <div class="slide-follow-image">
             <% @following_users_post_images.each do |following_users_post_image| %>
-              <%= link_to post_image_path(following_users_post_image), class: "d-block" do %>
-                <div class="main-post-image">
-                  <%= attachment_image_tag following_users_post_image, :image %>
-                  <div class="post-image-text pt-2">
-                    <p><i class="fas fa-user mr-2"></i><%= following_users_post_image.user.account_name %></p>
-                    <p class="post-image-introduction"><%= following_users_post_image.title %></p>
-                  </div>
-                </div>
-              <% end %>
+              <%= render 'post_images/main_post_image_item', post_image: following_users_post_image %>
             <% end %>
           </div>
           <div class="post-image-main-link d-flex justify-content-between">
