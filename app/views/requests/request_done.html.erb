@@ -7,7 +7,7 @@
           <%= attachment_image_tag request_image, :complete_image %>
         </div>
       <% end %>
-    <div class="back-button d-inline-block">
+      <div class="back-button d-inline-block">
         <%= link_to user_requested_show_path(user_id: @request.requester_id, id: @request) do %>
           前の画面に戻る<i class="fas fa-arrow-circle-left fa-flip-horizontal ml-1"></i>
         <% end %>

@@ -53,13 +53,13 @@ class UsersController < ApplicationController
   #フォローユーザー画面
   def following
     @user = User.find(params[:id])
-    @followers = Kaminari.paginate_array(@user.following_user).page(params[:page]).per(8)
+    @followers = Kaminari.paginate_array(@user.following_user).page(params[:page]).per(14)
   end
 
   #フォロワーユーザー画面
   def followed
     @user = User.find(params[:id])
-    @followed = Kaminari.paginate_array(@user.followed_user).page(params[:page]).per(8)
+    @followed = Kaminari.paginate_array(@user.followed_user).page(params[:page]).per(14)
   end
 
   private
