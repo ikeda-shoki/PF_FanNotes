@@ -330,13 +330,13 @@ $sp: 480px;
   .follow-items {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-around;
     
     .follow-list {
       display: flex;
       align-items: center;
       margin: 0 10px 50px 0px;
-      width: 250px;
+      width: 280px;
       
       img {
         width: 100px;
@@ -350,18 +350,22 @@ $sp: 480px;
         }
       }
   
-      .follow-accountname {
-        font-size: 20px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-  
-      .follow-dataile-buttons {
-        .button, {
-          min-width: auto;
-          margin-bottom: 10px;
-          font-size: 13px;
+      .follow-detaile {
+        width: 60%;
+        
+        .follow-accountname {
+          font-size: 20px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+    
+        .follow-dataile-buttons {
+          .button {
+            min-width: auto;
+            margin-bottom: 10px;
+            font-size: 13px;
+          }
         }
       }
     }

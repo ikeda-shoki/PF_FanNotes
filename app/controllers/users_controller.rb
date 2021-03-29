@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :edit, :update, :destroy]
   before_action :ensure_current_user, only: [:edit, :update, :destroy]
+  before_action :get_user, only: [:show, :edit, :update, :destroy, :following, :followed]
 
   def new_guest
     user = User.find_or_create_by!(email: 'guest@example.com') do |user|
@@ -10,9 +11,12 @@ class UsersController < ApplicationController
     sign_in user
     redirect_to main_path, notice: 'ゲストユーザーとしてログインしました。'
   end
+  
+  def get_user
+    @user = User.find(params[:id])
+  end
 
   def show
-    @user = User.find(params[:id])
     @post_images = Kaminari.paginate_array(@user.post_images.reverse_order).page(params[:normal_page]).per(6)
     favorites = Favorite.where(user_id: @user.id).pluck(:post_image_id)
     @my_favorite_images = Kaminari.paginate_array(PostImage.preload(:user).find(favorites.reverse)).page(params[:favorite_page]).per(6)
@@ -25,11 +29,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "ユーザー情報を更新しました"
     else
@@ -38,7 +40,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
     if @user.destroy
       redirect_to user_withdrawal_path
     else
@@ -52,13 +53,11 @@ class UsersController < ApplicationController
 
   #フォローユーザー画面
   def following
-    @user = User.find(params[:id])
     @followers = Kaminari.paginate_array(@user.following_user).page(params[:page]).per(14)
   end
 
   #フォロワーユーザー画面
   def followed
-    @user = User.find(params[:id])
     @followed = Kaminari.paginate_array(@user.followed_user).page(params[:page]).per(14)
   end
 
