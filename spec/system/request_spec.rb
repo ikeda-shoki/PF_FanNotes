@@ -77,6 +77,15 @@ describe 'Requestのテスト' do
         it 'request情報、requested_userの名前が存在する' do
           expect(page).to have_content test_request.requested.account_name
         end
+        it 'request情報、requests数が存在する' do
+          expect(page).to have_content test_user.request.count
+        end
+        it 'request情報、request_statusが存在する' do
+          expect(page).to have_content test_request.request_status
+        end
+        it 'request情報、user.profile_imageが存在する' do
+          expect(page).to have_content test_request.requested.profile_image
+        end
       end
     end
   end
