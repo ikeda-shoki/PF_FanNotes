@@ -87,7 +87,7 @@ describe 'Userのテスト' do
         end
       end
       context "表示の確認" do
-        it "現在のが依頼数表示されている" do
+        it "現在の依頼数表示されている" do
           expect(page).to have_content reception_user.request.count
         end
         it "現在の依頼数達成数が表示されている" do
