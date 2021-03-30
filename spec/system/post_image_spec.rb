@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'PostImageのテスト' do
-  
+
   describe 'top(top_path)のテスト' do
     before do
       visit '/'
@@ -43,17 +43,17 @@ describe 'PostImageのテスト' do
       end
     end
   end
-  
+
   describe 'PostImageのテスト(ログイン済)' do
     let!(:test_user){ FactoryBot.create(:test_user) }
-    
+
     before do
       visit '/users/sign_in'
       fill_in "user_email", with: test_user.email
       fill_in "user_password", with: test_user.password
       click_on "Log In"
     end
-    
+
     context "ヘッダーの表示" do
       it "ヘッダーの表示が変わっている" do
         expect(page).to have_link '投稿する'
@@ -62,7 +62,7 @@ describe 'PostImageのテスト' do
         expect(page).to have_link 'ログアウト'
       end
     end
-    
+
     describe "メイン(main_path)のテスト" do
       it "作品一覧のリンクがあるか" do
         expect(page).to have_link '作品一覧へ'
@@ -71,7 +71,7 @@ describe 'PostImageのテスト' do
         expect(page).to have_link 'ユーザー一覧へ'
       end
     end
-    
+
     describe "投稿(post_images/new)のテスト" do
       before do
         visit '/post_images/new'
@@ -105,9 +105,9 @@ describe 'PostImageのテスト' do
         end
       end
     end
-    
+
     describe "投稿(post_images/show)のテスト" do
-      let!(:post_image) { 
+      let!(:post_image) {
         FactoryBot.create(:post_image)
       }
       before do
@@ -128,20 +128,24 @@ describe 'PostImageのテスト' do
         end
         it "プロフィールボタンの遷移先は正しいか" do
           click_link("プロフィールへ")
-          expect(current_path).to eq("/users/" + post_image.user_id.to_s ) 
+          expect(current_path).to eq("/users/" + post_image.user_id.to_s )
         end
         it "投稿の編集リンクは存在するか" do
-          expect(page).to have_link("投稿を編集する")
+          if post_image.user === test_user
+            expect(page).to have_link("投稿を編集する")
+          end
         end
         it "投稿の編集リンク先は正しいか" do
-          click_link("投稿を編集する")
-          expect(current_path).to eq("/post_images/" + post_image.id.to_s + "/edit") 
+          if post_image.user === test_user
+            click_link("投稿を編集する")
+            expect(current_path).to eq("/post_images/" + post_image.id.to_s + "/edit")
+          end
         end
       end
     end
-    
+
     describe "投稿編集(post_images/edit)のテスト" do
-      let!(:post_image) { 
+      let!(:post_image) {
         FactoryBot.create(:post_image)
       }
       before do
