@@ -9,27 +9,42 @@ describe 'PostImageのテスト' do
       visit '/'
     end
     context "リンクの確認" do
+      it 'logoをのリンク先は正しいか' do
+        logo_link = find_all('a')[0]
+        logo_link.click
+        expect(current_path).to eq('/post_images/main')
+      end
       it 'Log Inリンクがあるか' do
         expect(page).to have_link 'ログイン'
       end
       it 'Log Inのリンク先は正しいか' do
-        log_in_link = find_all('a')[3]
+        log_in_link = find_all('a')[6]
+        log_in_link.click
+        expect(current_path).to eq('/users/sign_in')
+      end
+      it 'Log Inリンク先は正しいか_2' do
+        log_in_link = find_all('a')[8]
         log_in_link.click
         expect(current_path).to eq('/users/sign_in')
       end
       it 'Sign Upリンクがあるか' do
         expect(page).to have_link '新規登録'
       end
-      it 'Log Inのリンク先は正しいか' do
-        log_in_link = find_all('a')[4]
-        log_in_link.click
+      it 'Sign Upのリンク先は正しいか' do
+        sign_up_link = find_all('a')[7]
+        sign_up_link.click
+        expect(current_path).to eq('/users/sign_up')
+      end
+      it 'Sign Upリンク先は正しいか_2' do
+        sign_up_link = find_all('a')[9]
+        sign_up_link.click
         expect(current_path).to eq('/users/sign_up')
       end
       it 'ゲストログインリンクがあるか' do
         expect(page).to have_link 'ゲストログイン'
       end
       it 'ゲストログインリンクでログインできるか' do
-        gest_log_in_link = find_all('a')[7]
+        gest_log_in_link = find_all('a')[10]
         gest_log_in_link.click
         expect(page).to have_content("ゲストユーザーとしてログインしました")
       end
@@ -37,7 +52,12 @@ describe 'PostImageのテスト' do
         expect(page).to have_link 'イラストを見にいこう'
       end
       it 'mainリンクのリンク先は正しいか' do
-        main_link = find_all('a')[8]
+        main_link = find_all('a')[11]
+        main_link.click
+        expect(current_path).to eq('/post_images/main')
+      end
+      it 'mainリンクのリンク先は正しいか_2' do
+        main_link = find_all('a')[12]
         main_link.click
         expect(current_path).to eq('/post_images/main')
       end
@@ -59,6 +79,9 @@ describe 'PostImageのテスト' do
         expect(page).to have_link '投稿する'
         expect(page).to have_link 'マイページ'
         expect(page).to have_link '通知'
+        expect(page).to have_link 'メイン画面'
+        expect(page).to have_link 'イラスト一覧'
+        expect(page).to have_link 'ユーザー一覧'
         expect(page).to have_link 'ログアウト'
       end
     end
@@ -125,6 +148,15 @@ describe 'PostImageのテスト' do
         end
         it "プロフィールボタンは存在するか" do
           expect(page).to have_link("プロフィールへ")
+        end
+        it "フォローボタンは存在するか" do
+          unless post_image.user === test_user
+            if test_user.following?(post_image.user)
+              expect(page).to have_link "フォローを外す"
+            else
+              expect(page).to have_link "フォローする"
+            end
+          end
         end
         it "プロフィールボタンの遷移先は正しいか" do
           click_link("プロフィールへ")

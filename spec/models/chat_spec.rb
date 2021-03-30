@@ -9,7 +9,7 @@ RSpec.describe Chat, "モデルに関するテスト", type: :model do
     end
   end
   
-  context 'Chatのバリデーションチェック' do
+  describe 'Chatのバリデーションチェック' do
     it 'messageが空白' do
       chat = FactoryBot.build(:chat)
       chat.message = ""
