@@ -5,6 +5,7 @@ require 'rails_helper'
 describe 'Requestのテスト' do
   let!(:test_user){ FactoryBot.create(:test_user) }
   let!(:requested_user){ FactoryBot.create(:test_user) }
+  let!(:requesting_user){ FactoryBot.create(:not_reception_user) }
 
   describe 'リクエストする時のテスト' do
 
@@ -77,9 +78,65 @@ describe 'Requestのテスト' do
         it 'request情報、requested_userの名前が存在する' do
           expect(page).to have_content test_request.requested.account_name
         end
+        it 'request情報、requests数が存在する' do
+          expect(page).to have_content test_user.request.count
+        end
+        it 'request情報、request_statusが存在する' do
+          expect(page).to have_content test_request.request_status
+        end
+      end
+      context '遷移先のテスト' do
+        it 'request情報の遷移先は正しいか' do
+          request_info = find('.requesting_request_repec')
+          request_info.click
+          expect(current_path).to eq('/users/' + requested_user.id.to_s + '/requesting_show/' + test_request.id.to_s )
+        end
       end
     end
+    
+    describe 'リクエスト(request/requested)のテスト' do
+      let!(:test_request) {
+        Request.create(
+          #先ほどのテストとは違い、requester_idをrequestr_user.idで登録しています。
+          requester_id: requesting_user.id,
+          requested_id: test_user.id,
+          request_introduction: "アイコン作成の依頼",
+          file_format: "jpg",
+          use: '自分のSNSアカウントで使用する予定です。',
+          amount: "1",
+          deadline: "2021/04/20",
+          request_status: "未受付")
+      }
+
+      before do
+        visit '/users/' + test_user.id.to_s + '/requested'
+      end
+
+      context '表示の確認' do
+        it 'user-profileが存在する' do
+          expect(page).to have_css('.user-profile')
+        end
+        it 'request情報が存在する' do
+          expect(page).to have_css('.requests')
+        end
+        it 'request情報、requesting_userの名前が存在する' do
+          expect(page).to have_content test_request.requester.account_name
+        end
+        it 'request情報、requested数が存在する' do
+          expect(page).to have_content test_user.requested.count
+        end
+        it 'request情報、request_statusが存在する' do
+          expect(page).to have_content test_request.request_status
+        end
+      end
+      context '遷移先のテスト' do
+        it 'request情報の遷移先は正しいか' do
+          request_info = find('.requested_request_repec')
+          request_info.click
+          expect(current_path).to eq('/users/' + requesting_user.id.to_s + '/requested_show/' + test_request.id.to_s )
+        end
+      end
+    end
+    
   end
-
-
 end
