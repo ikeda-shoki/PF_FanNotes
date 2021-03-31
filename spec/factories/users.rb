@@ -18,7 +18,7 @@ end
 
 FactoryBot.define do
   factory :not_reception_user, class: User do
-    sequence(:email) { |n| "test_user#{n}@example.com" }
+    sequence(:email) { |n| "test_requestinguser#{n}@example.com" }
     password { Faker::Lorem.characters(number:10) }
     account_name { Faker::Name.unique.name }
     is_reception { "false" }
