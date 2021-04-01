@@ -178,9 +178,6 @@ describe 'Requestのテスト' do
           it 'requestの受付状況が表示されている' do
             expect(page).to have_content test_request.request_status
           end
-          it 'requestの登録するが表示されている' do
-            expect(page).to have_button "登録する"
-          end
           it 'requestの一覧画面に戻るが表示されている' do
             expect(page).to have_link "一覧画面に戻る"
           end
@@ -190,11 +187,23 @@ describe 'Requestのテスト' do
         end
 
         context '製作ステータスが未受付の時、フォームの確認' do
+          it 'requestの登録するが表示されている' do
+            expect(page).to have_button "登録する"
+          end
+          it 'requestのrequest_statusが製作するが初めから選択されている' do
+            expect(page).to have_checked_field with: '製作中', visible: false
+          end
           it '製作ステータスを製作するに更新できる' do
             #inputをcssでdisplay:noneにしている為
             find("#request_request_status_製作中", { visible: false }).click
             click_button '登録する'
             expect(page).to have_content("製作ステータスを更新しました")
+          end
+          it '製作ステータスを製作するに更新できる' do
+            #inputをcssでdisplay:noneにしている為
+            find('label[for=request_request_status_製作中]').click
+            click_button '登録する'
+            expect(test_request).to eq("製作中")
           end
         end
       end
