@@ -93,8 +93,8 @@ describe 'Requestのテスト' do
         end
       end
     end
-    
-    describe 'リクエスト(request/requested)のテスト' do
+
+    describe 'リクエスト(requested)のテスト' do
       let!(:test_request) {
         Request.create(
           #先ほどのテストとは違い、requester_idをrequestr_user.idで登録しています。
@@ -108,35 +108,97 @@ describe 'Requestのテスト' do
           request_status: "未受付")
       }
 
-      before do
-        visit '/users/' + test_user.id.to_s + '/requested'
+      describe 'リクエスト(request/requested)のテスト' do
+
+        before do
+          visit '/users/' + test_user.id.to_s + '/requested'
+        end
+
+        context '表示の確認' do
+          it 'user-profileが存在する' do
+            expect(page).to have_css('.user-profile')
+          end
+          it 'request情報が存在する' do
+            expect(page).to have_css('.requests')
+          end
+          it 'request情報、requesting_userの名前が存在する' do
+            expect(page).to have_content test_request.requester.account_name
+          end
+          it 'request情報、requested数が存在する' do
+            expect(page).to have_content test_user.requested.count
+          end
+          it 'request情報、request_statusが存在する' do
+            expect(page).to have_content test_request.request_status
+          end
+        end
+        context '遷移先のテスト' do
+          it 'request情報の遷移先は正しいか' do
+            request_info = find('.requested_request_repec')
+            request_info.click
+            expect(current_path).to eq('/users/' + requesting_user.id.to_s + '/requested_show/' + test_request.id.to_s )
+          end
+        end
+
       end
 
-      context '表示の確認' do
-        it 'user-profileが存在する' do
-          expect(page).to have_css('.user-profile')
+      describe 'リクエスト(request/requested_show)のテスト' do
+
+        before do
+          visit '/users/' + requesting_user.id.to_s + '/requested_show/' + test_request.id.to_s
         end
-        it 'request情報が存在する' do
-          expect(page).to have_css('.requests')
+
+        context '表示の依頼' do
+          it 'requesting_userの名前が表示されている' do
+            expect(page).to have_content requesting_user.account_name
+          end
+          it 'requestの内容詳細が表示されている' do
+            expect(page).to have_content test_request.request_introduction
+          end
+          it 'requestの内容詳細が表示されている' do
+            expect(page).to have_content test_request.request_introduction
+          end
+          it 'requestの参考画像が表示されている' do
+            expect(page).to have_css('.reference_image')
+          end
+          it 'requestのファイル形式が表示されている' do
+            expect(page).to have_content test_request.file_format
+          end
+          it 'requestの用途が表示されている' do
+            expect(page).to have_content test_request.use
+          end
+          it 'requestの用途が表示されている' do
+            expect(page).to have_content test_request.use
+          end
+          it 'requestの枚数が表示されている' do
+            expect(page).to have_content test_request.amount
+          end
+          it 'requestの納期が表示されている' do
+            expect(page).to have_css('.request-show-deadline')
+          end
+          it 'requestの受付状況が表示されている' do
+            expect(page).to have_content test_request.request_status
+          end
+          it 'requestの登録するが表示されている' do
+            expect(page).to have_button "登録する"
+          end
+          it 'requestの一覧画面に戻るが表示されている' do
+            expect(page).to have_link "一覧画面に戻る"
+          end
+          it 'requestのチャットボタンが表示されている' do
+            expect(page).to have_link("チャットを始める")
+          end
         end
-        it 'request情報、requesting_userの名前が存在する' do
-          expect(page).to have_content test_request.requester.account_name
-        end
-        it 'request情報、requested数が存在する' do
-          expect(page).to have_content test_user.requested.count
-        end
-        it 'request情報、request_statusが存在する' do
-          expect(page).to have_content test_request.request_status
-        end
-      end
-      context '遷移先のテスト' do
-        it 'request情報の遷移先は正しいか' do
-          request_info = find('.requested_request_repec')
-          request_info.click
-          expect(current_path).to eq('/users/' + requesting_user.id.to_s + '/requested_show/' + test_request.id.to_s )
+
+        context '製作ステータスが未受付の時、フォームの確認' do
+          it '製作ステータスを製作するに更新できる' do
+            #inputをcssでdisplay:noneにしている為
+            find("#request_request_status_製作中", { visible: false }).click
+            click_button '登録する'
+            expect(page).to have_content("製作ステータスを更新しました")
+          end
         end
       end
     end
-    
+
   end
 end
