@@ -60,7 +60,7 @@ describe 'Requestのテスト' do
           file_format: "jpg",
           use: '自分のSNSアカウントで使用する予定です。',
           amount: "1",
-          deadline: "2021/04/20",
+          deadline: "2022/05/20",
           request_status: "未受付")
       }
 
@@ -104,7 +104,7 @@ describe 'Requestのテスト' do
           file_format: "jpg",
           use: '自分のSNSアカウントで使用する予定です。',
           amount: "1",
-          deadline: "2021/04/20",
+          deadline: "2022/05/10",
           request_status: "未受付")
       }
 
@@ -193,17 +193,24 @@ describe 'Requestのテスト' do
           it 'requestのrequest_statusが製作するが初めから選択されている' do
             expect(page).to have_checked_field with: '製作中', visible: false
           end
-          it '製作ステータスを製作するに更新できる' do
+          it 'requestのrequest_statusが製作するを選択すると製作中に変更される' do
+            click_button '登録する'
+            expect(page).to have_content('製作中')
+          end
+          it 'requestのrequest_statusで製作しないを選択すると受付不可に変更される' do
+            find('label[for=request_request_status_受付不可]').click
+            expect(page).to have_checked_field with: '受付不可', visible: false
+            click_button '登録する'
+            expect(page).to have_content('受付不可')
+          end
+          it '製作ステータスの更新後のアラートは正しいか' do
             #inputをcssでdisplay:noneにしている為
-            find("#request_request_status_製作中", { visible: false }).click
             click_button '登録する'
             expect(page).to have_content("製作ステータスを更新しました")
           end
-          it '製作ステータスを製作するに更新できる' do
-            #inputをcssでdisplay:noneにしている為
-            find('label[for=request_request_status_製作中]').click
+          it '製作ステータスの更新先は正しいか' do
             click_button '登録する'
-            expect(test_request).to eq("製作中")
+            expect(current_path).to eq("/users/" + test_user.id.to_s + "/requested")
           end
         end
       end
