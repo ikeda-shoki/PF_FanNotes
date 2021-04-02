@@ -12,7 +12,7 @@
         </div>
         <div class="requests">
           <% @requests.each do |request| %>
-            <%= link_to user_requested_show_path(user_id: request.requester_id, id: request) do %>
+            <%= link_to user_requested_show_path(user_id: request.requester_id, id: request), class: "requested_request_repec" do %>
               <%= render 'requests/request_index_item', request_user: request.requester, request: request %>
             <% end %>
           <% end %>

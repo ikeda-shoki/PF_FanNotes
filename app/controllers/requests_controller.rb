@@ -72,7 +72,7 @@ class RequestsController < ApplicationController
   def update_request_status
     if @request.update(request_update_params)
       @request.create_notification_request_status(current_user)
-      redirect_to user_requested_path(current_user), notice: "依頼を承諾しました"
+      redirect_to user_requested_path(current_user), notice: "製作ステータスを更新しました"
     else
       render 'requested_show'
     end

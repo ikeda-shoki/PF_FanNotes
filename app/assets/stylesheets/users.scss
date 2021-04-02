@@ -31,13 +31,13 @@ $sp: 480px;
     padding: 20px 30px;
     border-radius: 20px;
     background-color: #ffd9e1;
-    
+
     h2 {
       &:before {
         display: none;
       }
     }
-    
+
     ul {
       list-style: none;
     }
@@ -119,7 +119,7 @@ $sp: 480px;
         background-color: $accent-color;
         color: #FFFFFE;
         font-weight: bold;
-        
+
         i {
           color: #FFFFFE;
         }
@@ -129,8 +129,40 @@ $sp: 480px;
 }
 
 .log-in {
+  position: relative;
+
   .center-container {
     padding: 200px 0 60px;
+  }
+
+  .test-user {
+    background-color: #FFFFFE;
+    padding: 20px 30px;
+    width: 300px;
+    border-radius: 20px;
+    box-shadow: 0 3px 5px rgba(0,0,0,.2);
+    position: absolute;
+    bottom: -30px;
+    right: 5%;
+    
+    p {
+      margin: 0;
+    }
+
+    h3 {
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    ul {
+      margin: 5px 0;
+      padding-left: 10px;
+    }
+
+    @include sp {
+      display: none;
+    }
   }
 }
 
@@ -326,40 +358,40 @@ $sp: 480px;
     font-size: 30px;
     font-weight: 700;
   }
-  
+
   .follow-items {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    
+
     .follow-list {
       display: flex;
       align-items: center;
       margin: 0 10px 50px 0px;
       width: 280px;
-      
+
       img {
         width: 100px;
         height: 100px;
         object-fit: cover;
         border-radius: 50%;
-    
+
         @include sp {
           width: 70px;
           height: 70px;
         }
       }
-  
+
       .follow-detaile {
         width: 60%;
-        
+
         .follow-accountname {
           font-size: 20px;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
         }
-    
+
         .follow-dataile-buttons {
           .button {
             min-width: auto;
