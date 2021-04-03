@@ -7,6 +7,9 @@
           <div class="post-image-text mx-auto">
             <div class="d-flex justify-content-between">
               <h3 class="font-weight-bold mb-3"><%= @post_image.title %></h3>
+              <div class="post-image-genre">
+                <%= render 'post_images/post_image_genre', post_image: @post_image %>
+              </div>
               <% if user_signed_in? %>
                 <div id="favorite_buttons_<%= @post_image.id %>">
                   <%= render 'favorites/favorites_button', post_image: @post_image %>

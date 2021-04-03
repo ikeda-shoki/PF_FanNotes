@@ -1,0 +1,7 @@
+<% if post_image.post_image_genre === "イラスト" %>
+  <p class="genre genre-illust"><%= post_image.post_image_genre %></p>
+<% elsif post_image.post_image_genre === "写真" %>
+  <p class="genre genre-photo"><%= post_image.post_image_genre %></p>
+<% else %>
+  <p class=" genre genre-logo"><%= post_image.post_image_genre %></p>
+<% end %>

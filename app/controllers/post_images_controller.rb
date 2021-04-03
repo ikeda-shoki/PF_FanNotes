@@ -69,6 +69,6 @@ class PostImagesController < ApplicationController
 
   private
     def post_image_params
-      params.require(:post_image).permit(:title, :image, :image_introduction, :user_id).merge(user_id: current_user.id)
+      params.require(:post_image).permit(:title, :image, :image_introduction, :post_image_genre, :user_id).merge(user_id: current_user.id)
     end
 end

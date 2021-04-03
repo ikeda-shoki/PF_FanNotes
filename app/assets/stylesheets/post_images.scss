@@ -452,6 +452,11 @@ $font-color: #3e1300;
     width: 90%;
     text-align: left;
     padding: 30px 15px 0px 15px;
+    
+    .post-image-genre {
+      margin-left: auto;
+      margin-right: 20px;
+    }
 
     .post-image-time, .post-image-heart {
       font-size: 13px;
