@@ -2,7 +2,9 @@
   <h2><%= sort_index_title %></h2>
   <%= render 'search/sort_post_image' %>
 </div>
-<%= render 'post_images/sort_index_genre_button' %>
+<% unless sort_index_title === "投稿一覧" %>
+  <%= render 'post_images/sort_index_genre_button' %>
+<% end %>
 <div id="sort_genre_index">
   <%= render 'search/post_images_sort_genre', post_images: post_images %>
 </div>
