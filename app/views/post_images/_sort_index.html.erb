@@ -5,8 +5,8 @@
 <% unless sort_index_title === "投稿一覧" %>
   <%= render 'post_images/sort_index_genre_button' %>
 <% end %>
-<div id="sort_genre_index">
-  <%= render 'search/post_images_sort_genre', post_images: post_images %>
+<div id="sort_post_images">
+  <%= render 'post_images/post_image_item', post_images: post_images %>
 </div>
 <div class="more">
   <%= link_to_next_page post_images, 'もっと見る', remote: true, id: 'view_more' %>

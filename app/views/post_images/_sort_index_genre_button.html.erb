@@ -1,6 +1,24 @@
 <div class="sort_index_genre_button">
-  <%= link_to "全て", post_image_genre_search_path(genre: 0) %>
-  <%= link_to "イラスト", post_image_genre_search_path(genre: 1) %>
-  <%= link_to "写真", post_image_genre_search_path(genre: 2) %>
-  <%= link_to "ロゴ", post_image_genre_search_path(genre: 3) %>
+  <% case @genre %>
+    <% when "1" then %>
+      <%= link_to "全て", post_image_genre_search_path(genre: 0) %>
+      <%= link_to "イラスト", post_image_genre_search_path(genre: 1), class: "genre-current" %>
+      <%= link_to "写真", post_image_genre_search_path(genre: 2) %>
+      <%= link_to "ロゴ", post_image_genre_search_path(genre: 3) %>
+    <% when "2" then %>
+      <%= link_to "全て", post_image_genre_search_path(genre: 0) %>
+      <%= link_to "イラスト", post_image_genre_search_path(genre: 1) %>
+      <%= link_to "写真", post_image_genre_search_path(genre: 2), class: "genre-current" %>
+      <%= link_to "ロゴ", post_image_genre_search_path(genre: 3) %>
+    <% when "3" then %>
+      <%= link_to "全て", post_image_genre_search_path(genre: 0) %>
+      <%= link_to "イラスト", post_image_genre_search_path(genre: 1) %>
+      <%= link_to "写真", post_image_genre_search_path(genre: 2) %>
+      <%= link_to "ロゴ", post_image_genre_search_path(genre: 3), class: "genre-current" %>
+    <% else %>
+      <%= link_to "全て", post_image_genre_search_path(genre: 0), class: "genre-current" %>
+      <%= link_to "イラスト", post_image_genre_search_path(genre: 1) %>
+      <%= link_to "写真", post_image_genre_search_path(genre: 2) %>
+      <%= link_to "ロゴ", post_image_genre_search_path(genre: 3) %>
+    <% end %>
 </div>

@@ -40,8 +40,8 @@ class SearchController < ApplicationController
     @post_images = PostImage.all.page(params[:page]).per(8)
     @selection = session[:keyword]
     sort_images = PostImage.sort(@selection)
-    genre = params[:genre]
-    case genre
+    @genre = params[:genre]
+    case @genre
     when "0" then
       @sort_post_images = Kaminari.paginate_array(sort_images).page(params[:page]).per(8)
     when "1" then

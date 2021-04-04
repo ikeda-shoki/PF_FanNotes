@@ -1,2 +1,2 @@
-$('#sort_genre_index').append("<%= j(render 'search/post_images_sort_genre', post_images: @post_images) %>");
+$('#sort_post_images').append("<%= j(render 'post_images/post_image_item', post_images: @post_images) %>");
 $("#view_more").replaceWith("<%= j(link_to_next_page(@post_images, 'もっと見る', remote: true, id: 'view_more')) %>");
