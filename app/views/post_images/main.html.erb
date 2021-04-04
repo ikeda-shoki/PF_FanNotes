@@ -46,6 +46,36 @@
         <% end %>
       </div>
     </div>
+    
+    <div class="new-images">
+      <h2>イラストの人気作品</h2>
+      <div class="slider-new">
+        <% @post_images_illust.each do |post_image|%>
+          <%= render 'post_images/main_post_image_item', post_image: post_image %>
+        <% end %>
+      </div>
+      <%= render 'post_images/post_images_link' %>
+    </div>
+    
+    <div class="new-images">
+      <h2>写真の人気作品</h2>
+      <div class="slider-new">
+        <% @post_images_photo.each do |post_image|%>
+          <%= render 'post_images/main_post_image_item', post_image: post_image %>
+        <% end %>
+      </div>
+      <%= render 'post_images/post_images_link' %>
+    </div>
+    
+    <div class="new-images">
+      <h2>ロゴの人気作品</h2>
+      <div class="slider-new">
+        <% @post_images_logo.each do |post_image|%>
+          <%= render 'post_images/main_post_image_item', post_image: post_image %>
+        <% end %>
+      </div>
+      <%= render 'post_images/post_images_link' %>
+    </div>
 
     <% if user_signed_in? %>
       <% if current_user.following_user.empty? %>

@@ -1,7 +1,7 @@
 class PostImagesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :get_post_image, only: [:show, :edit, :update, :destroy]
-  
+
   def get_post_image
     @post_image = PostImage.find(params[:id])
   end
@@ -29,6 +29,10 @@ class PostImagesController < ApplicationController
     @following_users_post_images = PostImage.preload(:user).where(user_id: current_user.following_user.pluck(:id)).reverse_order.limit(15) if user_signed_in?
     @ranking_post_images = PostImage.preload(:user).find(Favorite.group(:post_image_id).order(Arel.sql('count(post_image_id) desc')).limit(10).pluck(:post_image_id))
     @hashtags = Hashtag.find(PostImageHashtagRelation.group(:hashtag_id).order(Arel.sql('count(hashtag_id) desc')).limit(20).pluck(:hashtag_id))
+    ranking_post_images = PostImage.find(Favorite.group(:post_image_id).order(Arel.sql('count(post_image_id) desc')).pluck(:post_image_id))
+    @post_images_illust = (ranking_post_images.select { |n| n.post_image_genre === "イラスト"}).first(10)
+    @post_images_photo = (ranking_post_images.select { |n| n.post_image_genre === "写真"}).first(10)
+    @post_images_logo = (ranking_post_images.select { |n| n.post_image_genre === "ロゴ"}).first(10)
   end
 
   def create
