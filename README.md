@@ -102,4 +102,4 @@ https://fannote.work/
 - [hatchful(ロゴの制作)](https://hatchful.shopify.com/ja/onboarding/logo-usages)
 - [Unsplash photo for everyone(画像の使用)](https://unsplash.com/)
 - [unDraw(画像の使用)](https://undraw.co/)
-- [fontawesome(アイコンの)](https://fontawesome.com/)
+- [fontawesome(アイコン)](https://fontawesome.com/)
