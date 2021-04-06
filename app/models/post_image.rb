@@ -8,9 +8,12 @@ class PostImage < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   attachment :image
+  
+  enum post_image_genre: { イラスト: 0, 写真: 1, ロゴ: 2 }
 
   validates :title, presence: true
   validates :image, presence: true
+  validates :post_image_genre, presence: true
 
   def favorited_by?(user)
     self.favorites.where(user_id: user.id).exists?

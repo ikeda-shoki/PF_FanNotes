@@ -23,7 +23,16 @@
           </div>
           <div class="field mb-4 row">
             <dt class="col-md-4 d-flex align-items-center flex-wrap">
-              <%= f.label :image, "イラスト"%>
+              <%= f.label :post_image_genre, "ジャンル" %>
+              <span class="require-icon">必須</span>
+            </dt>
+            <dl class="col-md-8">
+              <%= f.select :post_image_genre, PostImage.post_image_genres.keys, selected: PostImage.post_image_genres[@post_image.post_image_genre] %>
+            </dl>
+          </div>
+          <div class="field mb-4 row">
+            <dt class="col-md-4 d-flex align-items-center flex-wrap">
+              <%= f.label :image, "作品"%>
               <span class="require-icon">必須</span>
             </dt>
             <dl class="col-md-8">
