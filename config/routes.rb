@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get '/search', to: 'search#search'
   get '/post_image_search', to: 'search#post_image_search'
+  get '/post_image_genre_search/:genre', to: 'search#post_image_genre_search', as: 'post_image_genre_search'
   get '/user_search', to: 'search#user_search'
 
   get '/user/:id/following', to: 'users#following', as: 'following'
