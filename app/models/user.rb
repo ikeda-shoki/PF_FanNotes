@@ -2,7 +2,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         # google以外の認証をする場合は %i[twitter, facebook]などとなります
+         :omniauthable, omniauth_providers: %i[google_oauth2]
 
   has_many :post_images, dependent: :destroy
   has_many :post_image_comments, dependent: :destroy
@@ -20,7 +22,8 @@ class User < ApplicationRecord
 
   attachment :profile_image
 
-  validates :account_name, presence: true, uniqueness: true
+  validates :account_name, uniqueness: true
+  validates :user_name, presence: true
 
 
   def follow(user_id)
@@ -58,6 +61,17 @@ class User < ApplicationRecord
         action: 'follow'
       )
      notification.save
+    end
+  end
+
+  #google認証の為
+  def self.find_or_create_for_oauth(auth)
+    find_or_create_by!(email: auth.info.email) do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid,
+      user.user_name = auth.info.name,
+      user.email = auth.info.email,
+      user.password = Devise.friendly_token[0, 20]
     end
   end
 end

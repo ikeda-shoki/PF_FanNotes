@@ -27,6 +27,14 @@
 
       <% end %>
 
+      <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to  omniauth_authorize_path(resource_name, provider), class: "google_button mt-5 d-block", method: :post do %>
+            <%= image_tag 'google_button.png' %>
+          <% end %>
+        <% end %>
+      <% end %>
+
       <div class="devise-buttons text-left">
         <%= link_to new_registration_path(resource_name), class: "devise-link" do %>
           <i class="fas fa-arrow-left mr-2"></i>Sign Up

@@ -8,6 +8,8 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
   activerecord:
     attributes:
+      user:
+        user_name: '本名'
       post_image:
         title: 'タイトル'
         image: '画像'

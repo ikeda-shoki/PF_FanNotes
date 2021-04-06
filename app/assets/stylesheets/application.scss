@@ -353,6 +353,12 @@ a {
   }
 }
 
+.google_button {
+  img {
+    filter: drop-shadow(5px 5px 5px #aaa);
+  }
+}
+
 .danger-button {
   &:hover {
     background-color: #E15253;
