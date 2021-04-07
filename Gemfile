@@ -63,10 +63,11 @@ gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 
-gem 'devise'
+gem "devise", git: "https://github.com/heartcombo/devise"
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
 
 gem 'dotenv-rails'
 

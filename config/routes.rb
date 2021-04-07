@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: "post_images#top"
   post '/guest_sign_in', to: 'users#new_guest'
 
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
 
   get '/post_images/hashtag/:name', to: "post_images#hashtag", as: 'hashtag'
   get '/post_images/main', to: 'post_images#main', as: 'main'

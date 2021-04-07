@@ -3,7 +3,13 @@
     <%= attachment_image_tag user, :profile_image, fallback: "no_image.jpg" %>
   </div>
 
-  <h3><%= user.account_name %></h3>
+  <h3>
+    <% if @user.account_name.present? %>
+      <%= @user.account_name %>
+    <% else %>
+      <%= @user.user_name %>
+    <% end %>
+  </h3>
 
   <div class="profile-introduction">
     <p>

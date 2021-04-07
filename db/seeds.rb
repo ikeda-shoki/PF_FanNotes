@@ -9,6 +9,7 @@
 # user
 User.create!(
    email: 'test@test.com',
+   user_name: Faker::Name.unique.name,
    account_name: 'いけちゃん',
    user_introduction: "よろしくお願いします",
    is_reception: "true",
@@ -19,6 +20,7 @@ User.create!(
 
 User.create!(
    email: 'test1@test.com',
+   user_name: Faker::Name.unique.name,
    account_name: 'くろちゃん',
    user_introduction: "初めまして！ヒロアカ大好きです！ヒロアカ関係のイラスト多めです！爆轟押し",
    is_reception: "true",
@@ -29,6 +31,7 @@ User.create!(
   
 User.create!(
    email: 'test2@test.com',
+   user_name: Faker::Name.unique.name,
    account_name: '@LeeeN',
    user_introduction: "写真好き",
    is_reception: "true",
@@ -39,6 +42,7 @@ User.create!(
   
 User.create!(
    email: 'test3@test.com',
+   user_name: Faker::Name.unique.name,
    account_name: '山本 @yuuuta',
    user_introduction: "好きなキャラクターを好きな感じで描きます！依頼どんどん待ってます！",
    is_reception: "true",
@@ -48,6 +52,7 @@ User.create!(
   
 User.create!(
    email: 'test4@test.com',
+   user_name: Faker::Name.unique.name,
    account_name: 'ワカサギ100％',
    user_introduction: "依頼して頂ければ精一杯やらせてもらいます！一緒に宣伝してくれたら嬉しいです！",
    is_reception: "true",
@@ -58,6 +63,7 @@ User.create!(
   
 User.create!(
    email: 'test5@test.com',
+   user_name: Faker::Name.unique.name,
    account_name: '鳥山カマンベールチーズ',
    user_introduction: "ドラゴンボールが大好きです！ドラゴンボール関連の画像多めです。是非フォローしてください！",
    profile_image: File.open('./app/assets/images/illust_4.jpg'),
@@ -69,6 +75,7 @@ User.create!(
 10.times do |n|
   User.create!(
      email: "test#{n + 1}@example.com",
+     user_name: Faker::Name.unique.name,
      account_name: Faker::Name.unique.name,
      is_reception: "false",
      password: "000000"

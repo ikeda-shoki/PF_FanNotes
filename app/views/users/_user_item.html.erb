@@ -7,7 +7,13 @@
         </div>
         
         <div class="user-item-text text-center">
-          <h4><%= user.account_name %></h4>
+          <h4>
+            <% if user.account_name.present? %>
+              <%= user.account_name %>
+            <% else %>
+              <%= user.user_name %>
+            <% end %>
+          </h4>
           <div class="text-center mb-4 d-flex justify-content-around user-item-text-bottom">
             <div>
               フォロー数<br />
