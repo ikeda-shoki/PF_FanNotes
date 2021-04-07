@@ -34,8 +34,12 @@
 
       <%- if devise_mapping.omniauthable? %>
         <%- resource_class.omniauth_providers.each do |provider| %>
-          <%= link_to  omniauth_authorize_path(resource_name, provider), class: "google_button mt-5 d-block", method: :post do %>
-            <%= image_tag 'google_button.png' %>
+          <%= link_to  omniauth_authorize_path(resource_name, provider), class: "sns_button mt-5 d-block", method: :post do %>
+            <% if provider === :twitter %>
+              Twitterでログイン
+            <% else %>
+              <%= image_tag 'google_button.png' %>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
