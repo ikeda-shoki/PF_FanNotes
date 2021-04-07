@@ -67,7 +67,6 @@ class User < ApplicationRecord
   #google,twitter認証の為
   def self.find_or_create_for_oauth(auth)
     find_or_create_by!(email: auth.info.email) do |user|
-      binding.pry
       user.provider = auth.provider
       user.uid = auth.uid,
       user.user_name = auth.info.name,

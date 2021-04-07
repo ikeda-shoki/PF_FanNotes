@@ -33,10 +33,11 @@
       <% end %>
 
       <%- if devise_mapping.omniauthable? %>
+        <p class="mt-5 sns-button-title">他のアカウントからのログイン/登録はこちらから</p>
         <%- resource_class.omniauth_providers.each do |provider| %>
-          <%= link_to  omniauth_authorize_path(resource_name, provider), class: "sns_button mt-5 d-block", method: :post do %>
+          <%= link_to  omniauth_authorize_path(resource_name, provider), class: "sns_button mb-3", method: :post do %>
             <% if provider === :twitter %>
-              Twitterでログイン
+              <span class="twitter-button"><i class="fab fa-twitter mr-2"></i>Sign in with Twitter</span>
             <% else %>
               <%= image_tag 'google_button.png' %>
             <% end %>
