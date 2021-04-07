@@ -9,15 +9,26 @@
 
         <%= render 'layouts/error_messages', model: @user %>
         <%= form_with model: @user, local: true do |f| %>
+        
           <div class="field mb-4 row">
             <dt class="col-md-4 d-flex align-items-center flex-wrap">
-              <%= f.label :account_name, "ユーザーネーム"%>
+              <%= f.label :user_name, "名前"%>
               <span class="require-icon">必須</span>
             </dt>
             <dl class="col-md-8">
-              <%= f.text_field :account_name, placeholder: "ユーザーネームを入力してください" %>
+              <%= f.text_field :user_name, placeholder: "本名を入力してください" %>
             </dl>
           </div>
+          
+          <div class="field mb-4 row">
+            <dt class="col-md-4 d-flex align-items-center flex-wrap">
+              <%= f.label :account_name, "アカウントネーム"%>
+            </dt>
+            <dl class="col-md-8">
+              <%= f.text_field :account_name, placeholder: "アカウントネームを入力してください" %>
+            </dl>
+          </div>
+          
           <div class="field mb-4 row">
             <dt class="col-md-4">
               <%= f.label :user_introduction, "プロフィール"%>
@@ -26,6 +37,7 @@
               <%= f.text_area :user_introduction, placeholder: "プロフィール" %>
             </dl>
           </div>
+          
           <div class="field mb-4 row">
             <dt class="col-md-4">
               <%= f.label :profile_image, "アイコン"%>
@@ -34,6 +46,7 @@
               <%= f.attachment_field :profile_image %>
             </dl>
           </div>
+          
           <div class="field mb-4 row">
             <dt class="col-md-4 d-flex align-items-center flex-wrap">
               <%= f.label :is_reception, "受付状況"%>
@@ -50,6 +63,7 @@
               </div>
             </dl>
           </div>
+          
           <div class="mb-5 text-center">
             <%= f.submit '更新する', class: "button" %>
           </div>

@@ -17,9 +17,6 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
- @import "slick-theme";
- @import "slick";
-
 
 $main-color: #f7f4f2;
 $accent-color: #e65b20;
@@ -258,7 +255,7 @@ a {
         color: #E15253;
       }
     }
-    
+
     .h5 {
       font-size: 18px;
     }
@@ -350,6 +347,34 @@ a {
     background-color: $accent-color;
     color: $main-color;
     opacity: 1;
+  }
+}
+
+.sns-button-title {
+  @include sp {
+    font-size: 15px;
+  }
+}
+.sns_button {
+  display: inline-block;
+  
+  .twitter-button {
+    color: #FFFFFE;
+    background-color: #00acee;
+    padding: 10px 20px;
+    margin: 20px 10px 0 0;
+    height: 46px;
+    border-radius: 5px;
+    
+    @include sp {
+      font-size: 15px;
+      padding: 10px 10px;
+      margin-right: 0;
+    }
+    
+    i {
+      color: #FFFFFE;
+    }
   }
 }
 
@@ -452,7 +477,7 @@ a {
   border-radius: 20px;
   transition: 0.8s;
   -webkit-transition: 0.8s;
-  
+
   @include sp {
     display: none!important;
   }
@@ -473,11 +498,11 @@ a {
   }
 }
 
-// 
+//
 .more {
   margin-top: 40px;
   text-align: center;
-  
+
   #view_more {
     color: #FFFFFE;
     background-color: $accent-color;
@@ -488,10 +513,10 @@ a {
     box-shadow: 0 3px 5px rgba(0,0,0,.2);
     transition: 0.8s;
     -webkit-transition: 0.8s;
-    
+
     &:hover {
       opacity: 0.6;
-    } 
+    }
   }
 }
 
@@ -949,7 +974,7 @@ a {
   font-weight: 700;
   color: #FFFFFE;
   border-radius: 5px;
-  
+
   i {
     color: #FFFFFE;
   }

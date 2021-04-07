@@ -8,7 +8,11 @@
       <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
 
         <div class="field mb-3">
-          <%= f.text_field :account_name, autofocus: true, autocomplete: "account_name", placeholder: "\uf007  UserName", class: "fa" %>
+          <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", placeholder: "\uf007  Name(本名)", class: "fa" %>
+        </div>
+
+        <div class="field mb-3">
+          <%= f.text_field :account_name, autocomplete: "account_name", placeholder: "\uf007  AccountName(アプリで使用する名前)", class: "fa" %>
         </div>
 
         <div class="field mb-3">
@@ -26,6 +30,19 @@
         <div class="actions mb-3">
           <%= f.submit "Sign Up", class: "button btn-sign-up" %>
         </div>
+      <% end %>
+
+      <%- if devise_mapping.omniauthable? %>
+        <p class="mt-5 sns-button-title">他のアカウントからのログイン/登録はこちらから</p>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to  omniauth_authorize_path(resource_name, provider), class: "sns_button mb-3", method: :post do %>
+            <% if provider === :twitter %>
+              <span class="twitter-button"><i class="fab fa-twitter mr-2"></i>Sign in with Twitter</span>
+            <% else %>
+              <%= image_tag 'google_button.png' %>
+            <% end %>
+          <% end %>
+        <% end %>
       <% end %>
 
       <div class="devise-buttons text-right">
