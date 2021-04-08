@@ -41,6 +41,7 @@ describe 'Userのテスト' do
     end
     context "ユーザー処理のテスト" do
       it "ユーザーが新規登録できるか" do
+        fill_in "user_user_name", with: Faker::Name.unique.name
         fill_in "user_account_name", with: Faker::Name.unique.name
         fill_in "user_email", with: Faker::Internet.email
         fill_in "user_password", with: "000000"

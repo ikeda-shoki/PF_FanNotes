@@ -10,13 +10,13 @@ RSpec.describe User, "モデルに関するテスト", type: :model do
   end
   
   context 'Userバリデーションチェック' do
-    it 'account_nameが空白時にエラーメッセージが表示される' do
-      user = User.new(account_name: '',
+    it 'user_nameが空白時にエラーメッセージが表示される' do
+      user = User.new(user_name: '',
                       email:'test@example.com',
                       password: "000000",
                       is_reception: "true")
 	    expect(user).to be_invalid
-	    expect(user.errors[:account_name]).to include("を入力してください")
+	    expect(user.errors[:user_name]).to include("を入力してください")
     end
     it 'account_nameが重複' do
       unique_user = FactoryBot.build(:user)

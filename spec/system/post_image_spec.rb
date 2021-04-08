@@ -49,7 +49,7 @@ describe 'PostImageのテスト' do
         expect(page).to have_content("ゲストユーザーとしてログインしました")
       end
       it 'mainページへのリンクがあるか' do
-        expect(page).to have_link 'イラストを見にいこう'
+        expect(page).to have_link '作品を見にいこう'
       end
       it 'mainリンクのリンク先は正しいか' do
         main_link = find_all('a')[11]
