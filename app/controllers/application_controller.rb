@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :currrent_notifications
 
   def after_sign_in_path_for(resource)
-    main_path
+    main_post_images_path
   end
   
   def currrent_notifications

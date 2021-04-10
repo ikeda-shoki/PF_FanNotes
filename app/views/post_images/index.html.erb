@@ -1,6 +1,6 @@
 <div class="post-image-index main">
   <div class="container">
-    
+
     <% if @selection.blank? %>
       <%= render 'post_images/sort_index', sort_index_title: "投稿一覧", post_images: @post_images %>
     <% elsif @selection == 'new' %>
@@ -12,10 +12,10 @@
     <% else %>
       <%= render 'post_images/sort_index', sort_index_title: "いいねが少ない順", post_images: @sort_post_images %>
     <% end %>
-    
+
   </div>
   <div class="back-button d-inline-block">
-    <%= link_to main_path do %>
+    <%= link_to main_post_images_path do %>
       <i class="fas fa-arrow-circle-left mr-2"></i>メイン画面へ
     <% end %>
   </div>

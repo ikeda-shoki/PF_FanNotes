@@ -190,7 +190,7 @@ describe 'Userのテスト' do
         end
         it "退会できるか" do
           click_link "退会する"
-          expect(current_path).to eq("/user/withdrawal")
+          expect(current_path).to eq("/users/withdrawal")
           expect(page).to have_content "退会が完了しました"
         end
       end

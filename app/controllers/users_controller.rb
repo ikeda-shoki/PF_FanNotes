@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       user.password = SecureRandom.urlsafe_base64
     end
     sign_in user
-    redirect_to main_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to main_post_images_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   def get_user
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      redirect_to user_withdrawal_path
+      redirect_to withdrawal_users_path
     else
       render 'edit'
     end

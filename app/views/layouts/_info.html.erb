@@ -7,10 +7,10 @@
       <%= link_to "Log In", new_user_session_path, class: "white-button sp-button mb-2" %>
     </div>
     <div class="info-button-guest guest-button">
-      <%= link_to "ゲストログイン", guest_sign_in_path, method: :post ,class: "white-button sp-button" %>
+      <%= link_to "ゲストログイン", new_guest_users_path, method: :post ,class: "white-button sp-button" %>
     </div>
   </div>
-  
+
   <div class="info-introduction">
     <h6><span class="info-introduction-accent"><i class="fas fa-times-circle mr-1"></i>未ログイン</span>状態です</h6>
     <p>未ログイン状態では以下の機能が使用できません</p>

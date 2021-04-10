@@ -87,13 +87,13 @@
               <% end %>
             </div>
             <div class="image-show-profile-item col-md-4">
-              <%= link_to following_path(@user) do %>
+              <%= link_to following_user_path(@user) do %>
                 <h6>フォロー</h6>
                 <span><%= @user.following_user.count %></span>
               <% end %>
             </div>
             <div class="image-show-profile-item col-md-4">
-              <%= link_to followed_path(@user) do %>
+              <%= link_to followed_user_path(@user) do %>
                 <h6>フォロワー</h6>
                 <span id="followed_user_count_<%= @user.id %>"><%= @user.followed_user.count %></span>
               <% end %>
