@@ -4,10 +4,10 @@ class UsersController < ApplicationController
   before_action :get_user, only: [:show, :edit, :update, :destroy, :following, :followed]
 
   def new_guest
-    user = User.find_or_create_by!(email: 'guest@example.com') do |user|
-      user.user_name = "ゲスト太朗"
-      user.account_name = "ゲスト"
-      user.password = SecureRandom.urlsafe_base64
+    user = User.find_or_create_by!(email: 'guest@example.com') do |guest|
+      guest.user_name = "ゲスト太朗"
+      guest.account_name = "ゲスト"
+      guest.password = SecureRandom.urlsafe_base64
     end
     sign_in user
     redirect_to main_post_images_path, notice: 'ゲストユーザーとしてログインしました。'
@@ -48,29 +48,30 @@ class UsersController < ApplicationController
     end
   end
 
-  #退会画面
+  # 退会画面
   def withdrawal
   end
 
-  #フォローユーザー画面
+  # フォローユーザー画面
   def following
     @followers = Kaminari.paginate_array(@user.following_user).page(params[:page]).per(14)
   end
 
-  #フォロワーユーザー画面
+  # フォロワーユーザー画面
   def followed
     @followed = Kaminari.paginate_array(@user.followed_user).page(params[:page]).per(14)
   end
 
   private
-    def user_params
-      params.require(:user).permit(:account_name, :user_introduction, :profile_image, :is_reception)
-    end
 
-    def ensure_current_user
-      user = User.find(params[:id])
-      unless user === current_user
-        redirect_to user_path(current_user)
-      end
+  def user_params
+    params.require(:user).permit(:account_name, :user_introduction, :profile_image, :is_reception)
+  end
+
+  def ensure_current_user
+    user = User.find(params[:id])
+    unless user === current_user
+      redirect_to user_path(current_user)
     end
+  end
 end

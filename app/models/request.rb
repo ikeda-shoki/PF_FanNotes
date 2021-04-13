@@ -1,5 +1,4 @@
 class Request < ApplicationRecord
-
   belongs_to :requester, class_name: "User"
   belongs_to :requested, class_name: "User"
   has_one :room, dependent: :destroy
@@ -39,7 +38,7 @@ class Request < ApplicationRecord
   end
 
   def create_notification_request_status(current_user)
-    if self.request_status === "製作中"
+    if request_status === "製作中"
       notification = current_user.active_notifications.new(
         request_id: id,
         visitor_id: requested_id,
@@ -47,7 +46,7 @@ class Request < ApplicationRecord
         action: 'request_ok'
       )
       notification.save
-    elsif self.request_status === "受付不可"
+    elsif request_status === "受付不可"
       notification = current_user.active_notifications.new(
         request_id: id,
         visitor_id: requested_id,
@@ -55,7 +54,7 @@ class Request < ApplicationRecord
         action: 'request_out'
       )
       notification.save
-    elsif self.request_status === "製作完了"
+    elsif request_status === "製作完了"
       notification = current_user.active_notifications.new(
         request_id: id,
         visitor_id: requested_id,

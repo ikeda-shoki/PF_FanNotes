@@ -3,12 +3,11 @@
 require 'rails_helper'
 
 describe 'Requestのテスト' do
-  let!(:test_user){ FactoryBot.create(:test_user) }
-  let!(:requested_user){ FactoryBot.create(:test_user) }
-  let!(:requesting_user){ FactoryBot.create(:not_reception_user) }
+  let!(:test_user) { FactoryBot.create(:test_user) }
+  let!(:requested_user) { FactoryBot.create(:test_user) }
+  let!(:requesting_user) { FactoryBot.create(:not_reception_user) }
 
   describe 'リクエストする時のテスト' do
-
     before do
       visit '/users/sign_in'
       fill_in "user_email", with: test_user.email
@@ -47,12 +46,12 @@ describe 'Requestのテスト' do
         fill_in "request_use", with: Faker::Book.title
         fill_in "request_deadline", with: "2021/05/20"
         click_button '依頼を送信する'
-        expect(current_path).to eq('/users/' + test_user.id.to_s )
+        expect(current_path).to eq('/users/' + test_user.id.to_s)
       end
     end
 
     describe 'リクエスト(request/requesting)のテスト' do
-      let!(:test_request) {
+      let!(:test_request) do
         Request.create(
           requester_id: test_user.id,
           requested_id: requested_user.id,
@@ -61,15 +60,15 @@ describe 'Requestのテスト' do
           use: '自分のSNSアカウントで使用する予定です。',
           amount: "1",
           deadline: "2022/05/20",
-          request_status: "未受付")
-      }
+          request_status: "未受付"
+        )
+      end
 
       before do
         visit '/users/' + test_user.id.to_s + '/requesting'
       end
 
       describe 'リクエスト(request/requesting)のテスト' do
-        
         context '表示の確認' do
           it 'user-profileが存在する' do
             expect(page).to have_css('.user-profile')
@@ -87,16 +86,16 @@ describe 'Requestのテスト' do
             expect(page).to have_content test_request.request_status
           end
         end
+
         context '遷移先のテスト' do
           it 'request情報の遷移先は正しいか' do
             request_info = find('.requesting_request_repec')
             request_info.click
-            expect(current_path).to eq('/users/' + requested_user.id.to_s + '/requesting_show/' + test_request.id.to_s )
+            expect(current_path).to eq('/users/' + requested_user.id.to_s + '/requesting_show/' + test_request.id.to_s)
           end
         end
-        
       end
-      
+
       describe 'リクエスト(request/requesting_show)のテスト' do
         before do
           visit '/users/' + requested_user.id.to_s + '/requesting_show/' + test_request.id.to_s
@@ -109,17 +108,11 @@ describe 'Requestのテスト' do
           it 'requestの内容詳細が表示されている' do
             expect(page).to have_content test_request.request_introduction
           end
-          it 'requestの内容詳細が表示されている' do
-            expect(page).to have_content test_request.request_introduction
-          end
           it 'requestの参考画像が表示されている' do
             expect(page).to have_css('.reference_image')
           end
           it 'requestのファイル形式が表示されている' do
             expect(page).to have_content test_request.file_format
-          end
-          it 'requestの用途が表示されている' do
-            expect(page).to have_content test_request.use
           end
           it 'requestの用途が表示されている' do
             expect(page).to have_content test_request.use
@@ -140,6 +133,7 @@ describe 'Requestのテスト' do
             expect(page).to have_link("チャットを始める")
           end
         end
+
         context '製作ステータスが未受付の時、フォームの確認' do
           it 'requestの依頼を変更するボタンが表示されている' do
             expect(page).to have_link "依頼を変更する"
@@ -149,25 +143,23 @@ describe 'Requestのテスト' do
           end
           it '依頼を変更するボタンの遷移先は正しい' do
             click_link '依頼を変更する'
-            expect(current_path).to eq('/users/' + requested_user.id.to_s + "/requests/" + test_request.id.to_s + "/edit" )
+            expect(current_path).to eq('/users/' + requested_user.id.to_s + "/requests/" + test_request.id.to_s + "/edit")
           end
           it '依頼を取り消すボタンで依頼は削除される' do
             expect do
               click_link '依頼を取り消す'
             end.to change(Request.all, :count).by(-1)
           end
-          # it '依頼が削除された時、依頼された側のcomplete_request_countは変わらない' do
-            
-          # end
         end
+
         context '製作ステータスが製作完了の時、フォームの確認' do
-          let!(:request_complete_img){ FactoryBot.create(:request_image, request_id: test_request.id) }
-          let!(:test_request_complete){ test_request.update(request_status: "製作完了") }
-          
+          let!(:request_complete_img) { FactoryBot.create(:request_image, request_id: test_request.id) }
+          let!(:test_request_complete) { test_request.update(request_status: "製作完了") }
+
           before do
             visit '/users/' + requested_user.id.to_s + '/requesting_show/' + test_request.id.to_s
           end
-          
+
           it 'requestの完成した作品を確認するボタンが表示されている' do
             expect(page).to have_link "完成した作品を確認する"
           end
@@ -200,9 +192,9 @@ describe 'Requestのテスト' do
     end
 
     describe 'リクエスト(requested)のテスト' do
-      let!(:test_request) {
+      let!(:test_request) do
         Request.create(
-          #先ほどのテストとは違い、requester_idをrequestr_user.idで登録しています。
+          # 先ほどのテストとは違い、requester_idをrequestr_user.idで登録しています。
           requester_id: requesting_user.id,
           requested_id: test_user.id,
           request_introduction: "アイコン作成の依頼",
@@ -210,11 +202,11 @@ describe 'Requestのテスト' do
           use: '自分のSNSアカウントで使用する予定です。',
           amount: "1",
           deadline: "2022/05/10",
-          request_status: "未受付")
-      }
+          request_status: "未受付"
+        )
+      end
 
       describe 'リクエスト(request/requested)のテスト' do
-
         before do
           visit '/users/' + test_user.id.to_s + '/requested'
         end
@@ -236,18 +228,17 @@ describe 'Requestのテスト' do
             expect(page).to have_content test_request.request_status
           end
         end
+
         context '遷移先のテスト' do
           it 'request情報の遷移先は正しいか' do
             request_info = find('.requested_request_repec')
             request_info.click
-            expect(current_path).to eq('/users/' + requesting_user.id.to_s + '/requested_show/' + test_request.id.to_s )
+            expect(current_path).to eq('/users/' + requesting_user.id.to_s + '/requested_show/' + test_request.id.to_s)
           end
         end
-
       end
 
       describe 'リクエスト(request/requested_show)のテスト' do
-
         before do
           visit '/users/' + requesting_user.id.to_s + '/requested_show/' + test_request.id.to_s
         end
@@ -259,17 +250,11 @@ describe 'Requestのテスト' do
           it 'requestの内容詳細が表示されている' do
             expect(page).to have_content test_request.request_introduction
           end
-          it 'requestの内容詳細が表示されている' do
-            expect(page).to have_content test_request.request_introduction
-          end
           it 'requestの参考画像が表示されている' do
             expect(page).to have_css('.reference_image')
           end
           it 'requestのファイル形式が表示されている' do
             expect(page).to have_content test_request.file_format
-          end
-          it 'requestの用途が表示されている' do
-            expect(page).to have_content test_request.use
           end
           it 'requestの用途が表示されている' do
             expect(page).to have_content test_request.use
@@ -309,7 +294,7 @@ describe 'Requestのテスト' do
             expect(page).to have_content('受付不可')
           end
           it '製作ステータスの更新後のアラートは正しいか' do
-            #inputをcssでdisplay:noneにしている為
+            # inputをcssでdisplay:noneにしている為
             click_button '登録する'
             expect(page).to have_content("製作ステータスを更新しました")
           end
@@ -318,20 +303,18 @@ describe 'Requestのテスト' do
             expect(current_path).to eq("/users/" + test_user.id.to_s + "/requested")
           end
         end
+
         context '製作ステータスが製作中の時、フォームの確認' do
-          
           before do
             click_button '登録する'
-            expect(page).to have_content('製作中')
             visit '/users/' + requesting_user.id.to_s + '/requested_show/' + test_request.id.to_s
           end
-          
+
           it 'requestの完成したイラストを登録するが表示されている' do
             expect(page).to have_button "完成したイラストを登録する"
           end
         end
       end
     end
-
   end
 end

@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-
   root to: "post_images#top"
 
   devise_for :users, controllers: {
-    omniauth_callbacks: "users/omniauth_callbacks"
+    omniauth_callbacks: "users/omniauth_callbacks",
   }
 
   get '/post_images/hashtag/:name', to: "post_images#hashtag", as: 'hashtag'

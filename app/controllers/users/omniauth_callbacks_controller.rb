@@ -16,6 +16,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   private
+
   def callback_from(provider)
     provider = provider.to_s
     @user = User.find_or_create_for_oauth(request.env['omniauth.auth'])
