@@ -23,7 +23,9 @@ class Request < ApplicationRecord
 
   def deadline_limit
     if deadline.present?
-      errors.add(:deadline, 'は、最短で本日から3日後で設定してください') if deadline < Time.now || deadline < Time.current.since(2.days)
+      if deadline < Time.now || deadline < Time.current.since(2.days)
+        errors.add(:deadline, 'は、最短で本日から3日後で設定してください')
+      end
     end
   end
 

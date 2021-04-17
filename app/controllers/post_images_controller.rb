@@ -42,14 +42,14 @@ class PostImagesController < ApplicationController
     else
       render 'new'
     end
-    # post_imageモデルでafter_createを使用して＃を追加する
+    # post_image.rbでafter_createを使用して＃を追加する
   end
 
   def edit
   end
 
   def update
-    # post_imageモデルでbefore_updateを使用して＃を1から追加する
+    # post_image.rbでbefore_updateを使用して＃を1から追加する
     if @post_image.update(post_image_params)
       redirect_to post_image_path(@post_image), notice: '投稿を更新しました'
     else

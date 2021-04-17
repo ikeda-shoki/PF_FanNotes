@@ -82,9 +82,8 @@ class PostImage < ApplicationRecord
   def get_post_image_comment
     post_image_comments.preload(:user).order('created_at DESC')
   end
-  
+
   # controller用 scope
   scope :sort_new, -> (count) { order('id desc').limit(count) }
   scope :my_follower_img, -> (current_user) { where(user_id: current_user.following_user.pluck(:id)) }
-  
 end

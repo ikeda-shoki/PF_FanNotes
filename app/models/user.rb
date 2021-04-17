@@ -62,6 +62,8 @@ class User < ApplicationRecord
       notification.save
     end
   end
+  
+  scope :search_name, -> (search_word) { where(['account_name LIKE ?', "%#{search_word}%"]) }
 
   # google,twitter認証の為
   def self.find_or_create_for_oauth(auth)
