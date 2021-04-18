@@ -3,7 +3,7 @@ class PostImage < ApplicationRecord
   has_many :post_image_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :post_image_hashtag_relations, dependent: :destroy
-  has_many :hashtags, through: :post_image_hashtag_relations
+  has_many :hashtags, through: :post_image_hashtag_relations, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
   attachment :image
@@ -54,7 +54,7 @@ class PostImage < ApplicationRecord
   end
 
   def create_notification_favorite(current_user)
-    favorited = Notification.where(["visitor_id = ? and visited_id = ? and post_image_id = ? and action = ?", current_user.id, user_id, id, 'favorite'])
+    favorited = Notification.is_favite_notification(current_user.id, user_id, id)
     if favorited.blank?
       notification = current_user.active_notifications.new(
         post_image_id: id,
@@ -83,7 +83,18 @@ class PostImage < ApplicationRecord
     post_image_comments.preload(:user).order('created_at DESC')
   end
 
+  def self.my_follower_img(current_user)
+    where(user_id: current_user.following_user.pluck(:id))
+  end
+
+  def self.search_keyword(keyword)
+    where(['title LIKE ? OR image_introduction LIKE ?', "%#{keyword}%", "%#{keyword}%"])
+  end
+
+  def self.following_img(following_user)
+    where(user_id: following_user.pluck(:id)).reverse_order
+  end
+
   # controller用 scope
   scope :sort_new, -> (count) { order('id desc').limit(count) }
-  scope :my_follower_img, -> (current_user) { where(user_id: current_user.following_user.pluck(:id)) }
 end

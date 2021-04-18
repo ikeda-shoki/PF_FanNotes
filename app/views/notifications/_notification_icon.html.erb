@@ -1,5 +1,5 @@
 <%= link_to notifications_path, class: "nav-link notification-action", remote: true do %>
-  <% if unchecked_notifications.any? %>
+  <% if current_user.unchecked_notifications? %>
     通知<i class="far fa-bell ml-2"></i>
     <i class="fas fa-circle action"></i>
   <% else %>

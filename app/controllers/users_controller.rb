@@ -19,9 +19,9 @@ class UsersController < ApplicationController
 
   def show
     @post_images = Kaminari.paginate_array(@user.post_images.reverse_order).page(params[:normal_page]).per(6)
-    favorites = Favorite.where(user_id: @user.id).pluck(:post_image_id)
+    favorites = Favorite.favorite_post_image(@user.id)
     @my_favorite_images = Kaminari.paginate_array(PostImage.preload(:user).find(favorites.reverse)).page(params[:favorite_page]).per(6)
-    @my_follower_images = Kaminari.paginate_array(PostImage.preload(:user).where(user_id: @user.following_user.pluck(:id)).reverse_order).page(params[:follow_page]).per(6)
+    @my_follower_images = Kaminari.paginate_array(PostImage.preload(:user).following_img(@user.following_user)).page(params[:follow_page]).per(6)
   end
 
   def index

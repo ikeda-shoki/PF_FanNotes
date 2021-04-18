@@ -62,8 +62,15 @@ class User < ApplicationRecord
       notification.save
     end
   end
-  
-  scope :search_name, -> (search_word) { where(['account_name LIKE ?', "%#{search_word}%"]) }
+
+  # controller用
+  def self.search_keyword(keyword)
+    where(['account_name LIKE ?', "%#{keyword}%"])
+  end
+
+  def unchecked_notifications?
+    passive_notifications.where(checked: false).any?
+  end
 
   # google,twitter認証の為
   def self.find_or_create_for_oauth(auth)

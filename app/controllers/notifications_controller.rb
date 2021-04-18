@@ -3,8 +3,8 @@ class NotificationsController < ApplicationController
 
   def index
     notifications_type = [:visitor, :visited, :request, :post_image]
-    @notifications = current_user.passive_notifications.includes(notifications_type).all
-    @notifications.where(checked: false).each do |notification|
+    @notifications = current_user.passive_notifications.includes(notifications_type).all.order(created_at: :desc)
+    @notifications.checked.each do |notification|
       notification.update_attributes(checked: true)
     end
   end
