@@ -5,7 +5,7 @@
       <div class="header-logo">
         <%= image_tag 'logo.png' %>
       </div>
-      <%= link_to main_path, class: "navbar-brand" do %>
+      <%= link_to main_post_images_path, class: "navbar-brand" do %>
         <h1>
           FanNotes
         </h1>
@@ -36,7 +36,7 @@
                 メニュー
               </span>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <%= link_to main_path, class: "dropdown-item" do %>
+                <%= link_to main_post_images_path, class: "dropdown-item" do %>
                   メイン画面<i class="fas fa-home ml-2"></i>
                 <% end %>
                 <%= link_to post_images_path, class: "dropdown-item" do %>
@@ -105,7 +105,7 @@
                 メニュー
               </span>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <%= link_to main_path, class: "dropdown-item" do %>
+                <%= link_to main_post_images_path, class: "dropdown-item" do %>
                   メイン画面<i class="fas fa-home ml-2"></i>
                 <% end %>
                 <%= link_to post_images_path, class: "dropdown-item" do %>

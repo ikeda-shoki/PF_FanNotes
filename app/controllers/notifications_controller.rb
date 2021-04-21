@@ -2,8 +2,9 @@ class NotificationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @notifications = current_user.passive_notifications.preload(:visitor, :visited, :request, :post_image).all
-    @notifications.where(checked: false).each do |notification|
+    notifications_type = [:visitor, :visited, :request, :post_image]
+    @notifications = current_user.passive_notifications.includes(notifications_type).all.order(created_at: :desc)
+    @notifications.checked.each do |notification|
       notification.update_attributes(checked: true)
     end
   end
@@ -18,5 +19,4 @@ class NotificationsController < ApplicationController
     user_notifications.destroy_all
     @notifications = current_user.passive_notifications.all
   end
-
 end

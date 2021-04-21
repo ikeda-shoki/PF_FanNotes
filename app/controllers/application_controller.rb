@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
   before_action :currrent_notifications
 
   def after_sign_in_path_for(resource)
-    main_path
+    main_post_images_path
   end
-  
+
   def currrent_notifications
     if user_signed_in?
       @notifications = current_user.passive_notifications.all
@@ -17,5 +17,4 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:account_name, :is_reception, :user_name])
   end
-
 end

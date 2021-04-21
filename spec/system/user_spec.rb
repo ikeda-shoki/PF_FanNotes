@@ -3,12 +3,13 @@
 require 'rails_helper'
 
 describe 'Userのテスト' do
-  let!(:test_user){ FactoryBot.create(:test_user) }
+  let!(:test_user) { FactoryBot.create(:test_user) }
 
   describe 'LogIn(new_users_session_path)のテスト' do
     before do
       visit '/users/sign_in'
     end
+
     context "リンクの表示" do
       it "LogInボタンがあるか" do
         expect(page).to have_button 'Log In'
@@ -17,6 +18,7 @@ describe 'Userのテスト' do
         expect(page).to have_link 'Sign Up'
       end
     end
+
     context "ユーザー処理のテスト" do
       it "ユーザーがログインできるか" do
         fill_in "user_email", with: test_user.email
@@ -31,6 +33,7 @@ describe 'Userのテスト' do
     before do
       visit '/users/sign_up'
     end
+
     context "リンクの表示" do
       it "SignUpボタンがあるか" do
         expect(page).to have_button 'Sign Up'
@@ -39,8 +42,10 @@ describe 'Userのテスト' do
         expect(page).to have_link 'Log In'
       end
     end
+
     context "ユーザー処理のテスト" do
       it "ユーザーが新規登録できるか" do
+        fill_in "user_user_name", with: Faker::Name.unique.name
         fill_in "user_account_name", with: Faker::Name.unique.name
         fill_in "user_email", with: Faker::Internet.email
         fill_in "user_password", with: "000000"
@@ -52,8 +57,8 @@ describe 'Userのテスト' do
   end
 
   describe 'Userのテスト(ログイン済)' do
-    let(:reception_user){ FactoryBot.create(:test_user) }
-    let(:not_reception_user){ FactoryBot.create(:not_reception_user) }
+    let(:reception_user) { FactoryBot.create(:test_user) }
+    let(:not_reception_user) { FactoryBot.create(:not_reception_user) }
 
     describe "ユーザー詳細画面(users/show)のテスト(is_reception: true)" do
       before do
@@ -63,6 +68,7 @@ describe 'Userのテスト' do
         click_on "Log In"
         visit '/users/' + reception_user.id.to_s
       end
+
       context "リンクのテスト" do
         it "ユーザー情報の編集リンクが存在する" do
           expect(page).to have_link "編集する"
@@ -86,6 +92,7 @@ describe 'Userのテスト' do
           expect(current_path).to eq("/users/" + reception_user.id.to_s + "/requested")
         end
       end
+
       context "表示の確認" do
         it "現在の依頼数表示されている" do
           expect(page).to have_content reception_user.request.count
@@ -96,10 +103,10 @@ describe 'Userのテスト' do
         it "現在の投稿数が表示されている" do
           expect(page).to have_content reception_user.post_images.count
         end
-        it "現在の投稿数が表示されている" do
+        it "ユーザーのフォロー数が表示されている" do
           expect(page).to have_content reception_user.following_user.count
         end
-        it "現在の投稿数が表示されている" do
+        it "ユーザーのフォロワー数が表示されている" do
           expect(page).to have_content reception_user.followed_user.count
         end
         it "user.is_receptionがtrueの時、依頼受付中が表示されている" do
@@ -123,6 +130,7 @@ describe 'Userのテスト' do
         end
       end
     end
+
     describe "ユーザー詳細画面(users/show)のテスト(is_reception: false)" do
       before do
         visit '/users/sign_in'
@@ -131,6 +139,7 @@ describe 'Userのテスト' do
         click_on "Log In"
         visit '/users/' + not_reception_user.id.to_s
       end
+
       context "表示の確認" do
         it "user.is_receptionがfalseの時、依頼受付不可が表示されている" do
           expect(page).to have_content "依頼不可"
@@ -140,6 +149,7 @@ describe 'Userのテスト' do
         end
       end
     end
+
     describe "ユーザー詳細画面(users/show)のテスト(違うユーザーの場合)" do
       before do
         visit '/users/sign_in'
@@ -148,13 +158,14 @@ describe 'Userのテスト' do
         click_on "Log In"
         visit '/users/' + reception_user.id.to_s
       end
+
       context "リンクの表示" do
         it "フォローするリンクが存在する" do
           expect(page).to have_link "フォローする"
         end
       end
     end
-    
+
     describe "ユーザー詳細画面(users/edit)のテスト" do
       before do
         visit '/users/sign_in'
@@ -163,6 +174,7 @@ describe 'Userのテスト' do
         click_on "Log In"
         visit '/users/' + reception_user.id.to_s + '/edit'
       end
+
       context "ユーザー情報が更新できた時" do
         it "更新するボタンは存在するか" do
           expect(page).to have_button("更新する")
@@ -189,7 +201,7 @@ describe 'Userのテスト' do
         end
         it "退会できるか" do
           click_link "退会する"
-          expect(current_path).to eq("/user/withdrawal")
+          expect(current_path).to eq("/users/withdrawal")
           expect(page).to have_content "退会が完了しました"
         end
       end

@@ -3,11 +3,11 @@
 require 'rails_helper'
 
 describe 'PostImageのテスト' do
-
   describe 'top(top_path)のテスト' do
     before do
       visit '/'
     end
+
     context "リンクの確認" do
       it 'logoをのリンク先は正しいか' do
         logo_link = find_all('a')[0]
@@ -49,7 +49,7 @@ describe 'PostImageのテスト' do
         expect(page).to have_content("ゲストユーザーとしてログインしました")
       end
       it 'mainページへのリンクがあるか' do
-        expect(page).to have_link 'イラストを見にいこう'
+        expect(page).to have_link '作品を見にいこう'
       end
       it 'mainリンクのリンク先は正しいか' do
         main_link = find_all('a')[11]
@@ -65,7 +65,7 @@ describe 'PostImageのテスト' do
   end
 
   describe 'PostImageのテスト(ログイン済)' do
-    let!(:test_user){ FactoryBot.create(:test_user) }
+    let!(:test_user) { FactoryBot.create(:test_user) }
 
     before do
       visit '/users/sign_in'
@@ -99,6 +99,7 @@ describe 'PostImageのテスト' do
       before do
         visit '/post_images/new'
       end
+
       context '投稿が保存できた時' do
         it "投稿が保存される" do
           expect do
@@ -130,12 +131,14 @@ describe 'PostImageのテスト' do
     end
 
     describe "投稿(post_images/show)のテスト" do
-      let!(:post_image) {
+      let!(:post_image) do
         FactoryBot.create(:post_image)
-      }
+      end
+
       before do
         visit "/post_images/" + post_image.id.to_s
       end
+
       context "リンクのテスト" do
         it "いいねのリンクは存在するか" do
           expect(page).to have_css(".fa-heart")
@@ -160,7 +163,7 @@ describe 'PostImageのテスト' do
         end
         it "プロフィールボタンの遷移先は正しいか" do
           click_link("プロフィールへ")
-          expect(current_path).to eq("/users/" + post_image.user_id.to_s )
+          expect(current_path).to eq("/users/" + post_image.user_id.to_s)
         end
         it "投稿の編集リンクは存在するか" do
           if post_image.user === test_user
@@ -177,12 +180,14 @@ describe 'PostImageのテスト' do
     end
 
     describe "投稿編集(post_images/edit)のテスト" do
-      let!(:post_image) {
+      let!(:post_image) do
         FactoryBot.create(:post_image)
-      }
+      end
+
       before do
         visit "/post_images/" + post_image.id.to_s + "/edit"
       end
+
       context "更新のテスト" do
         it "更新するボタンは存在するか" do
           expect(page).to have_button("更新する")
