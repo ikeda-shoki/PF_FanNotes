@@ -6,8 +6,7 @@ FactoryBot.define do
     file_format { "jpg" }
     use { Faker::Lorem.characters(number: 30) }
     amount { "1" }
-    
-    deadline { "2021/05/20" }
+    deadline { "2021/06/20" }
     request_status { "未受付" }
   end
 end
