@@ -18,7 +18,7 @@
 <% if @notifications.exists? %>
   <div class="modal-footer">
     <div class="notification-all-delete-button">
-      <%= link_to notifications_all_destroy_path, method: :delete, data: {confirm: "通知を全て削除しますか？"}, remote: true do %>
+      <%= link_to all_destroy_notifications_path, method: :delete, data: {confirm: "通知を全て削除しますか？"}, remote: true do %>
         <span>全ての通知を削除</span>
       <% end %>
     </div>

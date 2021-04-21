@@ -69,6 +69,7 @@ https://fannote.work/
 - N+1問題(bullet)
 ### 追記(4月)
 - Google, TwitterのSNS認証ログイン機能の追加
+- リファクタリング
 
 ## 使用追加gem
 - repec(テスト)
@@ -84,6 +85,9 @@ https://fannote.work/
 - bootstrap(bootstrap使用)
 - jquery-rails(jquery使用/slick)
 - font-awesome-sass(fontawesome)
+### 追記(4月)
+- rubocop-airbnb(リファクタリング、コードの修正)
+- pre-commit(commit時のrubocop自動化の為)
 
 ## 開発環境
 - OS：Linux(CentOS)

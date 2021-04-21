@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          # google以外の認証をする場合は %i[twitter, facebook]などとなります
-         :omniauthable, omniauth_providers: %i[twitter google_oauth2]
+         :omniauthable, omniauth_providers: %i(twitter google_oauth2)
 
   has_many :post_images, dependent: :destroy
   has_many :post_image_comments, dependent: :destroy
@@ -25,7 +25,6 @@ class User < ApplicationRecord
   validates :account_name, uniqueness: true
   validates :user_name, presence: true
 
-
   def follow(user_id)
     follower.create(followed_id: user_id)
   end
@@ -34,7 +33,7 @@ class User < ApplicationRecord
     follower.find_by(followed_id: user_id).destroy
   end
 
-  #フォローしているかの確認
+  # フォローしているかの確認
   def following?(user)
     following_user.include?(user)
   end
@@ -42,36 +41,46 @@ class User < ApplicationRecord
   def self.sort(selection)
     case selection
     when 'new'
-      return all.order(created_at: :DESC)
+      all.order(created_at: :DESC)
     when 'old'
-      return all.order(created_at: :ASC)
+      all.order(created_at: :ASC)
     when 'many_post_images'
-      return all.sort { |a, b| b.post_images.count <=> a.post_images.count}
+      all.sort { |a, b| b.post_images.count <=> a.post_images.count }
     when 'many-requests'
-      return all.sort { |a, b| b.complete_request_count <=> a.complete_request_count }
+      all.sort { |a, b| b.complete_request_count <=> a.complete_request_count }
     end
   end
 
   def create_notification_follow(current_user, user)
-    followed = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, user.id, 'follow'])
+    followed = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_user.id, user.id, 'follow'])
     if followed.blank?
       notification = current_user.active_notifications.new(
         visitor_id: current_user.id,
         visited_id: user.id,
         action: 'follow'
       )
-     notification.save
+      notification.save
     end
   end
 
-  #google,twitter認証の為
+  # controller用
+  def self.search_keyword(keyword)
+    where(['account_name LIKE ?', "%#{keyword}%"])
+  end
+
+  def unchecked_notifications?
+    passive_notifications.where(checked: false).any?
+  end
+
+  # google,twitter認証の為
   def self.find_or_create_for_oauth(auth)
     find_or_create_by!(email: auth.info.email) do |user|
       user.provider = auth.provider
-      user.uid = auth.uid,
-      user.user_name = auth.info.name,
-      user.email = auth.info.email,
-      user.password = Devise.friendly_token[0, 20]
+      user.uid =
+        auth.uid,
+        user.user_name = auth.info.name,
+        user.email = auth.info.email,
+        user.password = Devise.friendly_token[0, 20]
     end
   end
 end

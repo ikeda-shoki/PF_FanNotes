@@ -13,7 +13,7 @@ RSpec.describe RequestImage, "モデルに関するテスト", type: :model do
     it 'complete_imageが空白のまま保存されない' do
       request_image = FactoryBot.build(:request_image)
       request_image.complete_image = ""
-	    expect(request_image).not_to be_valid
+      expect(request_image).not_to be_valid
     end
   end
 end

@@ -8,13 +8,13 @@ RSpec.describe Chat, "モデルに関するテスト", type: :model do
       expect(FactoryBot.build(:chat)).to be_valid
     end
   end
-  
+
   describe 'Chatのバリデーションチェック' do
     it 'messageが空白' do
       chat = FactoryBot.build(:chat)
       chat.message = ""
-	    expect(chat).to be_invalid
-	    expect(chat.errors[:message]).to include("を入力してください")
+      expect(chat).to be_invalid
+      expect(chat.errors[:message]).to include("を入力してください")
     end
   end
 end

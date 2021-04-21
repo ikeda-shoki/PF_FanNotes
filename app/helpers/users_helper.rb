@@ -3,7 +3,7 @@ module UsersHelper
   def reception?(user)
     user.is_reception?
   end
-  
+
   # 依頼状況の表示
   def reception_status(user)
     if user.is_reception === true
