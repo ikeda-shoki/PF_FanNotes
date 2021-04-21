@@ -143,4 +143,5 @@ class RequestsController < ApplicationController
       redirect_to main_post_images_path, alert: '完成したイラストは発注関係者以外は閲覧できません'
     end
   end
+  
 end
