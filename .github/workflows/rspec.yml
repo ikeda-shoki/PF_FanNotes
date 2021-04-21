@@ -17,4 +17,4 @@ jobs:
        ruby-version: ${{ matrix.ruby-version }}
        bundler-cache: true
     - name: Test with Rspec
-      run: bundle exec rspec spec/ --format documentation -o rspec.log
+      run: bundle exec rspec spec
